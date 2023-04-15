@@ -131,10 +131,10 @@ class $pageName extends StatefulWidget {
 class ${pageName}State extends State<$pageName> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: FutureBuilder<ComponentNode?>(
+    return PreviewScaffold(
+      child: FutureBuilder<ComponentNode?>(
           initialData: null,
-          future: WidgetPreview().get(context),
+          future: Catalog().get(context),
           builder: (context, data) {
             if (!data.hasData && data.data != null) {
               return Container();

@@ -16,13 +16,13 @@ export 'package:catalog/src/preview.dart';
 export 'package:catalog/src/widget_runner.dart';
 
 /// A Calculator.
-class WidgetPreview {
-  static WidgetPreview? _instance;
+class Catalog {
+  static Catalog? _instance;
 
-  WidgetPreview._internal();
+  Catalog._internal();
 
-  factory WidgetPreview() {
-    _instance ??= WidgetPreview._internal();
+  factory Catalog() {
+    _instance ??= Catalog._internal();
     return _instance!;
   }
 
@@ -43,7 +43,7 @@ class WidgetPreview {
 
   ComponentNode? currentNode;
 
-  WidgetPreview config({
+  Catalog config({
     String? path,
     Future<Uint8List> Function(Uint8List data)? process,
   }) {

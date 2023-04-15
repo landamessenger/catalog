@@ -29,10 +29,10 @@ class CatalogAppState extends State<CatalogApp> {
     return MaterialApp.router(
       routerConfig: GoRouter(
         initialLocation: '/catalog',
-        routes: WidgetPreview().routes,
+        routes: Catalog().routes,
       ),
-      key: WidgetPreview().global,
-      scaffoldMessengerKey: WidgetPreview().key,
+      key: Catalog().global,
+      scaffoldMessengerKey: Catalog().key,
       debugShowCheckedModeBanner: kDebugMode,
       showPerformanceOverlay: false,
       title: 'Catalog',

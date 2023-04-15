@@ -1,7 +1,7 @@
 name: catalog
 description: A Flutter package for render widgets in real-time
 version: 0.0.1
-homepage:
+homepage: https://landamessenger.com/
 
 environment:
   sdk: '>=2.19.6 <3.0.0'
@@ -17,7 +17,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
+  flutter_lints: ^2.0.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
