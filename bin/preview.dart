@@ -56,5 +56,12 @@ void main(List<String> arguments) async {
       prefixValue,
       preview,
     );
+
+    if (preview.usesDummies) {
+      await generateDummy(
+        file.path,
+        className,
+      );
+    }
   }
 }

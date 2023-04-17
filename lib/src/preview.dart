@@ -1,6 +1,5 @@
+import 'package:catalog/src/builders/preview_scaffold.dart';
 import 'package:flutter/material.dart';
-
-import 'builders/preview_scaffold.dart';
 
 abstract class PreviewWidget extends StatelessWidget {
   Size get size => const Size(-1, -1);
@@ -16,10 +15,7 @@ abstract class PreviewWidget extends StatelessWidget {
     return PreviewScaffold(
       title: runtimeType.toString(),
       child: Center(
-        child: Container(
-          constraints: const BoxConstraints(maxWidth: 700),
-          child: preview(context),
-        ),
+        child: preview(context),
       ),
     );
   }

@@ -95,6 +95,15 @@ abstract class Serial<T> {
     }
     return re;
   }
+
+  static List<T> listObjectFromBasicType<T>(List<dynamic> list) {
+    var re = <T>[];
+    if (list.isEmpty) return re;
+    for (dynamic val in list) {
+      re.add(val as T);
+    }
+    return re;
+  }
 }
 
 extension PrettyJson on Map<String, dynamic> {

@@ -8,7 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 export 'package:catalog/src/annotations/preview.dart';
+export 'package:catalog/src/builders/dummy.dart';
 export 'package:catalog/src/builders/dummy/dummy_text.dart';
+export 'package:catalog/src/builders/preview_dummy.dart';
 export 'package:catalog/src/builders/preview_scaffold.dart';
 export 'package:catalog/src/component/component_node.dart';
 export 'package:catalog/src/dummy.dart';
