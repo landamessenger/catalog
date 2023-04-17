@@ -6,8 +6,8 @@ class Preview implements Serial<Preview> {
   final String id;
   final String path;
   final String description;
-  final List<Object> listParameters;
-  final Map<String, Object> parameters;
+  final List<dynamic> listParameters;
+  final Map<String, dynamic> parameters;
 
   const Preview({
     required this.id,
@@ -22,6 +22,8 @@ class Preview implements Serial<Preview> {
         id: json['id'] ?? '',
         path: json['path'] ?? '',
         description: json['description'] ?? '',
+        listParameters: json['listParameters'] ?? {},
+        parameters: json['parameters'] ?? {},
       );
 
   @override
@@ -35,6 +37,8 @@ class Preview implements Serial<Preview> {
         'id': id,
         'path': path,
         'description': description,
+        'listParameters': listParameters,
+        'parameters': parameters,
       };
 
   @override

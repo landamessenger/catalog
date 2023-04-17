@@ -47,14 +47,17 @@ void main(List<String> arguments) async {
     var p = file.path.split(config['base'])[1];
     var package = 'package:$appId$p';
     var className = await findPreviewClassName(file.path);
+
+    if (className == null) {
+      print('No class name found ${file.path}');
+      continue;
+    }
     //print('- Building preview of $className in $package');
 
-    var preview = await previewFound(
-        file.path,
-        './${config['base']}/${config['output']}/',
-        'process.dart',
-        package,
-        className!);
+    var preview = await previewOnFile(
+      config,
+      file.path,
+    );
 
     if (preview == null) {
       print('No preview data found ${file.path}');

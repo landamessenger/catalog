@@ -26,17 +26,13 @@ void main(List<String> arguments) async {
 
   final files = <FileSystemEntity>[];
 
-  var map = <String, String>{};
-
   for (FileSystemEntity fileSystemEntity in entities) {
     try {
       final File file = File(fileSystemEntity.path);
       if (file.path.contains('.$prefixValue.')) continue;
       final content = await file.readAsString();
-      if (content.contains('@Preview(') || content.contains('@PreviewText(')) {
+      if (content.contains('@Preview(')) {
         files.add(fileSystemEntity);
-        map[fileSystemEntity.path] =
-            content.contains('PreviewText') ? 'text' : 'general';
       }
     } catch (e) {}
   }
@@ -45,18 +41,20 @@ void main(List<String> arguments) async {
     final File file = File(fileSystemEntity.path);
     var p = file.path.split(config['base'])[1];
     var classImport = 'package:$appId$p';
+    var preview = await previewOnFile(config, file.path);
     var previewAnnotation = await findPreviewAnnotation(file.path);
     if (previewAnnotation == null) continue;
     var className = await findClassName(file.path);
     if (className == null) continue;
-    if (map[file.path] == null) continue;
+    if (preview == null) continue;
+
     await generatePreview(
       file.path,
       classImport,
       previewAnnotation,
       className,
-      map[file.path]!,
       prefixValue,
+      preview,
     );
   }
 }
