@@ -538,7 +538,10 @@ class ${clazz}Preview extends PreviewWidget {
                 child: Builder(
                   builder: (context) {
                     var dummy = ${clazz}Dummy().dummies[i];
-                    return $widgetCompose;
+                    return Padding(
+                      padding: const EdgeInsets.all(15),
+                      child: $widgetCompose,
+                    );
                 },
               ),
             ),

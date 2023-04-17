@@ -65,7 +65,7 @@ class DrawerPreviewState extends State<DrawerPreview> {
             ),
           ),
           SizedBox(
-            height: height - 400,
+            height: height - 200,
             child: AnimatedTreeView<ComponentNode>(
               treeController: treeController!,
               nodeBuilder:
