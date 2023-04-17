@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'builders/preview_scaffold.dart';
+
 abstract class PreviewWidget extends StatelessWidget {
   Size get size => const Size(-1, -1);
 
@@ -11,6 +13,14 @@ abstract class PreviewWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return preview(context);
+    return PreviewScaffold(
+      title: runtimeType.toString(),
+      child: Center(
+        child: Container(
+          constraints: const BoxConstraints(maxWidth: 700),
+          child: preview(context),
+        ),
+      ),
+    );
   }
 }

@@ -1,26 +1,55 @@
+import 'package:catalog/src/builders/svg.dart';
 import 'package:flutter/material.dart';
 
+import 'drawer_preview.dart';
+
 class PreviewScaffold extends StatelessWidget {
+  final Widget? drawer;
   final Widget child;
   final String? title;
+  final void Function()? onBackPressed;
 
   const PreviewScaffold({
     Key? key,
     required this.child,
     this.title,
+    this.drawer,
+    this.onBackPressed,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(
+        child: DrawerPreview(
+          onBackPressed: onBackPressed,
+        ),
+      ),
       appBar: AppBar(
         foregroundColor: Colors.white,
         backgroundColor: Colors.teal,
         title: Text(title ?? ''),
       ),
-      body: Container(
-        color: Colors.white,
-        child: child,
+      body: Stack(
+        children: [
+          Container(
+            color: const Color(0xFFECE5DD),
+          ),
+          const Positioned.fill(
+            child: Image(
+              repeat: ImageRepeat.repeat,
+              image: Svg(
+                'ff',
+                scale: 2,
+                foregroundColor: Colors.white,
+                size: Size(50, 50),
+              ),
+            ),
+          ),
+          Center(
+            child: child,
+          ),
+        ],
       ),
     );
   }

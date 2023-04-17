@@ -1,0 +1,62 @@
+import 'dart:io';
+
+import 'configuration.dart';
+
+const kDebugMode = true;
+
+void main(List<String> arguments) async {
+  var dependencies = loadDependenciesFile();
+  if (kDebugMode) {
+    print(introMessage(dependencies['catalog'].toString()));
+  }
+
+  var appId = loadId();
+  var config = loadConfigFile();
+
+  final prefixValue = config['prefix'] ?? 'preview';
+
+  final dir = Directory('./${config['base']}');
+  await dir.create(recursive: true);
+
+  final dirOutPut = Directory('./${config['base']}/${config['output']}');
+  await dirOutPut.create(recursive: true);
+
+  final List<FileSystemEntity> entities =
+      await dir.list(recursive: true).toList();
+
+  final files = <FileSystemEntity>[];
+
+  var map = <String, String>{};
+
+  for (FileSystemEntity fileSystemEntity in entities) {
+    try {
+      final File file = File(fileSystemEntity.path);
+      if (file.path.contains('.$prefixValue.')) continue;
+      final content = await file.readAsString();
+      if (content.contains('@Preview(') || content.contains('@PreviewText(')) {
+        files.add(fileSystemEntity);
+        map[fileSystemEntity.path] =
+            content.contains('PreviewText') ? 'text' : 'general';
+      }
+    } catch (e) {}
+  }
+
+  for (FileSystemEntity fileSystemEntity in files) {
+    final File file = File(fileSystemEntity.path);
+    var p = file.path.split(config['base'])[1];
+    var classImport = 'package:$appId$p';
+    var previewAnnotation = await findPreviewAnnotation(file.path);
+    if (previewAnnotation == null) continue;
+    var className = await findClassName(file.path);
+    if (className == null) continue;
+    if (map[file.path] == null) continue;
+    await generatePreview(
+      file.path,
+      classImport,
+      previewAnnotation,
+      className,
+      map[file.path]!,
+      prefixValue,
+    );
+  }
+}

@@ -6,11 +6,15 @@ class Preview implements Serial<Preview> {
   final String id;
   final String path;
   final String description;
+  final List<Object> listParameters;
+  final Map<String, Object> parameters;
 
   const Preview({
     required this.id,
     required this.path,
     this.description = '',
+    this.parameters = const {},
+    this.listParameters = const [],
   });
 
   @override

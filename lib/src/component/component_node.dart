@@ -43,7 +43,7 @@ class ComponentNode extends Serial<ComponentNode> {
   String get routerBuilder => '''
   GoRoute(
       path: ${builtComponent?.clazzName}.routeName,
-      pageBuilder: (context, state) => MaterialPage(
+      pageBuilder: (context, state) => NoTransitionPage(
         key: state.pageKey,
         child: const ${builtComponent?.clazzName}(),
       ),
