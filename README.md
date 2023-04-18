@@ -1,9 +1,13 @@
 # Catalog
 
-> This package uses `go_router` for simplify the navigation. Your app must already
-> This package doesn't render your widgets in IDEA, Android Studio or Visual Studio Code
+> This package uses `go_router` for simplify the navigation. If you aren't using this package, you can run
+> the `CatalogApp` for run it.
+
+> This package doesn't render your widgets in IDEA, Android Studio or Visual Studio Code.
 
 This package allows you to create a widget catalog. Every widget page of your catalog can display one or more samples of your widget.
+
+*Where I see this catalog?* After you prepare your widgets, you must run your app and go to `/catalog`.
 
 #### Installation
 
