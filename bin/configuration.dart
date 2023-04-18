@@ -535,14 +535,20 @@ class ${clazz}Preview extends PreviewWidget {
           children: [
             for (int i = 0; i < ${clazz}Dummy().dummies.length; i++)
               Center(
-                child: Builder(
-                  builder: (context) {
-                    var dummy = ${clazz}Dummy().dummies[i];
-                    return Padding(
-                      padding: const EdgeInsets.all(15),
-                      child: $widgetCompose,
-                    );
-                },
+                child: Container(
+                    constraints: const BoxConstraints(
+                      maxHeight: 700,
+                      maxWidth: 700,
+                    ),
+                    child:Builder(
+                    builder: (context) {
+                      var dummy = ${clazz}Dummy().dummies[i];
+                      return Padding(
+                        padding: const EdgeInsets.all(15),
+                        child: $widgetCompose,
+                      );
+                  },
+                ),
               ),
             ),
           ],

@@ -1,42 +1,129 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# Catalog
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
+> This package uses `go_router` for simplify the navigation. Your app must already
+> This package doesn't render your widgets in IDEA, Android Studio or Visual Studio Code
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages).
--->
+This package allows you to create a widget catalog. Every widget page of your catalog can display one or more samples of your widget.
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+#### Installation
 
-```bash
-flutter pub run catalog:preview && flutter pub run catalog:build && dart format lib/*
+```yaml
+dependencies:
+  catalog: ^0.0.1                           # android   ios   linux   macos   web   windows
+
+catalog:
+  base: "lib"                                       # app src
+  output: "ui/catalog"                              # catalog path -> /lib/ui/catalog/
+  pageFile: "catalog_component.dart"                # catalog page file
+  pageName: "CatalogComponent"                      # catalog page class
+  pageRoute: "catalog"                              # catalog route -> /catalog
+  runtimeConfigHolder: "assets/preview_config.json"
+  suffix: "preview"                                 # file suffix for preview files -> my_widget.preview.dart
 ```
-## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+### Create a page for a widget
 
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
-
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+Include the `@Preview` annotation:
 
 ```dart
-const like = 'sample';
+import 'package:catalog/catalog.dart';
+import 'package:flutter/material.dart';
+
+@Preview(
+  id: 'SizedContainerPreview',
+  path: 'sized/container',
+  description: 'Container with a max width of 700',
+  parameters: {
+    'child': 'dummy_text_small',
+  },
+)
+class SizedContainer extends StatelessWidget {
+  final Widget? child;
+
+  const SizedContainer({
+    Key? key,
+    this.child,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      constraints: const BoxConstraints(
+        maxWidth: 700,
+      ),
+      child: child,
+    );
+  }
+}
 ```
 
-## Additional information
+### Generate the preview and dummy files
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+```bash
+flutter pub run catalog:preview && dart format lib/*
+```
+
+```
+your_widget_folder
+    |
+    |-- preview
+    |   |
+    |   |-- dummy
+    |   |   |
+    |   |   |-- sized_container.dummy.dart      <-- dummy created (only created if not exist)
+    |   |
+    |   |-- sized_container.preview.dart        <-- preview created (always regenerated)
+    |
+    |--sized_container.dart                     <-- widget file
+```
+
+> Notice the suffix `preview` is defined in `pubspec.yaml`
+
+### Generate your catalog
+
+```bash
+flutter pub run catalog:build && dart format lib/*
+```
+
+```
+   lib
+    |
+    |-- ui
+        |
+        |-- catalog
+            |
+            |-- catalog_component.dart                  <-- catalog created
+            |
+            |-- sized
+                |
+                |-- container
+                    |
+                    |-- sized_container.preview.dart    <-- widget page created
+
+```
+
+> Notice the suffix `preview` is defined in `pubspec.yaml`
+
+> Notice the catalog creation path is defined in `pubspec.yaml` (in this sample /lib/ui/catalog/)
+
+> Notice the catalog-page creation path is defined in `@Preview` and `pubspec.yaml` (in this sample /catalog/sized/container)
+
+
+### Include the routes
+
+```dart
+final router = GoRouter(
+  routes: [
+    // ... other routes
+    
+    // add the catalog route in debug mode (can be run in release, but it is not recommended)
+    if (kDebugMode) CatalogComponent.route,
+  ],
+);
+```
+
+> Notice `CatalogComponent` class name is defined in `pubspec.yaml`
+
+## Run 🚀
+
+Run you app in debug mode. Then go to `/catalog`.
