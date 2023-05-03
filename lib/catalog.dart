@@ -12,13 +12,12 @@ export 'package:catalog/src/builders/dummy.dart';
 export 'package:catalog/src/builders/dummy/dummy_text.dart';
 export 'package:catalog/src/builders/preview_dummy.dart';
 export 'package:catalog/src/builders/preview_scaffold.dart';
+export 'package:catalog/src/catalog_runner.dart';
 export 'package:catalog/src/component/component_node.dart';
 export 'package:catalog/src/dummy.dart';
 export 'package:catalog/src/embed/flutter_fanacy_tree_view/flutter_fancy_tree_view.dart';
 export 'package:catalog/src/preview.dart';
-export 'package:catalog/src/widget_runner.dart';
 
-/// A Calculator.
 class Catalog {
   static Catalog? _instance;
 
@@ -29,14 +28,19 @@ class Catalog {
     return _instance!;
   }
 
+  GoRouter? router;
+
+  bool get active => router != null;
+
+  BuildContext get activeContext {
+    if (router?.routerDelegate.navigatorKey.currentContext == null) {
+      throw Exception('💥 Context not ready');
+    }
+    return router!.routerDelegate.navigatorKey.currentContext!;
+  }
+
   final global = GlobalKey();
   final key = GlobalKey<ScaffoldMessengerState>();
-
-  List<RouteBase> routes = [];
-
-  List<RouteBase> catalog() {
-    return routes;
-  }
 
   String path = "assets/preview_config.json";
 
