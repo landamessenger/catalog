@@ -1,3 +1,4 @@
+import 'package:catalog/catalog.dart';
 import 'package:catalog/src/builders/svg.dart';
 import 'package:flutter/material.dart';
 
@@ -22,7 +23,7 @@ class PreviewScaffold extends StatelessWidget {
     return Scaffold(
       drawer: Drawer(
         child: DrawerPreview(
-          onBackPressed: onBackPressed,
+          onBackPressed: onBackPressed ?? Catalog().onBackPressed,
         ),
       ),
       appBar: AppBar(

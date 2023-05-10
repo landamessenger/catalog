@@ -53,8 +53,18 @@ class DrawerPreviewState extends State<DrawerPreview> {
               color: Colors.blue,
             ),
             child: Row(
-              children: const [
-                Text(
+              children: [
+                IconButton(
+                  onPressed: () {
+                    if (widget.onBackPressed != null) {
+                      widget.onBackPressed!();
+                    }
+                  },
+                  icon: const Icon(
+                    Icons.arrow_back,
+                  ),
+                ),
+                const Text(
                   'Catalog',
                   style: TextStyle(
                     fontSize: 16,
