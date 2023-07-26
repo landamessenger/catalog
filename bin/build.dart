@@ -4,7 +4,8 @@ import 'package:catalog/src/base/serial.dart';
 import 'package:catalog/src/builders/built_component.dart';
 import 'package:catalog/src/component/component_node.dart';
 
-import 'configuration.dart';
+import 'catalog_builder/catalog_builder.dart';
+import 'utils/configuration.dart';
 
 const kDebugMode = true;
 
@@ -12,6 +13,7 @@ void main(List<String> arguments) async {
   var dependencies = loadDependenciesFile();
   if (kDebugMode) {
     print(introMessage(dependencies['catalog'].toString()));
+    print('Building Catalog pages');
   }
 
   var appId = loadId();
@@ -104,7 +106,7 @@ void main(List<String> arguments) async {
     return;
   }
 
-  print(node.toJson().toPrettyString());
+  // print(node.toJson().toPrettyString());
 
   final File assetsConfig = File('./${config['runtimeConfigHolder']}');
   assetsConfig.writeAsStringSync(node.toJson().toPrettyString());

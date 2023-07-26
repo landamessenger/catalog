@@ -1,6 +1,8 @@
 import 'dart:io';
 
-import 'configuration.dart';
+import 'preview_builder/dummy_builder.dart';
+import 'preview_builder/preview_builder.dart';
+import 'utils/configuration.dart';
 
 const kDebugMode = true;
 
@@ -8,6 +10,7 @@ void main(List<String> arguments) async {
   var dependencies = loadDependenciesFile();
   if (kDebugMode) {
     print(introMessage(dependencies['catalog'].toString()));
+    print('Building Catalog previews');
   }
 
   var appId = loadId();
@@ -28,13 +31,17 @@ void main(List<String> arguments) async {
 
   for (FileSystemEntity fileSystemEntity in entities) {
     try {
+      if (fileSystemEntity is Directory) continue;
+      if (fileSystemEntity.path.endsWith('.DS_Store')) continue;
       final File file = File(fileSystemEntity.path);
       if (file.path.contains('.$prefixValue.')) continue;
       final content = await file.readAsString();
       if (content.contains('@Preview(')) {
         files.add(fileSystemEntity);
       }
-    } catch (e) {}
+    } catch (e) {
+      print(e);
+    }
   }
 
   for (FileSystemEntity fileSystemEntity in files) {
