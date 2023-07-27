@@ -88,6 +88,9 @@ class ${clazz}Preview extends PreviewWidget {
   await Directory(previewPath).create(recursive: true);
 
   String previewFile = '$previewPath$name.$prefix.dart';
+
+  print('🩻 Generating preview for $clazz - ${clazz}Preview ($previewFile)');
+
   File file = File(previewFile);
   await file.writeAsString(content);
 }
