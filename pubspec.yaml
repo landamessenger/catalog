@@ -4,14 +4,14 @@ version: 0.0.1
 homepage: https://landamessenger.com/
 
 environment:
-  sdk: '>=2.19.6 <3.0.0'
+  sdk: '>=2.19.6 <4.0.0'
   flutter: ">=1.17.0"
 
 dependencies:
   flutter:
     sdk: flutter
   flutter_svg: ^2.0.7                           # android   ios   linux   macos         windows
-  go_router: 5.1.9                              # android   ios   linux   macos   web   windows
+  go_router: ^5.1.9                             # android   ios   linux   macos   web   windows
   http: ^1.1.0                                  # android   ios   linux   macos   web   windows
   vector_graphics: ^1.1.7                       # android   ios   linux   macos   web   windows
   yaml: ^3.1.2                                  # android   ios   linux   macos   web   windows

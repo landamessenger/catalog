@@ -1,0 +1,5 @@
+lib/.DS_Store
+lib/src/.DS_Store
+widget_preview.iml
+.idea/
+.dart_tool/
