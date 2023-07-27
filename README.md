@@ -1,133 +1,37 @@
 # Catalog
 
-> This package uses `go_router` for simplify the navigation. If you aren't using this package, you can run
-> the `CatalogApp` for run it.
-
-> This package doesn't render your widgets in IDEA, Android Studio or Visual Studio Code.
-
 This package allows you to create a widget catalog. Every widget page of your catalog can display one or more samples of your widget.
 
-*Where I see this catalog?* After you prepare your widgets, you must run your app and go to `/catalog`.
+*Where do I see this catalog?* After you prepare your widgets, you must run your app and go to `/catalog`.
 
-#### Installation
+> This package uses `go_router` to simplify the navigation. If you aren't using this package, you can run
+> the `CatalogApp` to run it.
 
-```yaml
-dependencies:
-  catalog: ^0.0.1                           # android   ios   linux   macos   web   windows
+> This package doesn't render your widgets in IDEA, Android Studio, or Visual Studio Code.
 
-catalog:
-  base: "lib"                                       # app src
-  output: "ui/catalog"                              # catalog path -> /lib/ui/catalog/
-  pageFile: "catalog_component.dart"                # catalog page file
-  pageName: "CatalogComponent"                      # catalog page class
-  pageRoute: "catalog"                              # catalog route -> /catalog
-  runtimeConfigHolder: "assets/preview_config.json"
-  suffix: "preview"                                 # file suffix for preview files -> my_widget.preview.dart
-```
+### [Installation](https://github.com/landamessenger/catalog/wiki/Installation)
 
-### Create a page for a widget
+### [Previews](https://github.com/landamessenger/catalog/wiki/Previews)
 
-Include the `@Preview` annotation:
+[- What are previews?](https://github.com/landamessenger/catalog/wiki/Previews#what-are-previews)
 
-```dart
-import 'package:catalog/catalog.dart';
-import 'package:flutter/material.dart';
+[- Create a basic page for a widget](https://github.com/landamessenger/catalog/wiki/Previews#create-a-basic-page-for-a-widget)
 
-@Preview(
-  id: 'SizedContainerPreview',
-  path: 'sized/container',
-  description: 'Container with a max width of 700',
-  parameters: {
-    'child': 'dummy_text_small',
-  },
-)
-class SizedContainer extends StatelessWidget {
-  final Widget? child;
+[- Generate the preview and dummy files](https://github.com/landamessenger/catalog/wiki/Previews#generate-the-preview-and-dummy-files)
 
-  const SizedContainer({
-    Key? key,
-    this.child,
-  }) : super(key: key);
+### [Dummies](https://github.com/landamessenger/catalog/wiki/Dummies)
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      constraints: const BoxConstraints(
-        maxWidth: 700,
-      ),
-      child: child,
-    );
-  }
-}
-```
+[- What are dummies?](https://github.com/landamessenger/catalog/wiki/Dummies#what-are-dummies)
 
-### Generate the preview and dummy files
+[- Complex page catalog](https://github.com/landamessenger/catalog/wiki/Dummies#complex-page-catalog)
 
-```bash
-flutter pub run catalog:preview && dart format lib/*
-```
+[- Prepare dummies](https://github.com/landamessenger/catalog/wiki/Dummies#prepare-dummies)
 
-```
-your_widget_folder
-    |
-    |-- preview
-    |   |
-    |   |-- dummy
-    |   |   |
-    |   |   |-- sized_container.dummy.dart      <-- dummy created (only created if not exist)
-    |   |
-    |   |-- sized_container.preview.dart        <-- preview created (always regenerated)
-    |
-    |--sized_container.dart                     <-- widget file
-```
+### [Build & Run](https://github.com/landamessenger/catalog/wiki/Build-&-Run)
 
-> Notice the suffix `preview` is defined in `pubspec.yaml`
+[- Building your catalog](https://github.com/landamessenger/catalog/wiki/Build-&-Run#building-your-catalog)
 
-### Generate your catalog
+[- Run with go_router](https://github.com/landamessenger/catalog/wiki/Build-&-Run#run-with-go_router)
 
-```bash
-flutter pub run catalog:build && dart format lib/*
-```
+[- Run without go_router](https://github.com/landamessenger/catalog/wiki/Build-&-Run#run-without-go_router)
 
-```
-   lib
-    |
-    |-- ui
-        |
-        |-- catalog
-            |
-            |-- catalog_component.dart                  <-- catalog created
-            |
-            |-- sized
-                |
-                |-- container
-                    |
-                    |-- sized_container.preview.dart    <-- widget page created
-
-```
-
-> Notice the suffix `preview` is defined in `pubspec.yaml`
-
-> Notice the catalog creation path is defined in `pubspec.yaml` (in this sample /lib/ui/catalog/)
-
-> Notice the catalog-page creation path is defined in `@Preview` and `pubspec.yaml` (in this sample /catalog/sized/container)
-
-
-### Include the routes
-
-```dart
-final router = GoRouter(
-  routes: [
-    // ... other routes
-    
-    // add the catalog route in debug mode (can be run in release, but it is not recommended)
-    if (kDebugMode) CatalogComponent.route,
-  ],
-);
-```
-
-> Notice `CatalogComponent` class name is defined in `pubspec.yaml`
-
-## Run 🚀
-
-Run you app in debug mode. Then go to `/catalog`.

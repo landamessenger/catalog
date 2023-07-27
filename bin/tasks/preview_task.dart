@@ -1,12 +1,10 @@
 import 'base/base_task.dart';
-import 'tasks/catalog_task.dart';
 import 'tasks/format_task.dart';
-import 'tasks/preview_task.dart';
+import 'tasks/preview_task.dart' as preview;
 
-class MainTask extends BaseTask {
+class PreviewTask extends BaseTask {
   final tasks = [
-    PreviewTask(),
-    CatalogTask(),
+    preview.PreviewTask(),
     FormatTask(),
   ];
 
@@ -20,6 +18,6 @@ class MainTask extends BaseTask {
         print(e);
       }
     }
-    print('\n Previews and catalog generated \n');
+    print('\n Previews generated \n');
   }
 }
