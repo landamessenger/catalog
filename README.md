@@ -9,7 +9,7 @@ This package allows you to create a widget catalog. Every widget page of your ca
 
 > This package doesn't render your widgets in IDEA, Android Studio, or Visual Studio Code.
 
-![Screenshot 2023-07-27 at 04 26 00](https://github.com/landamessenger/catalog/assets/1783618/25c74f91-eb8b-4063-ab2b-1b689db10e22)
+![Screenshot 2023-07-27 at 04 26 00](https://github.com/landamessenger/catalog/assets/1783618/738bb0ad-5934-4406-9f83-03c71bc08065)
 
 ### [Installation](https://github.com/landamessenger/catalog/wiki/Installation)
 
