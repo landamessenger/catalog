@@ -50,7 +50,7 @@ class $pageClass extends StatefulWidget {
 
   static String routeName = '$id';
   
-  const $pageClass({Key? key}) : super(key: key);
+  const $pageClass({super.key});
 
   @override
   ${pageClass}State createState() => ${pageClass}State();
@@ -112,7 +112,7 @@ class $clazzName extends StatefulWidget {
 
   static String routeName = '${name.toLowerCase()}';
 
-  const ${name.replaceAll('()', '')}PreviewPageDummy({Key? key}) : super(key: key);
+  const ${name.replaceAll('()', '')}PreviewPageDummy({super.key});
 
   @override
   ${name.replaceAll('()', '')}PreviewPageDummyState createState() => ${name.replaceAll('()', '')}PreviewPageDummyState();

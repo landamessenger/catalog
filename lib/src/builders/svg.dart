@@ -91,7 +91,7 @@ class Svg extends ImageProvider<SvgImageKey> {
   }
 
   @override
-  ImageStreamCompleter load(SvgImageKey key, decode) {
+  ImageStreamCompleter loadImage(SvgImageKey key, ImageDecoderCallback decode) {
     return OneFrameImageStreamCompleter(_loadAsync(key));
   }
 

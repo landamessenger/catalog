@@ -6,9 +6,9 @@ class DrawerPreview extends StatefulWidget {
   final void Function()? onBackPressed;
 
   const DrawerPreview({
-    Key? key,
+    super.key,
     this.onBackPressed,
-  }) : super(key: key);
+  });
 
   @override
   DrawerPreviewState createState() => DrawerPreviewState();

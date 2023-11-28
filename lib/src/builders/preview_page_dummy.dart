@@ -2,7 +2,7 @@
 
 class PreviewPageDummy extends StatefulWidget {
   static String routeName = 'ROUTE_NAME';
-  const PreviewPageDummy({Key? key}) : super(key: key);
+  const PreviewPageDummy({super.key});
 
   @override
   PreviewPageDummyState createState() => PreviewPageDummyState();

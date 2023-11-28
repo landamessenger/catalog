@@ -121,7 +121,7 @@ ${node.imports}
 class $pageName extends StatefulWidget {
   static String routeName = '/$pageRoute';
   static GoRoute route = ${node.routerBuilder};
-  const $pageName({Key? key}) : super(key: key);
+  const $pageName({super.key});
 
   @override
   ${pageName}State createState() => ${pageName}State();

@@ -11,12 +11,12 @@ class PreviewScaffold extends StatelessWidget {
   final void Function()? onBackPressed;
 
   const PreviewScaffold({
-    Key? key,
+    super.key,
     required this.child,
     this.title,
     this.drawer,
     this.onBackPressed,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

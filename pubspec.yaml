@@ -1,6 +1,6 @@
 name: catalog
 description: A Flutter package for render widgets in real-time
-version: 0.0.1
+version: 0.0.2
 homepage: https://landamessenger.com/
 
 environment:
@@ -10,16 +10,16 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_svg: ^2.0.7                           # android   ios   linux   macos         windows
-  go_router: ^5.1.9                             # android   ios   linux   macos   web   windows
-  http: ^1.1.0                                  # android   ios   linux   macos   web   windows
-  vector_graphics: ^1.1.7                       # android   ios   linux   macos   web   windows
+  flutter_svg: ^2.0.9                           # android   ios   linux   macos         windows
+  go_router: ^12.1.1                            # android   ios   linux   macos   web   windows
+  http: ^1.1.2                                  # android   ios   linux   macos   web   windows
+  vector_graphics: ^1.1.9+1                     # android   ios   linux   macos   web   windows
   yaml: ^3.1.2                                  # android   ios   linux   macos   web   windows
   yaml_writer: ^1.0.3                           # android   ios   linux   macos   web   windows
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.2
+  flutter_lints: ^3.0.1
 
 flutter:

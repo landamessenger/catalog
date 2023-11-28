@@ -17,7 +17,7 @@ class CatalogRunner extends StatefulWidget {
   final bool enabled;
 
   const CatalogRunner({
-    Key? key,
+    super.key,
     required this.args,
     required this.route,
     required this.application,
@@ -29,7 +29,7 @@ class CatalogRunner extends StatefulWidget {
     this.ready,
     this.theme,
     this.enabled = false,
-  }) : super(key: key);
+  });
 
   @override
   State<CatalogRunner> createState() => _CatalogRunnerState();
