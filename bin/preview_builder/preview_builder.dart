@@ -48,9 +48,9 @@ class ${clazz}Preview extends PreviewWidget {
   
   ${!preview.usesDummies ? '''
   @override
-  Widget preview(BuildContext context) => Container(
+  Widget preview(BuildContext context) =>  Container(
           constraints: const BoxConstraints(maxWidth: 700),
-          child: ${preview.parameters.containsKey('child') ? 'const' : ''} $widgetCompose,
+          child: ${(preview.parameters.containsKey('child') || preview.parameters.isEmpty) ? 'const' : ''} $widgetCompose,
         );
   ''' : ''}
   

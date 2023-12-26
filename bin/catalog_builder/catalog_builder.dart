@@ -97,7 +97,7 @@ Future<BuiltComponent?> buildMiddlePages(
     await directory.create(recursive: true);
     File file = File('$outputPath/$outputFile');
 
-    final clazz = name.replaceAll('()', '');
+    final clazz = name.replaceAll('()', '').split('_').map((e) => e.capitalize()).join();
     final clazzName = '${clazz}PreviewPageDummy';
 
     var content = '''
@@ -112,13 +112,13 @@ class $clazzName extends StatefulWidget {
 
   static String routeName = '${name.toLowerCase()}';
 
-  const ${name.replaceAll('()', '')}PreviewPageDummy({super.key});
+  const $clazzName({super.key});
 
   @override
-  ${name.replaceAll('()', '')}PreviewPageDummyState createState() => ${name.replaceAll('()', '')}PreviewPageDummyState();
+  ${clazzName}State createState() => ${clazzName}State();
 }
 
-class ${name.replaceAll('()', '')}PreviewPageDummyState extends State<${name.replaceAll('()', '')}PreviewPageDummy> {
+class ${clazzName}State extends State<$clazzName> {
   @override
   Widget build(BuildContext context) {
     return PreviewScaffold(
@@ -161,7 +161,7 @@ class ${name.replaceAll('()', '')}PreviewPageDummyState extends State<${name.rep
       path: file.path,
       route: path,
       package: package,
-      clazzName: '${name.replaceAll('()', '')}PreviewPageDummy',
+      clazzName: clazzName,
       preview: null,
     );
   } catch (e) {

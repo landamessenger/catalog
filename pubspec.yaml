@@ -11,7 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_svg: ^2.0.9                           # android   ios   linux   macos         windows
-  go_router: ^12.1.1                            # android   ios   linux   macos   web   windows
+  go_router: ^13.0.0                            # android   ios   linux   macos   web   windows
   http: ^1.1.2                                  # android   ios   linux   macos   web   windows
   vector_graphics: ^1.1.9+1                     # android   ios   linux   macos   web   windows
   yaml: ^3.1.2                                  # android   ios   linux   macos   web   windows
