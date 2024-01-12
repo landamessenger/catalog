@@ -1,0 +1,93 @@
+{
+     "id": "catalog",
+     "route": "/",
+     "builtComponent": {
+          "path": "./lib/catalog/catalog_component.dart",
+          "route": "",
+          "package": "package:example/catalog/catalog_component.dart",
+          "clazzName": "CatalogComponent",
+          "preview": null
+     },
+     "children": {
+          "widgets": {
+               "id": "widgets",
+               "route": "/widgets",
+               "builtComponent": {
+                    "path": "./lib/catalog/widgets/widgets_preview_page_dummy.dart",
+                    "route": "widgets",
+                    "package": "package:example/catalog/widgets/widgets_preview_page_dummy.dart",
+                    "clazzName": "WidgetsPreviewPageDummy",
+                    "preview": null
+               },
+               "children": {
+                    "body_widget": {
+                         "id": "body_widget",
+                         "route": "/body_widget",
+                         "builtComponent": {
+                              "path": "./lib/catalog/widgets/body_widget/body_widget.dart",
+                              "route": "widgets/body_widget",
+                              "package": "package:example/catalog/widgets/body_widget/body_widget.dart",
+                              "clazzName": "BodyWidgetPreviewPreviewPageDummy",
+                              "preview": {
+                                   "id": "BodyWidgetPreview",
+                                   "path": "widgets/body_widget",
+                                   "description": "Basic body widget",
+                                   "usesDummies": true,
+                                   "listParameters": [],
+                                   "dummyParameters": [
+                                        "infoText",
+                                        "counter"
+                                   ],
+                                   "parameters": {}
+                              }
+                         },
+                         "children": {}
+                    },
+                    "fab_widget": {
+                         "id": "fab_widget",
+                         "route": "/fab_widget",
+                         "builtComponent": {
+                              "path": "./lib/catalog/widgets/fab_widget/fab_widget.dart",
+                              "route": "widgets/fab_widget",
+                              "package": "package:example/catalog/widgets/fab_widget/fab_widget.dart",
+                              "clazzName": "FabWidgetPreviewPreviewPageDummy",
+                              "preview": {
+                                   "id": "FabWidgetPreview",
+                                   "path": "widgets/fab_widget",
+                                   "description": "Basic fab widget",
+                                   "usesDummies": false,
+                                   "listParameters": [],
+                                   "dummyParameters": [],
+                                   "parameters": {
+                                        "incrementCounter": "void_function_snackbar"
+                                   }
+                              }
+                         },
+                         "children": {}
+                    },
+                    "counter_widget": {
+                         "id": "counter_widget",
+                         "route": "/counter_widget",
+                         "builtComponent": {
+                              "path": "./lib/catalog/widgets/counter_widget/counter_widget.dart",
+                              "route": "widgets/counter_widget",
+                              "package": "package:example/catalog/widgets/counter_widget/counter_widget.dart",
+                              "clazzName": "CounterWidgetPreviewPreviewPageDummy",
+                              "preview": {
+                                   "id": "CounterWidgetPreview",
+                                   "path": "widgets/counter_widget",
+                                   "description": "Basic counter widget",
+                                   "usesDummies": true,
+                                   "listParameters": [],
+                                   "dummyParameters": [
+                                        "counter"
+                                   ],
+                                   "parameters": {}
+                              }
+                         },
+                         "children": {}
+                    }
+               }
+          }
+     }
+}

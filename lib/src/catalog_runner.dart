@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class CatalogRunner extends StatefulWidget {
-  final List<String> args;
   final Widget application;
   final GlobalKey<ScaffoldMessengerState>? scaffoldMessengerKey;
   final Iterable<Locale>? supportedLocales;
@@ -18,7 +17,6 @@ class CatalogRunner extends StatefulWidget {
 
   const CatalogRunner({
     super.key,
-    required this.args,
     required this.route,
     required this.application,
     this.scaffoldMessengerKey,
@@ -38,7 +36,8 @@ class CatalogRunner extends StatefulWidget {
 class _CatalogRunnerState extends State<CatalogRunner> {
   @override
   Widget build(BuildContext context) {
-    if (!widget.args.contains('catalog') && !widget.enabled) {
+    if (!const bool.fromEnvironment('catalog', defaultValue: false) &&
+        !widget.enabled) {
       return widget.application;
     }
 

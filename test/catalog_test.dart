@@ -6,9 +6,8 @@ import 'package:go_router/go_router.dart';
 void main() {
   test(
     'adds one to input values',
-    () {
+        () {
       final runner = CatalogRunner(
-        args: const [],
         application: Container(),
         route: GoRoute(
           path: '/catalog',
