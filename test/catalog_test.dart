@@ -4,16 +4,13 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 
 void main() {
-  test(
-    'adds one to input values',
-        () {
-      final runner = CatalogRunner(
-        application: Container(),
-        route: GoRoute(
-          path: '/catalog',
-        ),
-      );
-      // expect(calculator.addOne(2), 3);
-    },
-  );
+  test('Basic dummy test', () {
+    final runner = CatalogRunner(
+      application: Container(),
+      route: GoRoute(
+        path: '/catalog',
+      ),
+    );
+    expect(runner.enabled, false);
+  });
 }
