@@ -96,7 +96,7 @@ class BodyWidgetPreview extends PreviewWidget {
                             child: Builder(
                               builder: (context) {
                                 return Padding(
-                                  padding: const EdgeInsets.all(15),
+                                  padding: const EdgeInsets.all(0),
                                   child: BodyWidget(
                                     infoText: dummy.parameters['infoText'],
                                     counter: dummy.parameters['counter'],

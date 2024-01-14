@@ -18,7 +18,19 @@ class MainScreenDummy extends PreviewDummy {
             },
             'counter': 0,
           },
-          description: 'iPhone 13 Max sample',
+          description: 'iPhone 13 Max main screen',
+        ),
+        Dummy(
+          deviceInfo: Devices.android.samsungGalaxyS20,
+          parameters: {
+            'title': 'Flutter Demo Home Page',
+            'infoText': 'You have pushed the button this many times:',
+            'incrementCounter': () {
+              // nothing to do here
+            },
+            'counter': 120,
+          },
+          description: 'Samsung Galaxy S20 main screen',
         ),
       ];
 }

@@ -95,7 +95,7 @@ class CounterWidgetPreview extends PreviewWidget {
                             child: Builder(
                               builder: (context) {
                                 return Padding(
-                                  padding: const EdgeInsets.all(15),
+                                  padding: const EdgeInsets.all(0),
                                   child: CounterWidget(
                                     counter: dummy.parameters['counter'],
                                   ),
