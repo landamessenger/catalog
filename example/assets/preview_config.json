@@ -31,7 +31,9 @@
                               "preview": {
                                    "id": "BodyWidgetPreview",
                                    "path": "widgets/body_widget",
-                                   "description": "Basic body widget",
+                                   "description": "",
+                                   "deviceInfo": "",
+                                   "orientation": "",
                                    "usesDummies": true,
                                    "listParameters": [],
                                    "dummyParameters": [
@@ -55,6 +57,8 @@
                                    "id": "FabWidgetPreview",
                                    "path": "widgets/fab_widget",
                                    "description": "Basic fab widget",
+                                   "deviceInfo": "",
+                                   "orientation": "",
                                    "usesDummies": false,
                                    "listParameters": [],
                                    "dummyParameters": [],
@@ -77,6 +81,8 @@
                                    "id": "CounterWidgetPreview",
                                    "path": "widgets/counter_widget",
                                    "description": "Basic counter widget",
+                                   "deviceInfo": "",
+                                   "orientation": "",
                                    "usesDummies": true,
                                    "listParameters": [],
                                    "dummyParameters": [

@@ -17,6 +17,7 @@ export 'package:catalog/src/component/component_node.dart';
 export 'package:catalog/src/dummy.dart';
 export 'package:catalog/src/embed/flutter_fanacy_tree_view/flutter_fancy_tree_view.dart';
 export 'package:catalog/src/preview.dart';
+export 'package:device_frame/device_frame.dart';
 
 class Catalog {
   static Catalog? _instance;

@@ -23,25 +23,56 @@ class CounterWidgetPreview extends PreviewWidget {
       : ListView(
           children: [
             for (int i = 0; i < CounterWidgetDummy().dummies.length; i++)
-              Center(
-                child: Container(
-                  constraints: const BoxConstraints(
-                    maxHeight: 700,
-                    maxWidth: 700,
-                  ),
-                  child: Builder(
-                    builder: (context) {
-                      var dummy = CounterWidgetDummy().dummies[i];
-                      return Padding(
-                        padding: const EdgeInsets.all(15),
-                        child: CounterWidget(
-                          counter: dummy.parameters['counter'],
+              Builder(builder: (context) {
+                final dummy = CounterWidgetDummy().dummies[i];
+                final deviceInfo = dummy.deviceInfo;
+                if (deviceInfo == null) {
+                  return Center(
+                    child: Container(
+                      constraints: const BoxConstraints(
+                        maxHeight: 700,
+                        maxWidth: 700,
+                      ),
+                      child: Builder(
+                        builder: (context) {
+                          return Padding(
+                            padding: const EdgeInsets.all(15),
+                            child: CounterWidget(
+                              counter: dummy.parameters['counter'],
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  );
+                }
+
+                return Center(
+                  child: Container(
+                    margin: const EdgeInsets.fromLTRB(15, 7.5, 15, 7.5),
+                    constraints: const BoxConstraints(
+                      maxWidth: 400,
+                    ),
+                    child: DeviceFrame(
+                      device: deviceInfo,
+                      orientation: dummy.orientation,
+                      screen: Container(
+                        color: dummy.backgroundColor,
+                        child: Builder(
+                          builder: (context) {
+                            return Padding(
+                              padding: const EdgeInsets.all(15),
+                              child: CounterWidget(
+                                counter: dummy.parameters['counter'],
+                              ),
+                            );
+                          },
                         ),
-                      );
-                    },
+                      ),
+                    ),
                   ),
-                ),
-              ),
+                );
+              }),
           ],
         );
 }

@@ -6,7 +6,6 @@ import 'counter_widget.dart';
 @Preview(
   id: 'BodyWidgetPreview',
   path: 'widgets/body_widget',
-  description: 'Basic body widget',
   usesDummies: true,
   dummyParameters: [
     'infoText',
