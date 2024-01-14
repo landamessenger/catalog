@@ -1,9 +1,8 @@
 import 'package:catalog/catalog.dart';
-import 'package:example/widgets/body_widget.dart';
 import 'package:flutter/material.dart';
 
 import 'catalog/catalog_component.dart';
-import 'widgets/fab_widget.dart';
+import 'widgets/main_screen.dart';
 
 void main() {
   /**
@@ -58,18 +57,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
-      body: BodyWidget(
-        infoText: 'You have pushed the button this many times:',
-        counter: _counter,
-      ),
-      floatingActionButton: FabWidget(
-        incrementCounter: _incrementCounter,
-      ),
+    return MainScreen(
+      title: widget.title,
+      counter: _counter,
+      infoText: 'You have pushed the button this many times:',
+      incrementCounter: _incrementCounter,
     );
   }
 }

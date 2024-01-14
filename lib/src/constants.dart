@@ -9,3 +9,5 @@ const String svgPaper = '''
     </g>
 </svg>
 ''';
+
+const todoDescription = 'TODO add you description';

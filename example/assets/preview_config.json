@@ -69,6 +69,33 @@
                          },
                          "children": {}
                     },
+                    "main_screen_widget": {
+                         "id": "main_screen_widget",
+                         "route": "/main_screen_widget",
+                         "builtComponent": {
+                              "path": "./lib/catalog/widgets/main_screen_widget/main_screen.dart",
+                              "route": "widgets/main_screen_widget",
+                              "package": "package:example/catalog/widgets/main_screen_widget/main_screen.dart",
+                              "clazzName": "MainScreenPreviewPreviewPageDummy",
+                              "preview": {
+                                   "id": "MainScreenPreview",
+                                   "path": "widgets/main_screen_widget",
+                                   "description": "",
+                                   "deviceInfo": "",
+                                   "orientation": "",
+                                   "usesDummies": true,
+                                   "listParameters": [],
+                                   "dummyParameters": [
+                                        "title",
+                                        "infoText",
+                                        "counter",
+                                        "incrementCounter"
+                                   ],
+                                   "parameters": {}
+                              }
+                         },
+                         "children": {}
+                    },
                     "counter_widget": {
                          "id": "counter_widget",
                          "route": "/counter_widget",

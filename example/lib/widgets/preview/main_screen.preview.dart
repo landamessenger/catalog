@@ -2,29 +2,31 @@
 
 import 'package:catalog/catalog.dart';
 import 'package:flutter/material.dart';
-import 'package:example/widgets/counter_widget.dart';
-import 'dummy/counter_widget.dummy.dart';
+import 'package:example/widgets/main_screen.dart';
+import 'dummy/main_screen.dummy.dart';
 
 @Preview(
-  id: 'CounterWidgetPreview',
-  path: 'widgets/counter_widget',
-  description: 'Basic counter widget',
+  id: 'MainScreenPreview',
+  path: 'widgets/main_screen_widget',
   usesDummies: true,
   dummyParameters: [
+    'title',
+    'infoText',
     'counter',
+    'incrementCounter',
   ],
 )
-class CounterWidgetPreview extends PreviewWidget {
-  const CounterWidgetPreview({super.key});
+class MainScreenPreview extends PreviewWidget {
+  const MainScreenPreview({super.key});
 
   @override
-  Widget preview(BuildContext context) => CounterWidgetDummy().dummies.isEmpty
+  Widget preview(BuildContext context) => MainScreenDummy().dummies.isEmpty
       ? Container()
       : ListView(
           children: [
-            for (int i = 0; i < CounterWidgetDummy().dummies.length; i++)
+            for (int i = 0; i < MainScreenDummy().dummies.length; i++)
               Builder(builder: (context) {
-                final dummy = CounterWidgetDummy().dummies[i];
+                final dummy = MainScreenDummy().dummies[i];
                 final deviceInfo = dummy.deviceInfo;
                 if (deviceInfo == null) {
                   return Center(
@@ -53,8 +55,12 @@ class CounterWidgetPreview extends PreviewWidget {
                             builder: (context) {
                               return Padding(
                                 padding: const EdgeInsets.all(15),
-                                child: CounterWidget(
+                                child: MainScreen(
+                                  title: dummy.parameters['title'],
+                                  infoText: dummy.parameters['infoText'],
                                   counter: dummy.parameters['counter'],
+                                  incrementCounter:
+                                      dummy.parameters['incrementCounter'],
                                 ),
                               );
                             },
@@ -95,9 +101,13 @@ class CounterWidgetPreview extends PreviewWidget {
                             child: Builder(
                               builder: (context) {
                                 return Padding(
-                                  padding: const EdgeInsets.all(15),
-                                  child: CounterWidget(
+                                  padding: const EdgeInsets.all(0),
+                                  child: MainScreen(
+                                    title: dummy.parameters['title'],
+                                    infoText: dummy.parameters['infoText'],
                                     counter: dummy.parameters['counter'],
+                                    incrementCounter:
+                                        dummy.parameters['incrementCounter'],
                                   ),
                                 );
                               },

@@ -46,6 +46,19 @@ class WidgetsPreviewPageDummyState extends State<WidgetsPreviewPageDummy> {
           ),
           ListTile(
             title: const Text(
+              'main_screen_widget',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 16,
+                letterSpacing: .3,
+              ),
+            ),
+            onTap: () {
+              context.go('/catalog/widgets/main_screen_widget');
+            },
+          ),
+          ListTile(
+            title: const Text(
               'counter_widget',
               style: TextStyle(
                 color: Colors.black,

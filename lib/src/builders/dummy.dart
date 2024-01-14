@@ -2,6 +2,7 @@ import 'package:catalog/catalog.dart';
 import 'package:flutter/material.dart';
 
 class Dummy {
+  final String description;
   final DeviceInfo? deviceInfo;
   final Orientation orientation;
   final Color backgroundColor;
@@ -9,6 +10,7 @@ class Dummy {
   final Map<String, dynamic> parameters;
 
   const Dummy({
+    this.description = todoDescription,
     this.parameters = const {},
     this.listParameters = const [],
     this.deviceInfo,

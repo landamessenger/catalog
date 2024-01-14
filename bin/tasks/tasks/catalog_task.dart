@@ -115,7 +115,6 @@ class CatalogTask extends BaseTask {
 
 import 'package:flutter/material.dart';
 import 'package:catalog/catalog.dart';
-import 'package:go_router/go_router.dart';
 ${node.imports}
 
 class $pageName extends StatefulWidget {

@@ -15,6 +15,7 @@ class BodyWidgetDummy extends PreviewDummy {
             'infoText': 'You have pushed the button this many times:',
             'counter': 0,
           },
+          description: 'iPhone 13 Max sample',
         ),
         Dummy(
           deviceInfo: Devices.android.samsungGalaxyS20,
@@ -23,6 +24,7 @@ class BodyWidgetDummy extends PreviewDummy {
                 'Bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla',
             'counter': 10,
           },
+          description: 'Samsung Galaxy S20 sample',
         ),
         Dummy(
           deviceInfo: Devices.ios.iPhone13ProMax,
@@ -32,6 +34,7 @@ class BodyWidgetDummy extends PreviewDummy {
                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
             'counter': 9876,
           },
+          description: 'iPhone 13 Max landscape sample',
         ),
         Dummy(
           deviceInfo: Devices.android.samsungGalaxyS20,
@@ -40,6 +43,7 @@ class BodyWidgetDummy extends PreviewDummy {
             'infoText': 'Other example:',
             'counter': 9999999999999,
           },
+          description: 'Samsung Galaxy S20 landscape sample',
         ),
         Dummy(
           deviceInfo: Devices.macOS.macBookPro,
@@ -48,6 +52,7 @@ class BodyWidgetDummy extends PreviewDummy {
             'infoText': 'Other example:',
             'counter': 9999999999999,
           },
+          description: 'MacBookPro sample',
         ),
       ];
 }

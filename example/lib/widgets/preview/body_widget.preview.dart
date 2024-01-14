@@ -28,49 +28,85 @@ class BodyWidgetPreview extends PreviewWidget {
                 final deviceInfo = dummy.deviceInfo;
                 if (deviceInfo == null) {
                   return Center(
-                    child: Container(
-                      constraints: const BoxConstraints(
-                        maxHeight: 700,
-                        maxWidth: 700,
-                      ),
-                      child: Builder(
-                        builder: (context) {
-                          return Padding(
+                    child: Column(
+                      children: [
+                        Card(
+                          clipBehavior: Clip.hardEdge,
+                          child: Container(
                             padding: const EdgeInsets.all(15),
-                            child: BodyWidget(
-                              infoText: dummy.parameters['infoText'],
-                              counter: dummy.parameters['counter'],
+                            color: Colors.white,
+                            constraints: const BoxConstraints(
+                              maxWidth: 400,
                             ),
-                          );
-                        },
-                      ),
+                            child: Center(child: Text(dummy.description)),
+                          ),
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.all(7.5),
+                        ),
+                        Container(
+                          constraints: const BoxConstraints(
+                            maxHeight: 700,
+                            maxWidth: 700,
+                          ),
+                          child: Builder(
+                            builder: (context) {
+                              return Padding(
+                                padding: const EdgeInsets.all(15),
+                                child: BodyWidget(
+                                  infoText: dummy.parameters['infoText'],
+                                  counter: dummy.parameters['counter'],
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                      ],
                     ),
                   );
                 }
 
                 return Center(
                   child: Container(
-                    margin: const EdgeInsets.fromLTRB(15, 7.5, 15, 7.5),
+                    margin: const EdgeInsets.fromLTRB(15, 15, 15, 25),
                     constraints: const BoxConstraints(
                       maxWidth: 400,
                     ),
-                    child: DeviceFrame(
-                      device: deviceInfo,
-                      orientation: dummy.orientation,
-                      screen: Container(
-                        color: dummy.backgroundColor,
-                        child: Builder(
-                          builder: (context) {
-                            return Padding(
-                              padding: const EdgeInsets.all(15),
-                              child: BodyWidget(
-                                infoText: dummy.parameters['infoText'],
-                                counter: dummy.parameters['counter'],
-                              ),
-                            );
-                          },
+                    child: Column(
+                      children: [
+                        Card(
+                          clipBehavior: Clip.hardEdge,
+                          child: Container(
+                            padding: const EdgeInsets.all(15),
+                            color: Colors.white,
+                            constraints: const BoxConstraints(
+                              maxWidth: 400,
+                            ),
+                            child: Center(child: Text(dummy.description)),
+                          ),
                         ),
-                      ),
+                        const Padding(
+                          padding: EdgeInsets.all(7.5),
+                        ),
+                        DeviceFrame(
+                          device: deviceInfo,
+                          orientation: dummy.orientation,
+                          screen: Container(
+                            color: dummy.backgroundColor,
+                            child: Builder(
+                              builder: (context) {
+                                return Padding(
+                                  padding: const EdgeInsets.all(15),
+                                  child: BodyWidget(
+                                    infoText: dummy.parameters['infoText'],
+                                    counter: dummy.parameters['counter'],
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 );
