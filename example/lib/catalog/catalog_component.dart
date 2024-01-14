@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:catalog/catalog.dart';
-import 'package:go_router/go_router.dart';
 import 'package:example/catalog/widgets/widgets_preview_page_dummy.dart';
 import 'package:example/catalog/widgets/body_widget/body_widget.dart';
 import 'package:example/catalog/widgets/fab_widget/fab_widget.dart';

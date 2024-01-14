@@ -2,7 +2,6 @@
 
 import 'package:catalog/catalog.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class WidgetsPreviewPageDummy extends StatefulWidget {
   static String routeName = 'widgets';
