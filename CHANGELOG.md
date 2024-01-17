@@ -1,3 +1,7 @@
+## 0.2.0
+
+* Added device frame with `device_frame`
+
 ## 0.1.0
 
 * Added example

@@ -1,6 +1,6 @@
 name: catalog
 description: A Flutter package for render widgets in real-time
-version: 0.1.0
+version: 0.2.0
 homepage: https://landamessenger.com/
 
 environment:

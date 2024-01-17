@@ -16,6 +16,14 @@ class BodyWidgetDummy extends PreviewDummy {
             'counter': 0,
           },
           description: 'iPhone 13 Max sample',
+          screenshot: Screenshot(
+            screenshots: [
+              IPhone55(),
+              IPhone65(),
+              IPadPro(),
+              IPadPro3Gen(),
+            ],
+          ),
         ),
         Dummy(
           deviceInfo: Devices.android.samsungGalaxyS20,
