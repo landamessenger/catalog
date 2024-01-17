@@ -1,6 +1,7 @@
-import 'package:catalog/catalog.dart';
+import 'package:device_frame/device_frame.dart';
 import 'package:flutter/material.dart';
 
+import '../constants.dart';
 import 'screenshots/screenshot.dart';
 
 /// - IPAD_PRO_3GEN_129 -> 2048 x 2732

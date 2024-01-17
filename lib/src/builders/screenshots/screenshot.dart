@@ -1,6 +1,4 @@
-import 'package:catalog/catalog.dart';
 import 'package:catalog/src/builders/screenshots/types/base/base_screenshot.dart';
-import 'package:flutter/material.dart';
 
 /// - IPAD_PRO_3GEN_129 -> 2048 x 2732
 /// - IPAD_PRO_129 -> 2048 x 2732
