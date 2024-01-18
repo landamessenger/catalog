@@ -4,7 +4,6 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:catalog/src/builders/dummy.dart';
-import 'package:catalog/src/builders/screenshots/types/base/base_screenshot.dart';
 import 'package:catalog/src/component/component_node.dart';
 import 'package:catalog/src/extensions/string_ext.dart';
 import 'package:flutter/material.dart';
@@ -25,10 +24,10 @@ export 'package:catalog/src/builders/screenshots/types/apple/i_phone_55.dart';
 export 'package:catalog/src/builders/screenshots/types/apple/i_phone_65.dart';
 export 'package:catalog/src/catalog_runner.dart';
 export 'package:catalog/src/component/component_node.dart';
-export 'package:catalog/src/extensions/locale_ext.dart';
 export 'package:catalog/src/constants.dart';
 export 'package:catalog/src/dummy.dart';
 export 'package:catalog/src/embed/flutter_fanacy_tree_view/flutter_fancy_tree_view.dart';
+export 'package:catalog/src/extensions/locale_ext.dart';
 export 'package:catalog/src/preview.dart';
 export 'package:device_frame/device_frame.dart';
 export 'package:go_router/go_router.dart';
@@ -123,6 +122,8 @@ class Catalog {
             outputFolder: outputFolder,
             fileName: ss.fileName,
             callback: callback,
+            height: ss.size.height,
+            width: ss.size.width,
           );
         }
       }
@@ -135,6 +136,8 @@ class Catalog {
             outputFolder: outputFolder,
             fileName: ss.fileName,
             callback: callback,
+            height: ss.size.height,
+            width: ss.size.width,
           );
         }
       } else {
@@ -142,6 +145,8 @@ class Catalog {
           outputFolder: outputFolder,
           fileName: '${DateTime.now().millisecondsSinceEpoch}.png',
           callback: callback,
+          height: 0.0,
+          width: 0.0,
         );
       }
     }
@@ -150,6 +155,8 @@ class Catalog {
   Future<void> _processScreenshot({
     required String outputFolder,
     required String fileName,
+    required double height,
+    required double width,
     required Future<String> Function() callback,
   }) async {
     final base64Image = await callback();
@@ -158,6 +165,8 @@ class Catalog {
       body: jsonEncode({
         'outputFolder': outputFolder.addFinalSlash().addCurrentFolderDot(),
         'fileName': fileName,
+        'height': height,
+        'width': width,
         'image': base64Image,
       }),
     );

@@ -25,7 +25,7 @@ class MainScreenDummy extends PreviewDummy {
           description: 'iPhone 13 Max main screen',
           screenshot: Screenshot(
             outputFolder: (Locale? locale) async {
-              return 'ios/fastlane/screenshots/${locale?.toLanguageCode()}';
+              return 'ios/fastlane/screenshots/${locale?.toLanguageCode() ?? 'en-US'}';
             },
             locales: [
               const Locale('es', 'ES'),
