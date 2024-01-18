@@ -3,12 +3,16 @@ import 'package:flutter/material.dart';
 
 class PreviewDummyBasic extends StatelessWidget {
   final Dummy dummy;
+
   final Widget Function(BuildContext context, Dummy dummy) builder;
+
+  final Function() startCapturing;
 
   const PreviewDummyBasic({
     super.key,
     required this.dummy,
     required this.builder,
+    required this.startCapturing,
   });
 
   @override
@@ -24,7 +28,21 @@ class PreviewDummyBasic extends StatelessWidget {
               constraints: const BoxConstraints(
                 maxWidth: 400,
               ),
-              child: Center(child: Text(dummy.description)),
+              child: Row(
+                children: [
+                  Center(
+                    child: Text(
+                      dummy.description,
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: startCapturing,
+                    icon: const Icon(
+                      Icons.screenshot,
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
           const Padding(

@@ -3,9 +3,11 @@ library catalog;
 import 'dart:convert';
 import 'dart:typed_data';
 
+import 'package:catalog/src/builders/dummy.dart';
 import 'package:catalog/src/component/component_node.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:http/http.dart' as http;
 
 export 'package:catalog/src/annotations/preview.dart';
 export 'package:catalog/src/builders/dummy.dart';
@@ -95,5 +97,24 @@ class Catalog {
       print(e);
     }
     return null;
+  }
+
+  Future<void> startCapturing({
+    required Dummy dummy,
+    required Future<String> Function() callback,
+  }) async {
+    final base64Image = await callback();
+    final response = await http.post(
+      Uri.parse('http://127.0.0.1:12345'),
+      body: jsonEncode({'image': base64Image}),
+    );
+    // Check if the request was successful (status code 200)
+    if (response.statusCode == 200) {
+      // Parse the JSON response
+      print('Response data: ${response.body}');
+    } else {
+      // Handle errors
+      print('Request failed with status: ${response.statusCode}');
+    }
   }
 }

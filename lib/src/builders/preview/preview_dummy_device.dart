@@ -1,5 +1,4 @@
-import 'package:catalog/src/builders/dummy.dart';
-import 'package:device_frame/device_frame.dart';
+import 'package:catalog/catalog.dart';
 import 'package:flutter/material.dart';
 
 class PreviewDummyDevice extends StatelessWidget {
@@ -7,11 +6,14 @@ class PreviewDummyDevice extends StatelessWidget {
   final Dummy dummy;
   final Widget Function(BuildContext context, Dummy dummy) builder;
 
+  final Function() startCapturing;
+
   const PreviewDummyDevice({
     super.key,
     required this.dummy,
     required this.builder,
     required this.deviceInfo,
+    required this.startCapturing,
   });
 
   @override
@@ -32,7 +34,21 @@ class PreviewDummyDevice extends StatelessWidget {
                 constraints: const BoxConstraints(
                   maxWidth: 400,
                 ),
-                child: Center(child: Text(dummy.description)),
+                child: Row(
+                  children: [
+                    Center(
+                      child: Text(
+                        dummy.description,
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: startCapturing,
+                      icon: const Icon(
+                        Icons.screenshot,
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
             const Padding(

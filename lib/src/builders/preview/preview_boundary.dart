@@ -1,10 +1,11 @@
+import 'dart:convert';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 
+import 'package:catalog/catalog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-import '../dummy.dart';
 import 'preview_dummy_basic.dart';
 import 'preview_dummy_device.dart';
 
@@ -32,15 +33,27 @@ class PreviewBoundary extends StatelessWidget {
             return PreviewDummyBasic(
               dummy: dummy,
               builder: builder,
+              startCapturing: () => startCapturing(context),
             );
           }
           return PreviewDummyDevice(
             dummy: dummy,
             builder: builder,
             deviceInfo: deviceInfo,
+            startCapturing: () => startCapturing(context),
           );
         },
       ),
+    );
+  }
+
+  void startCapturing(BuildContext context) {
+    Catalog().startCapturing(
+      dummy: dummy,
+      callback: () async {
+        final screenShotData = await captureScreenshot(context);
+        return base64.encode(screenShotData?.toList() ?? []);
+      },
     );
   }
 
