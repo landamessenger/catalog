@@ -8,12 +8,15 @@ class PreviewDummyDevice extends StatelessWidget {
 
   final Function() startCapturing;
 
+  final GlobalKey widgetKey;
+
   const PreviewDummyDevice({
     super.key,
     required this.dummy,
     required this.builder,
     required this.deviceInfo,
     required this.startCapturing,
+    required this.widgetKey,
   });
 
   @override
@@ -22,7 +25,7 @@ class PreviewDummyDevice extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.fromLTRB(15, 15, 15, 25),
         constraints: const BoxConstraints(
-          maxWidth: 400,
+          maxWidth: 800,
         ),
         child: Column(
           children: [
@@ -54,18 +57,21 @@ class PreviewDummyDevice extends StatelessWidget {
             const Padding(
               padding: EdgeInsets.all(7.5),
             ),
-            DeviceFrame(
-              device: deviceInfo,
-              orientation: dummy.orientation,
-              screen: Container(
-                color: dummy.backgroundColor,
-                child: Builder(
-                  builder: (context) {
-                    return Padding(
-                      padding: const EdgeInsets.all(0),
-                      child: builder(context, dummy),
-                    );
-                  },
+            RepaintBoundary(
+              key: widgetKey,
+              child: DeviceFrame(
+                device: deviceInfo,
+                orientation: dummy.orientation,
+                screen: Container(
+                  color: dummy.backgroundColor,
+                  child: Builder(
+                    builder: (context) {
+                      return Padding(
+                        padding: const EdgeInsets.all(0),
+                        child: builder(context, dummy),
+                      );
+                    },
+                  ),
                 ),
               ),
             ),

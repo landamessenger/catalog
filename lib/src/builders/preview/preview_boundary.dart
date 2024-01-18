@@ -24,26 +24,25 @@ class PreviewBoundary extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RepaintBoundary(
-      key: widgetKey,
-      child: Builder(
-        builder: (context) {
-          final deviceInfo = dummy.deviceInfo;
-          if (deviceInfo == null) {
-            return PreviewDummyBasic(
-              dummy: dummy,
-              builder: builder,
-              startCapturing: () => startCapturing(context),
-            );
-          }
-          return PreviewDummyDevice(
+    return Builder(
+      builder: (context) {
+        final deviceInfo = dummy.deviceInfo;
+        if (deviceInfo == null) {
+          return PreviewDummyBasic(
+            widgetKey: widgetKey,
             dummy: dummy,
             builder: builder,
-            deviceInfo: deviceInfo,
             startCapturing: () => startCapturing(context),
           );
-        },
-      ),
+        }
+        return PreviewDummyDevice(
+          widgetKey: widgetKey,
+          dummy: dummy,
+          builder: builder,
+          deviceInfo: deviceInfo,
+          startCapturing: () => startCapturing(context),
+        );
+      },
     );
   }
 

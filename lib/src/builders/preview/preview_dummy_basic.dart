@@ -6,6 +6,8 @@ class PreviewDummyBasic extends StatelessWidget {
 
   final Widget Function(BuildContext context, Dummy dummy) builder;
 
+  final GlobalKey widgetKey;
+
   final Function() startCapturing;
 
   const PreviewDummyBasic({
@@ -13,6 +15,7 @@ class PreviewDummyBasic extends StatelessWidget {
     required this.dummy,
     required this.builder,
     required this.startCapturing,
+    required this.widgetKey,
   });
 
   @override
@@ -57,7 +60,10 @@ class PreviewDummyBasic extends StatelessWidget {
               builder: (context) {
                 return Padding(
                   padding: const EdgeInsets.all(15),
-                  child: builder(context, dummy),
+                  child: RepaintBoundary(
+                    key: widgetKey,
+                    child: builder(context, dummy),
+                  ),
                 );
               },
             ),
