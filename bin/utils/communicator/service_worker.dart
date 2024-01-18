@@ -22,14 +22,14 @@ abstract class ServiceWorker {
       serviceStarted = true;
 
       final handler = const Pipeline()
-          .addMiddleware(logRequests())
           .addHandler(_echoRequest);
 
       final server = await shelf_io.serve(handler, ip, port);
       closeServer = () async {
         await server.close(force: true);
       };
-      print('Server WebSocket in http://${server.address.host}:${server.port}');
+      // print('Server WebSocket in http://${server.address.host}:${server.port}');
+      print('Waiting for screenshots..');
     } catch (e) {
       serviceStarted = false;
       print('Error starting server: $e');

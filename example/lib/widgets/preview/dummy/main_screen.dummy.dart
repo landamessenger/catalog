@@ -3,6 +3,8 @@
 /// Use this file for modify the preview of MainScreenPreview
 ///
 
+import 'dart:ui';
+
 import 'package:catalog/catalog.dart';
 
 class MainScreenDummy extends PreviewDummy {
@@ -22,6 +24,15 @@ class MainScreenDummy extends PreviewDummy {
           },
           description: 'iPhone 13 Max main screen',
           screenshot: Screenshot(
+            outputFolder: (Locale? locale) async {
+              return 'ios/fastlane/screenshots/${locale?.toLanguageCode()}';
+            },
+            locales: [
+              const Locale('es', 'ES'),
+              const Locale('en', 'US'),
+              const Locale('en', 'GB'),
+              const Locale('fr', 'FR'),
+            ],
             screenshots: [
               IPhone55(
                 index: 1,

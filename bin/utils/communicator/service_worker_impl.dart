@@ -16,10 +16,28 @@ class ServiceWorkerImpl extends ServiceWorker {
 
   @override
   Future<String> processRequest(String requestData) async {
-    final file = File("test_image.png");
     final data = jsonDecode(requestData);
-    print(requestData);
+
+    final outputFolder = data['outputFolder'] as String;
+    final folder = Directory(outputFolder);
+    if (!await folder.exists()) {
+      print('📁 Creating output folder: $outputFolder');
+    }
+
+    await folder.create(
+      recursive: true,
+    );
+
+    final fileName = data['fileName'] as String;
+    final outputFile = '$outputFolder$fileName';
+    final file = File(outputFile);
+    if (!await file.exists()) {
+      print('🖼️ Writing file: $outputFile');
+    } else {
+      print('🖼️ Overwriting file: $outputFile');
+    }
     await file.writeAsBytes(base64.decode(data['image']));
-    return 'work_done: $requestData';
+
+    return outputFile;
   }
 }

@@ -6,6 +6,7 @@ import 'dart:typed_data';
 import 'package:catalog/src/builders/dummy.dart';
 import 'package:catalog/src/builders/screenshots/types/base/base_screenshot.dart';
 import 'package:catalog/src/component/component_node.dart';
+import 'package:catalog/src/extensions/string_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:http/http.dart' as http;
@@ -24,6 +25,7 @@ export 'package:catalog/src/builders/screenshots/types/apple/i_phone_55.dart';
 export 'package:catalog/src/builders/screenshots/types/apple/i_phone_65.dart';
 export 'package:catalog/src/catalog_runner.dart';
 export 'package:catalog/src/component/component_node.dart';
+export 'package:catalog/src/extensions/locale_ext.dart';
 export 'package:catalog/src/constants.dart';
 export 'package:catalog/src/dummy.dart';
 export 'package:catalog/src/embed/flutter_fanacy_tree_view/flutter_fancy_tree_view.dart';
@@ -111,29 +113,51 @@ class Catalog {
   }) async {
     if (dummy.screenshot.locales.isNotEmpty) {
       for (final locale in dummy.screenshot.locales) {
+        final outputFolder =
+            await dummy.screenshot.outputFolder?.call(locale) ?? '';
         await beforeCapture(locale);
         await Future.delayed(const Duration(seconds: 1));
         for (final ss in dummy.screenshot.screenshots) {
           ss.setLocale(locale);
-          await _processScreenshot(screenshot: ss, callback: callback);
+          await _processScreenshot(
+            outputFolder: outputFolder,
+            fileName: ss.fileName,
+            callback: callback,
+          );
         }
       }
     } else {
-      for (final ss in dummy.screenshot.screenshots) {
-        await _processScreenshot(screenshot: ss, callback: callback);
+      final outputFolder =
+          await dummy.screenshot.outputFolder?.call(null) ?? '';
+      if (dummy.screenshot.screenshots.isNotEmpty) {
+        for (final ss in dummy.screenshot.screenshots) {
+          await _processScreenshot(
+            outputFolder: outputFolder,
+            fileName: ss.fileName,
+            callback: callback,
+          );
+        }
+      } else {
+        await _processScreenshot(
+          outputFolder: outputFolder,
+          fileName: '${DateTime.now().millisecondsSinceEpoch}.png',
+          callback: callback,
+        );
       }
     }
   }
 
   Future<void> _processScreenshot({
-    required BaseScreenshot screenshot,
+    required String outputFolder,
+    required String fileName,
     required Future<String> Function() callback,
   }) async {
     final base64Image = await callback();
     final response = await http.post(
       Uri.parse('http://127.0.0.1:12345'),
       body: jsonEncode({
-        'screenshot': screenshot,
+        'outputFolder': outputFolder.addFinalSlash().addCurrentFolderDot(),
+        'fileName': fileName,
         'image': base64Image,
       }),
     );
