@@ -61,9 +61,9 @@ class PreviewDummyDevice extends StatelessWidget {
               key: widgetKey,
               child: DeviceFrame(
                 device: deviceInfo,
-                orientation: dummy.orientation,
+                orientation: dummy.device.orientation,
                 screen: Container(
-                  color: dummy.backgroundColor,
+                  color: dummy.device.backgroundColor,
                   child: Builder(
                     builder: (context) {
                       return Padding(

@@ -26,7 +26,7 @@ class PreviewBoundary extends StatelessWidget {
   Widget build(BuildContext context) {
     return Builder(
       builder: (context) {
-        final deviceInfo = dummy.deviceInfo;
+        final deviceInfo = dummy.device.deviceInfo;
         if (deviceInfo == null) {
           return PreviewDummyBasic(
             widgetKey: widgetKey,

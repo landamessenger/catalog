@@ -9,7 +9,9 @@ class MainScreenDummy extends PreviewDummy {
   @override
   List<Dummy> get dummies => [
         Dummy(
-          deviceInfo: Devices.ios.iPhone13ProMax,
+          device: Device(
+            deviceInfo: Devices.ios.iPhone13ProMax,
+          ),
           parameters: {
             'title': 'Flutter Demo Home Page',
             'infoText': 'You have pushed the button this many times:',
@@ -19,9 +21,27 @@ class MainScreenDummy extends PreviewDummy {
             'counter': 0,
           },
           description: 'iPhone 13 Max main screen',
+          screenshot: Screenshot(
+            screenshots: [
+              IPhone55(
+                index: 1,
+              ),
+              IPhone65(
+                index: 1,
+              ),
+              IPadPro(
+                index: 1,
+              ),
+              IPadPro3Gen(
+                index: 1,
+              ),
+            ],
+          ),
         ),
         Dummy(
-          deviceInfo: Devices.android.samsungGalaxyS20,
+          device: Device(
+            deviceInfo: Devices.android.samsungGalaxyS20,
+          ),
           parameters: {
             'title': 'Flutter Demo Home Page',
             'infoText': 'You have pushed the button this many times:',

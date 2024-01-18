@@ -1,7 +1,9 @@
 import 'package:catalog/src/builders/screenshots/screen_shot_size.dart';
-import 'package:catalog/src/builders/screenshots/types/base/base_screenshot.dart';
+import 'package:catalog/src/builders/screenshots/types/base/base_apple_screenshot.dart';
 
-class IPadPro3Gen extends BaseScreenshot {
+class IPadPro3Gen extends BaseAppleScreenshot {
+  IPadPro3Gen({required super.index});
+
   @override
   String get imageName => '_APP_IPAD_PRO_3GEN_129_';
 

@@ -1,7 +1,5 @@
-import 'package:device_frame/device_frame.dart';
-import 'package:flutter/material.dart';
-
 import '../constants.dart';
+import 'device/device.dart';
 import 'screenshots/screenshot.dart';
 
 /// - IPAD_PRO_3GEN_129 -> 2048 x 2732
@@ -11,20 +9,20 @@ import 'screenshots/screenshot.dart';
 ///
 class Dummy {
   final String description;
-  final DeviceInfo? deviceInfo;
-  final Orientation orientation;
-  final Color backgroundColor;
+
+  final Device device;
+
   final Screenshot screenshot;
+
   final List<dynamic> listParameters;
+
   final Map<String, dynamic> parameters;
 
   const Dummy({
     this.description = todoDescription,
     this.parameters = const {},
+    this.device = const Device(),
     this.screenshot = const Screenshot(),
     this.listParameters = const [],
-    this.deviceInfo,
-    this.orientation = Orientation.portrait,
-    this.backgroundColor = Colors.white,
   });
 }

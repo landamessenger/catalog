@@ -11,16 +11,17 @@ import 'package:go_router/go_router.dart';
 import 'package:http/http.dart' as http;
 
 export 'package:catalog/src/annotations/preview.dart';
+export 'package:catalog/src/builders/device/device.dart';
 export 'package:catalog/src/builders/dummy.dart';
 export 'package:catalog/src/builders/dummy/dummy_text.dart';
 export 'package:catalog/src/builders/preview/preview_boundary.dart';
 export 'package:catalog/src/builders/preview_dummy.dart';
 export 'package:catalog/src/builders/preview_scaffold.dart';
 export 'package:catalog/src/builders/screenshots/screenshot.dart';
-export 'package:catalog/src/builders/screenshots/types/i_pad_pro.dart';
-export 'package:catalog/src/builders/screenshots/types/i_pad_pro_3gen.dart';
-export 'package:catalog/src/builders/screenshots/types/i_phone_55.dart';
-export 'package:catalog/src/builders/screenshots/types/i_phone_65.dart';
+export 'package:catalog/src/builders/screenshots/types/apple/i_pad_pro.dart';
+export 'package:catalog/src/builders/screenshots/types/apple/i_pad_pro_3gen.dart';
+export 'package:catalog/src/builders/screenshots/types/apple/i_phone_55.dart';
+export 'package:catalog/src/builders/screenshots/types/apple/i_phone_65.dart';
 export 'package:catalog/src/catalog_runner.dart';
 export 'package:catalog/src/component/component_node.dart';
 export 'package:catalog/src/constants.dart';
@@ -58,6 +59,10 @@ class Catalog {
 
   void Function() onBackPressed = () => {};
   Future<Uint8List> Function(Uint8List data) process = (data) async => data;
+
+  Future<void> Function(Locale locale) beforeCapture = (locale) async {
+    // nothing to do here
+  };
 
   ComponentNode node(String data) => ComponentNode().fromJson(jsonDecode(data));
 
@@ -104,12 +109,23 @@ class Catalog {
     required Dummy dummy,
     required Future<String> Function() callback,
   }) async {
-    for (final ss in dummy.screenshot.screenshots) {
-      await processScreenshot(screenshot: ss, callback: callback);
+    if (dummy.screenshot.locales.isNotEmpty) {
+      for (final locale in dummy.screenshot.locales) {
+        await beforeCapture(locale);
+        await Future.delayed(const Duration(seconds: 1));
+        for (final ss in dummy.screenshot.screenshots) {
+          ss.setLocale(locale);
+          await _processScreenshot(screenshot: ss, callback: callback);
+        }
+      }
+    } else {
+      for (final ss in dummy.screenshot.screenshots) {
+        await _processScreenshot(screenshot: ss, callback: callback);
+      }
     }
   }
 
-  Future<void> processScreenshot({
+  Future<void> _processScreenshot({
     required BaseScreenshot screenshot,
     required Future<String> Function() callback,
   }) async {
@@ -117,15 +133,13 @@ class Catalog {
     final response = await http.post(
       Uri.parse('http://127.0.0.1:12345'),
       body: jsonEncode({
+        'screenshot': screenshot,
         'image': base64Image,
       }),
     );
-    // Check if the request was successful (status code 200)
     if (response.statusCode == 200) {
-      // Parse the JSON response
       print('Response data: ${response.body}');
     } else {
-      // Handle errors
       print('Request failed with status: ${response.statusCode}');
     }
   }

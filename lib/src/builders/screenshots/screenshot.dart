@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:catalog/src/builders/screenshots/types/base/base_screenshot.dart';
 
 /// - IPAD_PRO_3GEN_129 -> 2048 x 2732
@@ -7,10 +9,10 @@ import 'package:catalog/src/builders/screenshots/types/base/base_screenshot.dart
 ///
 class Screenshot {
   final List<BaseScreenshot> screenshots;
-  final List<String> languages;
+  final List<Locale> locales;
 
   const Screenshot({
     this.screenshots = const [],
-    this.languages = const [],
+    this.locales = const [],
   });
 }

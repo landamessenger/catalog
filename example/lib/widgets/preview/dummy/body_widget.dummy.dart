@@ -10,7 +10,9 @@ class BodyWidgetDummy extends PreviewDummy {
   @override
   List<Dummy> get dummies => [
         Dummy(
-          deviceInfo: Devices.ios.iPhone13ProMax,
+          device: Device(
+            deviceInfo: Devices.ios.iPhone13ProMax,
+          ),
           parameters: {
             'infoText': 'You have pushed the button this many times:',
             'counter': 0,
@@ -18,15 +20,25 @@ class BodyWidgetDummy extends PreviewDummy {
           description: 'iPhone 13 Max sample',
           screenshot: Screenshot(
             screenshots: [
-              IPhone55(),
-              IPhone65(),
-              IPadPro(),
-              IPadPro3Gen(),
+              IPhone55(
+                index: 1,
+              ),
+              IPhone65(
+                index: 1,
+              ),
+              IPadPro(
+                index: 1,
+              ),
+              IPadPro3Gen(
+                index: 1,
+              ),
             ],
           ),
         ),
         Dummy(
-          deviceInfo: Devices.android.samsungGalaxyS20,
+          device: Device(
+            deviceInfo: Devices.android.samsungGalaxyS20,
+          ),
           parameters: {
             'infoText':
                 'Bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla',
@@ -35,8 +47,10 @@ class BodyWidgetDummy extends PreviewDummy {
           description: 'Samsung Galaxy S20 sample',
         ),
         Dummy(
-          deviceInfo: Devices.ios.iPhone13ProMax,
-          orientation: Orientation.landscape,
+          device: Device(
+            deviceInfo: Devices.ios.iPhone13ProMax,
+            orientation: Orientation.landscape,
+          ),
           parameters: {
             'infoText':
                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
@@ -45,8 +59,10 @@ class BodyWidgetDummy extends PreviewDummy {
           description: 'iPhone 13 Max landscape sample',
         ),
         Dummy(
-          deviceInfo: Devices.android.samsungGalaxyS20,
-          orientation: Orientation.landscape,
+          device: Device(
+            deviceInfo: Devices.android.samsungGalaxyS20,
+            orientation: Orientation.landscape,
+          ),
           parameters: {
             'infoText': 'Other example:',
             'counter': 9999999999999,
@@ -54,8 +70,10 @@ class BodyWidgetDummy extends PreviewDummy {
           description: 'Samsung Galaxy S20 landscape sample',
         ),
         Dummy(
-          deviceInfo: Devices.macOS.macBookPro,
-          orientation: Orientation.landscape,
+          device: Device(
+            deviceInfo: Devices.macOS.macBookPro,
+            orientation: Orientation.landscape,
+          ),
           parameters: {
             'infoText': 'Other example:',
             'counter': 9999999999999,
