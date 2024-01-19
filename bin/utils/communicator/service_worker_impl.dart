@@ -76,8 +76,7 @@ class ServiceWorkerImpl extends ServiceWorker {
 
     Image? baseImage;
 
-    // if (mode == 'blurhash') {
-    if (true) {
+    if (mode == 'blurHash') {
       baseImage = createBlurHashImage(width, height, screenshotImage);
     } else {
       baseImage = createBlankImage(width, height);

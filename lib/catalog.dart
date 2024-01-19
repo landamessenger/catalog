@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:catalog/src/builders/dummy.dart';
+import 'package:catalog/src/builders/screenshots/background.dart';
 import 'package:catalog/src/component/component_node.dart';
 import 'package:catalog/src/extensions/string_ext.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +23,7 @@ export 'package:catalog/src/builders/screenshots/types/apple/i_pad_pro.dart';
 export 'package:catalog/src/builders/screenshots/types/apple/i_pad_pro_3gen.dart';
 export 'package:catalog/src/builders/screenshots/types/apple/i_phone_55.dart';
 export 'package:catalog/src/builders/screenshots/types/apple/i_phone_65.dart';
+export 'package:catalog/src/builders/screenshots/background.dart';
 export 'package:catalog/src/catalog_runner.dart';
 export 'package:catalog/src/component/component_node.dart';
 export 'package:catalog/src/constants.dart';
@@ -97,7 +99,7 @@ class Catalog {
         path,
       );
       var content =
-          String.fromCharCodes(await process(data.buffer.asUint8List()));
+      String.fromCharCodes(await process(data.buffer.asUint8List()));
       final jsonResult = jsonDecode(content);
       return ComponentNode().fromJson(jsonResult);
     } catch (e) {
@@ -119,6 +121,7 @@ class Catalog {
         for (final ss in dummy.screenshot.screenshots) {
           ss.setLocale(locale);
           await _processScreenshot(
+            mode: dummy.screenshot.background.toStringName(),
             outputFolder: outputFolder,
             fileName: ss.fileName,
             callback: callback,
@@ -133,6 +136,7 @@ class Catalog {
       if (dummy.screenshot.screenshots.isNotEmpty) {
         for (final ss in dummy.screenshot.screenshots) {
           await _processScreenshot(
+            mode: dummy.screenshot.background.toStringName(),
             outputFolder: outputFolder,
             fileName: ss.fileName,
             callback: callback,
@@ -142,8 +146,11 @@ class Catalog {
         }
       } else {
         await _processScreenshot(
+          mode: dummy.screenshot.background.toStringName(),
           outputFolder: outputFolder,
-          fileName: '${DateTime.now().millisecondsSinceEpoch}.png',
+          fileName: '${DateTime
+              .now()
+              .millisecondsSinceEpoch}.png',
           callback: callback,
           height: 0.0,
           width: 0.0,
@@ -153,6 +160,7 @@ class Catalog {
   }
 
   Future<void> _processScreenshot({
+    required String mode,
     required String outputFolder,
     required String fileName,
     required double height,
@@ -163,6 +171,7 @@ class Catalog {
     final response = await http.post(
       Uri.parse('http://127.0.0.1:12345'),
       body: jsonEncode({
+        'mode': mode,
         'outputFolder': outputFolder.addFinalSlash().addCurrentFolderDot(),
         'fileName': fileName,
         'height': height,

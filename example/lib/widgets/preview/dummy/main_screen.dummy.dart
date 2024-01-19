@@ -8,21 +8,24 @@ import 'dart:ui';
 import 'package:catalog/catalog.dart';
 
 class MainScreenDummy extends PreviewDummy {
+  final baseDummy = Dummy(
+    parameters: {
+      'title': 'Flutter Demo Home Page',
+      'infoText': 'You have pushed the button this many times:',
+      'incrementCounter': () {
+        // nothing to do here
+      },
+      'counter': 12345,
+    },
+  );
+
   @override
   List<Dummy> get dummies => [
-        Dummy(
+        baseDummy.copyWith(
+          description: 'iPhone 13 Max main screen',
           device: Device(
             deviceInfo: Devices.ios.iPhone13ProMax,
           ),
-          parameters: {
-            'title': 'Flutter Demo Home Page',
-            'infoText': 'You have pushed the button this many times:',
-            'incrementCounter': () {
-              // nothing to do here
-            },
-            'counter': 0,
-          },
-          description: 'iPhone 13 Max main screen',
           screenshot: Screenshot(
             outputFolder: (Locale? locale) async {
               return 'ios/fastlane/screenshots/${locale?.toLanguageCode() ?? 'en-US'}';
@@ -40,6 +43,25 @@ class MainScreenDummy extends PreviewDummy {
               IPhone65(
                 index: 1,
               ),
+            ],
+          ),
+        ),
+        baseDummy.copyWith(
+          description: 'iPad Pro 11 inch Gen 4 main screen',
+          device: Device(
+            deviceInfo: Devices.ios.iPadPro11Inches,
+          ),
+          screenshot: Screenshot(
+            outputFolder: (Locale? locale) async {
+              return 'ios/fastlane/screenshots/${locale?.toLanguageCode() ?? 'en-US'}';
+            },
+            locales: [
+              const Locale('es', 'ES'),
+              const Locale('en', 'US'),
+              const Locale('en', 'GB'),
+              const Locale('fr', 'FR'),
+            ],
+            screenshots: [
               IPadPro(
                 index: 1,
               ),
@@ -49,19 +71,11 @@ class MainScreenDummy extends PreviewDummy {
             ],
           ),
         ),
-        Dummy(
+        baseDummy.copyWith(
+          description: 'Samsung Galaxy S20 main screen',
           device: Device(
             deviceInfo: Devices.android.samsungGalaxyS20,
           ),
-          parameters: {
-            'title': 'Flutter Demo Home Page',
-            'infoText': 'You have pushed the button this many times:',
-            'incrementCounter': () {
-              // nothing to do here
-            },
-            'counter': 120,
-          },
-          description: 'Samsung Galaxy S20 main screen',
         ),
       ];
 }
