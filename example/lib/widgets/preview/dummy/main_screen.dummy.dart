@@ -3,8 +3,6 @@
 /// Use this file for modify the preview of MainScreenPreview
 ///
 
-import 'dart:ui';
-
 import 'package:catalog/catalog.dart';
 import 'package:example/r.dart';
 import 'package:stringcare/stringcare.dart';
@@ -24,9 +22,9 @@ class MainScreenDummy extends PreviewDummy {
   @override
   List<Dummy> get dummies => [
         baseDummy.copyWith(
-          description: 'iPhone 13 Max main screen',
+          description: 'iPhone SE main screen',
           device: Device(
-            deviceInfo: Devices.ios.iPhone13ProMax,
+            deviceInfo: Devices.ios.iPhoneSE,
           ),
           screenshot: Screenshot(
             outputFolder: Screenshot.iOSFastlaneDirectory,
@@ -35,6 +33,18 @@ class MainScreenDummy extends PreviewDummy {
               IPhone55(
                 index: 1,
               ),
+            ],
+          ),
+        ),
+        baseDummy.copyWith(
+          description: 'iPhone 13 Max main screen',
+          device: Device(
+            deviceInfo: Devices.ios.iPhone13ProMax,
+          ),
+          screenshot: Screenshot(
+            outputFolder: Screenshot.iOSFastlaneDirectory,
+            locales: Stringcare().locales,
+            screenshots: [
               IPhone65(
                 index: 1,
               ),
@@ -60,7 +70,7 @@ class MainScreenDummy extends PreviewDummy {
           ),
         ),
         baseDummy.copyWith(
-          description: 'iPad Pro 11 inch Gen 4 main screen',
+          description: 'macOS main screen',
           device: Device(
             deviceInfo: Devices.macOS.macBookPro,
           ),
@@ -68,10 +78,7 @@ class MainScreenDummy extends PreviewDummy {
             outputFolder: Screenshot.macOSFastlaneDirectory,
             locales: Stringcare().locales,
             screenshots: [
-              IPadPro(
-                index: 1,
-              ),
-              IPadPro3Gen(
+              MacOS(
                 index: 1,
               ),
             ],
