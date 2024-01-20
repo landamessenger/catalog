@@ -11,15 +11,15 @@ import 'package:stringcare/stringcare.dart';
 
 class MainScreenDummy extends PreviewDummy {
   Dummy get baseDummy => Dummy(
-    parameters: {
-      'title': R.strings.title_app.string(),
-      'infoText': R.strings.info_text.string(),
-      'incrementCounter': () {
-        // nothing to do here
-      },
-      'counter': 12345,
-    },
-  );
+        parameters: {
+          'title': R.strings.title_app.string(),
+          'infoText': R.strings.info_text.string(),
+          'incrementCounter': () {
+            // nothing to do here
+          },
+          'counter': 12345,
+        },
+      );
 
   @override
   List<Dummy> get dummies => [
@@ -29,9 +29,7 @@ class MainScreenDummy extends PreviewDummy {
             deviceInfo: Devices.ios.iPhone13ProMax,
           ),
           screenshot: Screenshot(
-            outputFolder: (Locale? locale) async {
-              return 'ios/fastlane/screenshots/${locale?.toLanguageCode() ?? 'en-US'}';
-            },
+            outputFolder: Screenshot.iOSFastlaneDirectory,
             locales: Stringcare().locales,
             screenshots: [
               IPhone55(
@@ -49,9 +47,25 @@ class MainScreenDummy extends PreviewDummy {
             deviceInfo: Devices.ios.iPadPro11Inches,
           ),
           screenshot: Screenshot(
-            outputFolder: (Locale? locale) async {
-              return 'ios/fastlane/screenshots/${locale?.toLanguageCode() ?? 'en-US'}';
-            },
+            outputFolder: Screenshot.iOSFastlaneDirectory,
+            locales: Stringcare().locales,
+            screenshots: [
+              IPadPro(
+                index: 1,
+              ),
+              IPadPro3Gen(
+                index: 1,
+              ),
+            ],
+          ),
+        ),
+        baseDummy.copyWith(
+          description: 'iPad Pro 11 inch Gen 4 main screen',
+          device: Device(
+            deviceInfo: Devices.macOS.macBookPro,
+          ),
+          screenshot: Screenshot(
+            outputFolder: Screenshot.macOSFastlaneDirectory,
             locales: Stringcare().locales,
             screenshots: [
               IPadPro(
@@ -67,6 +81,15 @@ class MainScreenDummy extends PreviewDummy {
           description: 'Samsung Galaxy S20 main screen',
           device: Device(
             deviceInfo: Devices.android.samsungGalaxyS20,
+          ),
+          screenshot: Screenshot(
+            outputFolder: Screenshot.androidFastlaneDirectory,
+            locales: Stringcare().locales,
+            screenshots: [
+              AndroidPhone(
+                index: 1,
+              ),
+            ],
           ),
         ),
       ];
