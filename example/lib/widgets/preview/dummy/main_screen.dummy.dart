@@ -6,12 +6,14 @@
 import 'dart:ui';
 
 import 'package:catalog/catalog.dart';
+import 'package:example/r.dart';
+import 'package:stringcare/stringcare.dart';
 
 class MainScreenDummy extends PreviewDummy {
-  final baseDummy = Dummy(
+  Dummy get baseDummy => Dummy(
     parameters: {
-      'title': 'Flutter Demo Home Page',
-      'infoText': 'You have pushed the button this many times:',
+      'title': R.strings.title_app.string(),
+      'infoText': R.strings.info_text.string(),
       'incrementCounter': () {
         // nothing to do here
       },
@@ -30,12 +32,7 @@ class MainScreenDummy extends PreviewDummy {
             outputFolder: (Locale? locale) async {
               return 'ios/fastlane/screenshots/${locale?.toLanguageCode() ?? 'en-US'}';
             },
-            locales: [
-              const Locale('es', 'ES'),
-              const Locale('en', 'US'),
-              const Locale('en', 'GB'),
-              const Locale('fr', 'FR'),
-            ],
+            locales: Stringcare().locales,
             screenshots: [
               IPhone55(
                 index: 1,
@@ -55,12 +52,7 @@ class MainScreenDummy extends PreviewDummy {
             outputFolder: (Locale? locale) async {
               return 'ios/fastlane/screenshots/${locale?.toLanguageCode() ?? 'en-US'}';
             },
-            locales: [
-              const Locale('es', 'ES'),
-              const Locale('en', 'US'),
-              const Locale('en', 'GB'),
-              const Locale('fr', 'FR'),
-            ],
+            locales: Stringcare().locales,
             screenshots: [
               IPadPro(
                 index: 1,

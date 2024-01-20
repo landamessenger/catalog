@@ -26,7 +26,7 @@ class MainScreenPreview extends PreviewWidget {
           children: [
             for (int i = 0; i < MainScreenDummy().dummies.length; i++)
               PreviewBoundary(
-                dummy: MainScreenDummy().dummies[i],
+                dummyBuilder: () => MainScreenDummy().dummies[i],
                 builder: (BuildContext context, Dummy dummy) {
                   return MainScreen(
                     title: dummy.parameters['title'],

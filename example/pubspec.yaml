@@ -12,6 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.6
+  stringcare: ^0.1.3                            # android   ios   linux   macos   web   windows
   catalog:
     path: ../
 
@@ -19,6 +20,16 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^3.0.1
+
+stringcare:
+  lang:
+    obfuscated: "lang"        # obfuscated langs files directory
+    original: "lang_base"     # original langs files directory
+    test: "lang_test"         # test reveal langs files directory (only needed for testing)
+  resources:
+    class_name: "R"           # R class for accessing resources
+    class_dir: "lib"          # R class directory
+
 
 catalog:
   base: "lib"
@@ -33,3 +44,4 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
+    - lang/

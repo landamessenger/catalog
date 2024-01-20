@@ -13,6 +13,7 @@ dependencies:
   blurhash_dart: ^1.2.1                         # android   ios   linux   macos         windows
   device_frame: ^1.1.0                          # android   ios   linux   macos   web   windows
   flutter_svg: ^2.0.9                           # android   ios   linux   macos         windows
+  global_refresh: ^1.0.0                        # android   ios   linux   macos   web   windows
   go_router: ^13.0.1                            # android   ios   linux   macos   web   windows
   http: ^1.1.2                                  # android   ios   linux   macos   web   windows
   image: ^4.1.4                                 # android   ios   linux   macos   web   windows

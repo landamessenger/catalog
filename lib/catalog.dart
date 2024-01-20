@@ -8,6 +8,7 @@ import 'package:catalog/src/builders/screenshots/background.dart';
 import 'package:catalog/src/component/component_node.dart';
 import 'package:catalog/src/extensions/string_ext.dart';
 import 'package:flutter/material.dart';
+import 'package:global_refresh/global_refresh.dart';
 import 'package:go_router/go_router.dart';
 import 'package:http/http.dart' as http;
 
@@ -18,12 +19,12 @@ export 'package:catalog/src/builders/dummy/dummy_text.dart';
 export 'package:catalog/src/builders/preview/preview_boundary.dart';
 export 'package:catalog/src/builders/preview_dummy.dart';
 export 'package:catalog/src/builders/preview_scaffold.dart';
+export 'package:catalog/src/builders/screenshots/background.dart';
 export 'package:catalog/src/builders/screenshots/screenshot.dart';
 export 'package:catalog/src/builders/screenshots/types/apple/i_pad_pro.dart';
 export 'package:catalog/src/builders/screenshots/types/apple/i_pad_pro_3gen.dart';
 export 'package:catalog/src/builders/screenshots/types/apple/i_phone_55.dart';
 export 'package:catalog/src/builders/screenshots/types/apple/i_phone_65.dart';
-export 'package:catalog/src/builders/screenshots/background.dart';
 export 'package:catalog/src/catalog_runner.dart';
 export 'package:catalog/src/component/component_node.dart';
 export 'package:catalog/src/constants.dart';
@@ -43,6 +44,8 @@ class Catalog {
     _instance ??= Catalog._internal();
     return _instance!;
   }
+
+  Function(GoRouter router)? runnerRouterSet;
 
   GoRouter? router;
 
@@ -99,7 +102,7 @@ class Catalog {
         path,
       );
       var content =
-      String.fromCharCodes(await process(data.buffer.asUint8List()));
+          String.fromCharCodes(await process(data.buffer.asUint8List()));
       final jsonResult = jsonDecode(content);
       return ComponentNode().fromJson(jsonResult);
     } catch (e) {
@@ -111,13 +114,19 @@ class Catalog {
   Future<void> startCapturing({
     required Dummy dummy,
     required Future<String> Function() callback,
+    required Function() refreshContent,
+    required Function() onStartCapturing,
+    required Function() onFinishCapturing,
   }) async {
+    onStartCapturing();
     if (dummy.screenshot.locales.isNotEmpty) {
       for (final locale in dummy.screenshot.locales) {
         final outputFolder =
             await dummy.screenshot.outputFolder?.call(locale) ?? '';
         await beforeCapture(locale);
+        refreshContent();
         await Future.delayed(const Duration(seconds: 1));
+
         for (final ss in dummy.screenshot.screenshots) {
           ss.setLocale(locale);
           await _processScreenshot(
@@ -148,15 +157,14 @@ class Catalog {
         await _processScreenshot(
           mode: dummy.screenshot.background.toStringName(),
           outputFolder: outputFolder,
-          fileName: '${DateTime
-              .now()
-              .millisecondsSinceEpoch}.png',
+          fileName: '${DateTime.now().millisecondsSinceEpoch}.png',
           callback: callback,
           height: 0.0,
           width: 0.0,
         );
       }
     }
+    onFinishCapturing();
   }
 
   Future<void> _processScreenshot({

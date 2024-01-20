@@ -9,49 +9,74 @@ import 'package:flutter/rendering.dart';
 import 'preview_dummy_basic.dart';
 import 'preview_dummy_device.dart';
 
-class PreviewBoundary extends StatelessWidget {
+class PreviewBoundary extends StatefulWidget {
   final GlobalKey widgetKey = GlobalKey();
 
-  final Dummy dummy;
+  final Dummy Function() dummyBuilder;
 
   final Widget Function(BuildContext context, Dummy dummy) builder;
 
   PreviewBoundary({
     super.key,
     required this.builder,
-    required this.dummy,
+    required this.dummyBuilder,
   });
+
+  @override
+  State<StatefulWidget> createState() => PreviewBoundaryState();
+}
+
+class PreviewBoundaryState extends State<PreviewBoundary> {
+  bool capturing = false;
 
   @override
   Widget build(BuildContext context) {
     return Builder(
       builder: (context) {
+        final dummy = widget.dummyBuilder();
         final deviceInfo = dummy.device.deviceInfo;
         if (deviceInfo == null) {
           return PreviewDummyBasic(
-            widgetKey: widgetKey,
+            capturing: capturing,
+            widgetKey: widget.widgetKey,
             dummy: dummy,
-            builder: builder,
-            startCapturing: () => startCapturing(context),
+            builder: widget.builder,
+            startCapturing: () => startCapturing(context, dummy),
           );
         }
         return PreviewDummyDevice(
-          widgetKey: widgetKey,
+          capturing: capturing,
+          widgetKey: widget.widgetKey,
           dummy: dummy,
-          builder: builder,
+          builder: widget.builder,
           deviceInfo: deviceInfo,
-          startCapturing: () => startCapturing(context),
+          startCapturing: () => startCapturing(context, dummy),
         );
       },
     );
   }
 
-  void startCapturing(BuildContext context) {
+  void startCapturing(BuildContext context, Dummy dummy) {
     Catalog().startCapturing(
       dummy: dummy,
       callback: () async {
         final screenShotData = await captureScreenshot(context);
         return base64.encode(screenShotData?.toList() ?? []);
+      },
+      refreshContent: () {
+        setState(() {
+          // nothing to do here
+        });
+      },
+      onStartCapturing: () {
+        setState(() {
+          capturing = true;
+        });
+      },
+      onFinishCapturing: () {
+        setState(() {
+          capturing = false;
+        });
       },
     );
   }
@@ -59,8 +84,8 @@ class PreviewBoundary extends StatelessWidget {
   Future<Uint8List?> captureScreenshot(BuildContext context) async {
     final pixelRatio = MediaQuery.of(context).devicePixelRatio;
     await Future.delayed(const Duration(seconds: 1));
-    final boundary =
-        widgetKey.currentContext?.findRenderObject() as RenderRepaintBoundary?;
+    final boundary = widget.widgetKey.currentContext?.findRenderObject()
+        as RenderRepaintBoundary?;
     final image = await boundary?.toImage(
       pixelRatio: pixelRatio,
     );

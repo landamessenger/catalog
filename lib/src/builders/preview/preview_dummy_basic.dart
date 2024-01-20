@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 class PreviewDummyBasic extends StatelessWidget {
   final Dummy dummy;
 
+  final bool capturing;
+
   final Widget Function(BuildContext context, Dummy dummy) builder;
 
   final GlobalKey widgetKey;
@@ -16,6 +18,7 @@ class PreviewDummyBasic extends StatelessWidget {
     required this.builder,
     required this.startCapturing,
     required this.widgetKey,
+    required this.capturing,
   });
 
   @override
@@ -51,10 +54,11 @@ class PreviewDummyBasic extends StatelessWidget {
           const Padding(
             padding: EdgeInsets.all(7.5),
           ),
-          Container(
-            constraints: const BoxConstraints(
+          AnimatedContainer(
+            duration: const Duration(milliseconds: 200),
+            constraints: BoxConstraints(
               maxHeight: 700,
-              maxWidth: 700,
+              maxWidth: capturing ? 900 : 400,
             ),
             child: Builder(
               builder: (context) {

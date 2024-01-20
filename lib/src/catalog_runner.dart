@@ -1,5 +1,6 @@
 import 'package:catalog/catalog.dart';
 import 'package:flutter/material.dart';
+import 'package:global_refresh/global_refresh.dart';
 
 class CatalogRunner extends StatefulWidget {
   final Widget application;
@@ -32,7 +33,7 @@ class CatalogRunner extends StatefulWidget {
   State<CatalogRunner> createState() => _CatalogRunnerState();
 }
 
-class _CatalogRunnerState extends State<CatalogRunner> {
+class _CatalogRunnerState extends GRState<CatalogRunner> {
   @override
   Widget build(BuildContext context) {
     if (!const bool.fromEnvironment('catalog', defaultValue: false) &&
@@ -47,6 +48,9 @@ class _CatalogRunnerState extends State<CatalogRunner> {
           widget.route,
         ],
       );
+      if (Catalog().runnerRouterSet != null) {
+        Catalog().runnerRouterSet?.call(Catalog().router!);
+      }
       if (widget.ready != null) {
         widget.ready!();
       }

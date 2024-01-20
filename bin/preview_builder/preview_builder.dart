@@ -82,7 +82,7 @@ class ${clazz}Preview extends PreviewWidget {
 String dummyWidgetBuilder(String clazz, String widgetCompose) {
   return '''
   PreviewBoundary(
-    dummy: ${clazz}Dummy().dummies[i],
+    dummyBuilder: () => ${clazz}Dummy().dummies[i],
     builder: (BuildContext context, Dummy dummy) {
       return $widgetCompose;
     },

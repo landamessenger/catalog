@@ -2,8 +2,12 @@ import 'package:catalog/catalog.dart';
 import 'package:flutter/material.dart';
 
 class PreviewDummyDevice extends StatelessWidget {
+  final bool capturing;
+
   final DeviceInfo deviceInfo;
+
   final Dummy dummy;
+
   final Widget Function(BuildContext context, Dummy dummy) builder;
 
   final Function() startCapturing;
@@ -17,15 +21,17 @@ class PreviewDummyDevice extends StatelessWidget {
     required this.deviceInfo,
     required this.startCapturing,
     required this.widgetKey,
+    required this.capturing,
   });
 
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Container(
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
         margin: const EdgeInsets.fromLTRB(15, 15, 15, 25),
-        constraints: const BoxConstraints(
-          maxWidth: 800,
+        constraints: BoxConstraints(
+          maxWidth: capturing ? 900 : 400,
         ),
         child: Column(
           children: [

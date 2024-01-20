@@ -24,7 +24,7 @@ class CounterWidgetPreview extends PreviewWidget {
           children: [
             for (int i = 0; i < CounterWidgetDummy().dummies.length; i++)
               PreviewBoundary(
-                dummy: CounterWidgetDummy().dummies[i],
+                dummyBuilder: () => CounterWidgetDummy().dummies[i],
                 builder: (BuildContext context, Dummy dummy) {
                   return CounterWidget(
                     counter: dummy.parameters['counter'],

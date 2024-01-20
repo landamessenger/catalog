@@ -24,7 +24,7 @@ class BodyWidgetPreview extends PreviewWidget {
           children: [
             for (int i = 0; i < BodyWidgetDummy().dummies.length; i++)
               PreviewBoundary(
-                dummy: BodyWidgetDummy().dummies[i],
+                dummyBuilder: () => BodyWidgetDummy().dummies[i],
                 builder: (BuildContext context, Dummy dummy) {
                   return BodyWidget(
                     infoText: dummy.parameters['infoText'],
