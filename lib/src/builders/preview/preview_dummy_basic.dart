@@ -34,11 +34,14 @@ class PreviewDummyBasic extends StatelessWidget {
               constraints: const BoxConstraints(
                 maxWidth: 400,
               ),
-              child: Row(
+              child: Flex(
+                direction: Axis.horizontal,
                 children: [
-                  Center(
-                    child: Text(
-                      dummy.description,
+                  Expanded(
+                    child: Center(
+                      child: Text(
+                        dummy.description,
+                      ),
                     ),
                   ),
                   IconButton(

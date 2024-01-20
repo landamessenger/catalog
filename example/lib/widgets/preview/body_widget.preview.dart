@@ -18,20 +18,99 @@ class BodyWidgetPreview extends PreviewWidget {
   const BodyWidgetPreview({super.key});
 
   @override
-  Widget preview(BuildContext context) => BodyWidgetDummy().dummies.isEmpty
-      ? Container()
-      : ListView(
-          children: [
-            for (int i = 0; i < BodyWidgetDummy().dummies.length; i++)
-              PreviewBoundary(
-                dummyBuilder: () => BodyWidgetDummy().dummies[i],
-                builder: (BuildContext context, Dummy dummy) {
-                  return BodyWidget(
-                    infoText: dummy.parameters['infoText'],
-                    counter: dummy.parameters['counter'],
-                  );
-                },
+  Widget preview(BuildContext context) {
+    Catalog().activePreviews.clear();
+
+    if (BodyWidgetDummy().dummies.isEmpty) {
+      return Container();
+    }
+
+    final deviceScreenshotsAvailable =
+        BodyWidgetDummy().deviceScreenshotsAvailable;
+    final screenshotsAvailable = BodyWidgetDummy().screenshotsAvailable;
+
+    int basicScreenshots = screenshotsAvailable - deviceScreenshotsAvailable;
+
+    final dummies = BodyWidgetDummy().dummies;
+
+    return ListView(
+      children: [
+        if (basicScreenshots > 0)
+          Center(
+            child: Container(
+              constraints: const BoxConstraints(
+                maxWidth: 400,
               ),
-          ],
-        );
+              child: Card(
+                clipBehavior: Clip.hardEdge,
+                child: Container(
+                  padding: const EdgeInsets.all(15),
+                  color: Colors.white,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Center(
+                          child: Text(
+                            '$basicScreenshots basic screenshots available',
+                          ),
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: () {},
+                        icon: const Icon(
+                          Icons.screenshot,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        if (deviceScreenshotsAvailable > 0)
+          Center(
+            child: Container(
+              constraints: const BoxConstraints(
+                maxWidth: 400,
+              ),
+              child: Card(
+                clipBehavior: Clip.hardEdge,
+                child: Container(
+                  padding: const EdgeInsets.all(15),
+                  color: Colors.white,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Center(
+                          child: Text(
+                            '$deviceScreenshotsAvailable device screenshots available',
+                          ),
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: () {},
+                        icon: const Icon(
+                          Icons.screenshot,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        for (int i = 0; i < dummies.length; i++)
+          PreviewBoundary(
+            index: i,
+            dummyBuilder: () => dummies[i],
+            builder: (BuildContext context, Dummy dummy) {
+              return BodyWidget(
+                infoText: dummy.parameters['infoText'],
+                counter: dummy.parameters['counter'],
+              );
+            },
+          ),
+      ],
+    );
+  }
 }

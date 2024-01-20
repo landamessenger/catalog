@@ -64,6 +64,8 @@ class Catalog {
 
   String path = "assets/preview_config.json";
 
+  final Map<String, GlobalKey> activePreviews = {};
+
   void Function() onBackPressed = () => {};
   Future<Uint8List> Function(Uint8List data) process = (data) async => data;
 

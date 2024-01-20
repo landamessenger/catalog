@@ -18,19 +18,98 @@ class CounterWidgetPreview extends PreviewWidget {
   const CounterWidgetPreview({super.key});
 
   @override
-  Widget preview(BuildContext context) => CounterWidgetDummy().dummies.isEmpty
-      ? Container()
-      : ListView(
-          children: [
-            for (int i = 0; i < CounterWidgetDummy().dummies.length; i++)
-              PreviewBoundary(
-                dummyBuilder: () => CounterWidgetDummy().dummies[i],
-                builder: (BuildContext context, Dummy dummy) {
-                  return CounterWidget(
-                    counter: dummy.parameters['counter'],
-                  );
-                },
+  Widget preview(BuildContext context) {
+    Catalog().activePreviews.clear();
+
+    if (CounterWidgetDummy().dummies.isEmpty) {
+      return Container();
+    }
+
+    final deviceScreenshotsAvailable =
+        CounterWidgetDummy().deviceScreenshotsAvailable;
+    final screenshotsAvailable = CounterWidgetDummy().screenshotsAvailable;
+
+    int basicScreenshots = screenshotsAvailable - deviceScreenshotsAvailable;
+
+    final dummies = CounterWidgetDummy().dummies;
+
+    return ListView(
+      children: [
+        if (basicScreenshots > 0)
+          Center(
+            child: Container(
+              constraints: const BoxConstraints(
+                maxWidth: 400,
               ),
-          ],
-        );
+              child: Card(
+                clipBehavior: Clip.hardEdge,
+                child: Container(
+                  padding: const EdgeInsets.all(15),
+                  color: Colors.white,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Center(
+                          child: Text(
+                            '$basicScreenshots basic screenshots available',
+                          ),
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: () {},
+                        icon: const Icon(
+                          Icons.screenshot,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        if (deviceScreenshotsAvailable > 0)
+          Center(
+            child: Container(
+              constraints: const BoxConstraints(
+                maxWidth: 400,
+              ),
+              child: Card(
+                clipBehavior: Clip.hardEdge,
+                child: Container(
+                  padding: const EdgeInsets.all(15),
+                  color: Colors.white,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Center(
+                          child: Text(
+                            '$deviceScreenshotsAvailable device screenshots available',
+                          ),
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: () {},
+                        icon: const Icon(
+                          Icons.screenshot,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        for (int i = 0; i < dummies.length; i++)
+          PreviewBoundary(
+            index: i,
+            dummyBuilder: () => dummies[i],
+            builder: (BuildContext context, Dummy dummy) {
+              return CounterWidget(
+                counter: dummy.parameters['counter'],
+              );
+            },
+          ),
+      ],
+    );
+  }
 }

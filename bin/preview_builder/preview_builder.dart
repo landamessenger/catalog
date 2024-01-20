@@ -54,15 +54,101 @@ class ${clazz}Preview extends PreviewWidget {
         );
   ''' : ''}
   
-  ${preview.usesDummies ? '''@override
-  Widget preview(BuildContext context) => ${clazz}Dummy().dummies.isEmpty
-      ? Container()
-      : ListView(
-          children: [
-            for (int i = 0; i < ${clazz}Dummy().dummies.length; i++)
-              ${dummyWidgetBuilder(clazz, widgetCompose)}
-          ],
-        );''' : ''}
+  ${preview.usesDummies ? '''
+  
+  @override
+  Widget preview(BuildContext context) {
+    Catalog().activePreviews.clear();
+
+    if (${clazz}Dummy().dummies.isEmpty) {
+      return Container();
+    }
+
+    final deviceScreenshotsAvailable =
+        ${clazz}Dummy().deviceScreenshotsAvailable;
+    final screenshotsAvailable = ${clazz}Dummy().screenshotsAvailable;
+
+    int basicScreenshots = screenshotsAvailable - deviceScreenshotsAvailable;
+
+    final dummies = ${clazz}Dummy().dummies;
+
+    return ListView(
+      children: [
+        if (basicScreenshots > 0)
+          Center(
+            child: Container(
+              constraints: const BoxConstraints(
+                maxWidth: 400,
+              ),
+              child: Card(
+                clipBehavior: Clip.hardEdge,
+                child: Container(
+                  padding: const EdgeInsets.all(15),
+                  color: Colors.white,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Center(
+                          child: Text(
+                            '\$basicScreenshots basic screenshots available',
+                          ),
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                        
+                        },
+                        icon: const Icon(
+                          Icons.screenshot,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        if (deviceScreenshotsAvailable > 0)
+          Center(
+            child: Container(
+              constraints: const BoxConstraints(
+                maxWidth: 400,
+              ),
+              child: Card(
+                clipBehavior: Clip.hardEdge,
+                child: Container(
+                  padding: const EdgeInsets.all(15),
+                  color: Colors.white,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Center(
+                          child: Text(
+                            '\$deviceScreenshotsAvailable device screenshots available',
+                          ),
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                        
+                        },
+                        icon: const Icon(
+                          Icons.screenshot,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        for (int i = 0; i < dummies.length; i++)
+          ${dummyWidgetBuilder(clazz, widgetCompose)}
+      ],
+    );
+  }
+  
+  ''' : ''}
 }
     ''';
 
@@ -82,7 +168,8 @@ class ${clazz}Preview extends PreviewWidget {
 String dummyWidgetBuilder(String clazz, String widgetCompose) {
   return '''
   PreviewBoundary(
-    dummyBuilder: () => ${clazz}Dummy().dummies[i],
+    index: i,
+    dummyBuilder: () => dummies[i],
     builder: (BuildContext context, Dummy dummy) {
       return $widgetCompose;
     },
