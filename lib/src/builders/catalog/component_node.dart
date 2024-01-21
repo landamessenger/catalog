@@ -1,5 +1,5 @@
 import 'package:catalog/src/base/serial.dart';
-import 'package:catalog/src/builders/built_component.dart';
+import 'package:catalog/src/builders/catalog/built_component.dart';
 
 class ComponentNode extends Serial<ComponentNode> {
   String id = '';

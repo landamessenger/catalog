@@ -1,4 +1,4 @@
-import 'package:catalog/src/builders/dummy.dart';
+import 'package:catalog/src/builders/dummy/dummy.dart';
 import 'package:flutter/material.dart';
 
 class PreviewDummyBasic extends StatelessWidget {

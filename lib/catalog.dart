@@ -3,25 +3,23 @@ library catalog;
 import 'dart:convert';
 import 'dart:typed_data';
 
-import 'package:catalog/src/builders/dummy.dart';
-import 'package:catalog/src/builders/screenshots/background.dart';
-import 'package:catalog/src/component/component_node.dart';
-import 'package:catalog/src/extensions/string_ext.dart';
-import 'package:catalog/src/widgets/preview_render_widget.dart';
+import 'package:catalog/src/builders/catalog/component_node.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:http/http.dart' as http;
 
 import 'src/builders/preview/preview_boundary.dart';
+import 'src/builders/preview/preview_render_widget.dart';
 
 export 'package:catalog/src/annotations/preview.dart';
 export 'package:catalog/src/builders/device/device.dart';
-export 'package:catalog/src/builders/dummy.dart';
+export 'package:catalog/src/builders/dummy/dummy.dart';
 export 'package:catalog/src/builders/dummy/dummy_text.dart';
+export 'package:catalog/src/builders/preview/parent_preview_widget.dart';
 export 'package:catalog/src/builders/preview/preview_boundary.dart';
-export 'package:catalog/src/builders/preview_dummy.dart';
-export 'package:catalog/src/builders/preview_scaffold.dart';
+export 'package:catalog/src/builders/dummy/preview_dummy.dart';
+export 'package:catalog/src/builders/catalog/preview_scaffold.dart';
 export 'package:catalog/src/builders/screenshots/background.dart';
+export 'package:catalog/src/builders/screenshots/op/screenshot_process.dart';
 export 'package:catalog/src/builders/screenshots/screenshot.dart';
 export 'package:catalog/src/builders/screenshots/types/android/android_phone.dart';
 export 'package:catalog/src/builders/screenshots/types/apple/i_pad_pro.dart';
@@ -30,12 +28,10 @@ export 'package:catalog/src/builders/screenshots/types/apple/i_phone_55.dart';
 export 'package:catalog/src/builders/screenshots/types/apple/i_phone_65.dart';
 export 'package:catalog/src/builders/screenshots/types/apple/macos.dart';
 export 'package:catalog/src/catalog_runner.dart';
-export 'package:catalog/src/component/component_node.dart';
-export 'package:catalog/src/constants.dart';
-export 'package:catalog/src/dummy.dart';
+export 'package:catalog/src/builders/catalog/component_node.dart';
+export 'package:catalog/src/utils/constants.dart';
 export 'package:catalog/src/embed/flutter_fanacy_tree_view/flutter_fancy_tree_view.dart';
 export 'package:catalog/src/extensions/locale_ext.dart';
-export 'package:catalog/src/preview.dart';
 export 'package:device_frame/device_frame.dart';
 export 'package:go_router/go_router.dart';
 
@@ -67,8 +63,10 @@ class Catalog {
 
   String path = "assets/preview_config.json";
 
-  final Map<PreviewRenderWidget, PreviewBoundaryState> widgetBasicPreviewMap = {};
-  final Map<PreviewRenderWidget, PreviewBoundaryState> widgetDevicePreviewMap = {};
+  final Map<PreviewRenderWidget, PreviewBoundaryState> widgetBasicPreviewMap =
+      {};
+  final Map<PreviewRenderWidget, PreviewBoundaryState> widgetDevicePreviewMap =
+      {};
 
   double pixelRatio = 1.0;
 
@@ -81,7 +79,6 @@ class Catalog {
 
   ComponentNode node(String data) => ComponentNode().fromJson(jsonDecode(data));
 
-  final args = <String>[];
   ComponentNode? currentNode;
 
   Catalog config({
@@ -118,102 +115,5 @@ class Catalog {
       print(e);
     }
     return null;
-  }
-
-  Future<void> startCapturing({
-    required Dummy dummy,
-    required Future<String> Function() callback,
-    required Function() refreshContent,
-    required Function() onStartCapturing,
-    required Function() onFinishCapturing,
-  }) async {
-    onStartCapturing();
-    if (dummy.screenshot.locales.isNotEmpty) {
-      for (final locale in dummy.screenshot.locales) {
-        final outputFolder =
-            await dummy.screenshot.outputFolder?.call(locale) ?? '';
-        await beforeCapture(locale);
-        refreshContent();
-        await Future.delayed(const Duration(seconds: 1));
-
-        for (final ss in dummy.screenshot.screenshots) {
-          ss.setLocale(locale);
-          await _processScreenshot(
-            mode: dummy.screenshot.background.toStringName(),
-            outputFolder: outputFolder,
-            fileName: ss.fileName,
-            callback: callback,
-            height: ss.size.height,
-            width: ss.size.width,
-          );
-        }
-      }
-    } else {
-      final outputFolder =
-          await dummy.screenshot.outputFolder?.call(null) ?? '';
-      if (dummy.screenshot.screenshots.isNotEmpty) {
-        for (final ss in dummy.screenshot.screenshots) {
-          await _processScreenshot(
-            mode: dummy.screenshot.background.toStringName(),
-            outputFolder: outputFolder,
-            fileName: ss.fileName,
-            callback: callback,
-            height: ss.size.height,
-            width: ss.size.width,
-          );
-        }
-      } else {
-        await _processScreenshot(
-          mode: dummy.screenshot.background.toStringName(),
-          outputFolder: outputFolder,
-          fileName: '${DateTime.now().millisecondsSinceEpoch}.png',
-          callback: callback,
-          height: 0.0,
-          width: 0.0,
-        );
-      }
-    }
-    onFinishCapturing();
-  }
-
-  Future<void> _processScreenshot({
-    required String mode,
-    required String outputFolder,
-    required String fileName,
-    required double height,
-    required double width,
-    required Future<String> Function() callback,
-  }) async {
-    final base64Image = await callback();
-    final response = await http.post(
-      Uri.parse('http://127.0.0.1:12345'),
-      body: jsonEncode({
-        'mode': mode,
-        'outputFolder': outputFolder.addFinalSlash().addCurrentFolderDot(),
-        'fileName': fileName,
-        'height': height,
-        'width': width,
-        'image': base64Image,
-      }),
-    );
-    if (response.statusCode == 200) {
-      print('Response data: ${response.body}');
-    } else {
-      print('Request failed with status: ${response.statusCode}');
-    }
-  }
-
-  void processBasicScreenshots() async {
-    final entries = Catalog().widgetBasicPreviewMap.entries.toList();
-    for (final w in entries) {
-      await w.value.startCapturing();
-    }
-  }
-
-  void processDeviceScreenshots() async {
-    final entries = Catalog().widgetDevicePreviewMap.entries.toList();
-    for (final w in entries) {
-      await w.value.startCapturing();
-    }
   }
 }

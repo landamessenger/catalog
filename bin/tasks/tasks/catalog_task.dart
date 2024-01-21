@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:catalog/src/base/serial.dart';
-import 'package:catalog/src/builders/built_component.dart';
-import 'package:catalog/src/component/component_node.dart';
+import 'package:catalog/src/builders/catalog/built_component.dart';
+import 'package:catalog/src/builders/catalog/component_node.dart';
 
 import '../../catalog_builder/catalog_builder.dart';
 import '../../utils/configuration.dart';

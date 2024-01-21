@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:catalog/src/annotations/preview.dart';
-import 'package:catalog/src/builders/built_component.dart';
-import 'package:catalog/src/component/component_node.dart';
+import 'package:catalog/src/builders/catalog/built_component.dart';
+import 'package:catalog/src/builders/catalog/component_node.dart';
 
 abstract class Serial<T> {
   String getId();

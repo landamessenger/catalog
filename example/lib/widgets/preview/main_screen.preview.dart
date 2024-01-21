@@ -16,7 +16,7 @@ import 'dummy/main_screen.dummy.dart';
     'incrementCounter',
   ],
 )
-class MainScreenPreview extends PreviewWidget {
+class MainScreenPreview extends ParentPreviewWidget {
   const MainScreenPreview({super.key});
 
   @override
@@ -58,9 +58,9 @@ class MainScreenPreview extends PreviewWidget {
                               ),
                             ),
                           ),
-                          IconButton(
-                            onPressed: Catalog().processBasicScreenshots,
-                            icon: const Icon(
+                          const IconButton(
+                            onPressed: processBasicScreenshots,
+                            icon: Icon(
                               Icons.screenshot,
                             ),
                           )
@@ -90,9 +90,9 @@ class MainScreenPreview extends PreviewWidget {
                               ),
                             ),
                           ),
-                          IconButton(
-                            onPressed: Catalog().processDeviceScreenshots,
-                            icon: const Icon(
+                          const IconButton(
+                            onPressed: processDeviceScreenshots,
+                            icon: Icon(
                               Icons.screenshot,
                             ),
                           )

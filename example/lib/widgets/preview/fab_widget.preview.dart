@@ -12,7 +12,7 @@ import 'package:example/widgets/fab_widget.dart';
     'incrementCounter': 'void_function_snackbar',
   },
 )
-class FabWidgetPreview extends PreviewWidget {
+class FabWidgetPreview extends ParentPreviewWidget {
   const FabWidgetPreview({super.key});
 
   @override

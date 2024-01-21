@@ -1,10 +1,9 @@
 import 'package:catalog/catalog.dart';
-import 'package:catalog/src/builders/screenshots/op/screenshot_process.dart';
-import 'package:catalog/src/widgets/preview_render_widget.dart';
 import 'package:flutter/material.dart';
 
 import 'preview_dummy_basic.dart';
 import 'preview_dummy_device.dart';
+import 'preview_render_widget.dart';
 
 class PreviewBoundary extends PreviewRenderWidget {
   final Widget Function(BuildContext context, Dummy dummy) builder;
@@ -34,7 +33,7 @@ class PreviewBoundaryState extends State<PreviewBoundary> {
         widgetKey: widget.widgetKey,
         dummy: dummy,
         builder: widget.builder,
-        startCapturing: () => startCapturing(),
+        startCapturing: () => capture(),
       );
     }
     return PreviewDummyDevice(
@@ -43,12 +42,12 @@ class PreviewBoundaryState extends State<PreviewBoundary> {
       dummy: dummy,
       builder: widget.builder,
       deviceInfo: deviceInfo,
-      startCapturing: () => startCapturing(),
+      startCapturing: () => capture(),
     );
   }
 
-  Future<void> startCapturing() async {
-    await Catalog().startCapturing(
+  Future<void> capture() async {
+    await startCapturing(
       dummy: widget.dummyBuilder(),
       callback: () => captureScreenshot(widget.widgetKey),
       refreshContent: () => setState(() {

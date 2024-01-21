@@ -14,7 +14,7 @@ import 'dummy/body_widget.dummy.dart';
     'counter',
   ],
 )
-class BodyWidgetPreview extends PreviewWidget {
+class BodyWidgetPreview extends ParentPreviewWidget {
   const BodyWidgetPreview({super.key});
 
   @override
@@ -56,9 +56,9 @@ class BodyWidgetPreview extends PreviewWidget {
                               ),
                             ),
                           ),
-                          IconButton(
-                            onPressed: Catalog().processBasicScreenshots,
-                            icon: const Icon(
+                          const IconButton(
+                            onPressed: processBasicScreenshots,
+                            icon: Icon(
                               Icons.screenshot,
                             ),
                           )
@@ -88,9 +88,9 @@ class BodyWidgetPreview extends PreviewWidget {
                               ),
                             ),
                           ),
-                          IconButton(
-                            onPressed: Catalog().processDeviceScreenshots,
-                            icon: const Icon(
+                          const IconButton(
+                            onPressed: processDeviceScreenshots,
+                            icon: Icon(
                               Icons.screenshot,
                             ),
                           )

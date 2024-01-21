@@ -95,9 +95,9 @@ class ${clazz}Preview extends PreviewWidget {
                               ),
                             ),
                           ),
-                          IconButton(
-                            onPressed: Catalog().processBasicScreenshots,
-                            icon: const Icon(
+                          const IconButton(
+                            onPressed: processBasicScreenshots,
+                            icon: Icon(
                               Icons.screenshot,
                             ),
                           )
@@ -127,9 +127,9 @@ class ${clazz}Preview extends PreviewWidget {
                               ),
                             ),
                           ),
-                          IconButton(
-                            onPressed: Catalog().processDeviceScreenshots,
-                            icon: const Icon(
+                          const IconButton(
+                            onPressed: processDeviceScreenshots,
+                            icon: Icon(
                               Icons.screenshot,
                             ),
                           )

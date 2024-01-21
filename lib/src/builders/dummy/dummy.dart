@@ -1,6 +1,6 @@
-import '../constants.dart';
-import 'device/device.dart';
-import 'screenshots/screenshot.dart';
+import '../../utils/constants.dart';
+import '../device/device.dart';
+import '../screenshots/screenshot.dart';
 
 /// - IPAD_PRO_3GEN_129 -> 2048 x 2732
 /// - IPAD_PRO_129 -> 2048 x 2732

@@ -1,5 +1,5 @@
 import 'package:catalog/catalog.dart';
-import 'package:catalog/src/builders/svg.dart';
+import 'package:catalog/src/utils/svg.dart';
 import 'package:flutter/material.dart';
 
 import 'drawer_preview.dart';
