@@ -1,5 +1,5 @@
 name: catalog
-description: A Flutter package for render widgets in real-time
+description: A Flutter package for render widgets in real-time and generate screenshots for fastlane
 version: 1.0.0
 homepage: https://landamessenger.com/
 repository: https://github.com/landamessenger/catalog
