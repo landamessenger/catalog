@@ -31,7 +31,7 @@ class PreviewDummyDevice extends StatelessWidget {
         duration: const Duration(milliseconds: 200),
         margin: const EdgeInsets.fromLTRB(15, 15, 15, 25),
         constraints: BoxConstraints(
-          maxWidth: capturing ? 900 : 400,
+          maxWidth: capturing ? 1200 : 400,
         ),
         child: Column(
           children: [

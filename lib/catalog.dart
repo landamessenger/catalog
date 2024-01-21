@@ -7,9 +7,12 @@ import 'package:catalog/src/builders/dummy.dart';
 import 'package:catalog/src/builders/screenshots/background.dart';
 import 'package:catalog/src/component/component_node.dart';
 import 'package:catalog/src/extensions/string_ext.dart';
+import 'package:catalog/src/widgets/preview_render_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:http/http.dart' as http;
+
+import 'src/builders/preview/preview_boundary.dart';
 
 export 'package:catalog/src/annotations/preview.dart';
 export 'package:catalog/src/builders/device/device.dart';
@@ -64,7 +67,10 @@ class Catalog {
 
   String path = "assets/preview_config.json";
 
-  final Map<String, GlobalKey> activePreviews = {};
+  final Map<PreviewRenderWidget, PreviewBoundaryState> widgetBasicPreviewMap = {};
+  final Map<PreviewRenderWidget, PreviewBoundaryState> widgetDevicePreviewMap = {};
+
+  double pixelRatio = 1.0;
 
   void Function() onBackPressed = () => {};
   Future<Uint8List> Function(Uint8List data) process = (data) async => data;
@@ -194,6 +200,20 @@ class Catalog {
       print('Response data: ${response.body}');
     } else {
       print('Request failed with status: ${response.statusCode}');
+    }
+  }
+
+  void processBasicScreenshots() async {
+    final entries = Catalog().widgetBasicPreviewMap.entries.toList();
+    for (final w in entries) {
+      await w.value.startCapturing();
+    }
+  }
+
+  void processDeviceScreenshots() async {
+    final entries = Catalog().widgetDevicePreviewMap.entries.toList();
+    for (final w in entries) {
+      await w.value.startCapturing();
     }
   }
 }

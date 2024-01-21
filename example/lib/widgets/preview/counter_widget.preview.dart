@@ -19,7 +19,8 @@ class CounterWidgetPreview extends PreviewWidget {
 
   @override
   Widget preview(BuildContext context) {
-    Catalog().activePreviews.clear();
+    Catalog().widgetBasicPreviewMap.clear();
+    Catalog().widgetDevicePreviewMap.clear();
 
     if (CounterWidgetDummy().dummies.isEmpty) {
       return Container();
@@ -31,84 +32,86 @@ class CounterWidgetPreview extends PreviewWidget {
 
     int basicScreenshots = screenshotsAvailable - deviceScreenshotsAvailable;
 
-    final dummies = CounterWidgetDummy().dummies;
-
     return ListView(
       children: [
-        if (basicScreenshots > 0)
-          Center(
-            child: Container(
-              constraints: const BoxConstraints(
-                maxWidth: 400,
-              ),
-              child: Card(
-                clipBehavior: Clip.hardEdge,
+        Column(
+          children: [
+            if (basicScreenshots > 0)
+              Center(
                 child: Container(
-                  padding: const EdgeInsets.all(15),
-                  color: Colors.white,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Center(
-                          child: Text(
-                            '$basicScreenshots basic screenshots available',
+                  constraints: const BoxConstraints(
+                    maxWidth: 400,
+                  ),
+                  child: Card(
+                    clipBehavior: Clip.hardEdge,
+                    child: Container(
+                      padding: const EdgeInsets.all(15),
+                      color: Colors.white,
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Center(
+                              child: Text(
+                                '$basicScreenshots basic screenshots available',
+                              ),
+                            ),
                           ),
-                        ),
+                          IconButton(
+                            onPressed: Catalog().processBasicScreenshots,
+                            icon: const Icon(
+                              Icons.screenshot,
+                            ),
+                          )
+                        ],
                       ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.screenshot,
-                        ),
-                      )
-                    ],
+                    ),
                   ),
                 ),
               ),
-            ),
-          ),
-        if (deviceScreenshotsAvailable > 0)
-          Center(
-            child: Container(
-              constraints: const BoxConstraints(
-                maxWidth: 400,
-              ),
-              child: Card(
-                clipBehavior: Clip.hardEdge,
+            if (deviceScreenshotsAvailable > 0)
+              Center(
                 child: Container(
-                  padding: const EdgeInsets.all(15),
-                  color: Colors.white,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Center(
-                          child: Text(
-                            '$deviceScreenshotsAvailable device screenshots available',
+                  constraints: const BoxConstraints(
+                    maxWidth: 400,
+                  ),
+                  child: Card(
+                    clipBehavior: Clip.hardEdge,
+                    child: Container(
+                      padding: const EdgeInsets.all(15),
+                      color: Colors.white,
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Center(
+                              child: Text(
+                                '$deviceScreenshotsAvailable device screenshots available',
+                              ),
+                            ),
                           ),
-                        ),
+                          IconButton(
+                            onPressed: Catalog().processDeviceScreenshots,
+                            icon: const Icon(
+                              Icons.screenshot,
+                            ),
+                          )
+                        ],
                       ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.screenshot,
-                        ),
-                      )
-                    ],
+                    ),
                   ),
                 ),
               ),
-            ),
-          ),
-        for (int i = 0; i < dummies.length; i++)
-          PreviewBoundary(
-            index: i,
-            dummyBuilder: () => dummies[i],
-            builder: (BuildContext context, Dummy dummy) {
-              return CounterWidget(
-                counter: dummy.parameters['counter'],
-              );
-            },
-          ),
+            for (int i = 0; i < CounterWidgetDummy().dummies.length; i++)
+              PreviewBoundary(
+                widgetKey: GlobalKey(),
+                dummyBuilder: () => CounterWidgetDummy().dummies[i],
+                builder: (BuildContext context, Dummy dummy) {
+                  return CounterWidget(
+                    counter: dummy.parameters['counter'],
+                  );
+                },
+              ),
+          ],
+        )
       ],
     );
   }

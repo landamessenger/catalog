@@ -1,32 +1,23 @@
-import 'dart:convert';
-import 'dart:typed_data';
-import 'dart:ui' as ui;
-
 import 'package:catalog/catalog.dart';
+import 'package:catalog/src/builders/screenshots/op/screenshot_process.dart';
+import 'package:catalog/src/widgets/preview_render_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
 import 'preview_dummy_basic.dart';
 import 'preview_dummy_device.dart';
 
-class PreviewBoundary extends StatefulWidget {
-  final GlobalKey widgetKey = GlobalKey();
-
-  final int index;
-
-  final Dummy Function() dummyBuilder;
-
+class PreviewBoundary extends PreviewRenderWidget {
   final Widget Function(BuildContext context, Dummy dummy) builder;
 
-  PreviewBoundary({
+  const PreviewBoundary({
     super.key,
+    required super.widgetKey,
+    required super.dummyBuilder,
     required this.builder,
-    required this.dummyBuilder,
-    required this.index,
   });
 
   @override
-  State<StatefulWidget> createState() => PreviewBoundaryState();
+  PreviewBoundaryState createPreviewState() => PreviewBoundaryState();
 }
 
 class PreviewBoundaryState extends State<PreviewBoundary> {
@@ -34,68 +25,41 @@ class PreviewBoundaryState extends State<PreviewBoundary> {
 
   @override
   Widget build(BuildContext context) {
-    Catalog().activePreviews[widget.index.toString()] = widget.widgetKey;
-    return Builder(
-      builder: (context) {
-        final dummy = widget.dummyBuilder();
-        final deviceInfo = dummy.device.deviceInfo;
-        if (deviceInfo == null) {
-          return PreviewDummyBasic(
-            capturing: capturing,
-            widgetKey: widget.widgetKey,
-            dummy: dummy,
-            builder: widget.builder,
-            startCapturing: () => startCapturing(context),
-          );
-        }
-        return PreviewDummyDevice(
-          capturing: capturing,
-          widgetKey: widget.widgetKey,
-          dummy: dummy,
-          builder: widget.builder,
-          deviceInfo: deviceInfo,
-          startCapturing: () => startCapturing(context),
-        );
-      },
+    Catalog().pixelRatio = MediaQuery.of(context).devicePixelRatio;
+    final dummy = widget.dummyBuilder();
+    final deviceInfo = dummy.device.deviceInfo;
+    if (deviceInfo == null) {
+      return PreviewDummyBasic(
+        capturing: capturing,
+        widgetKey: widget.widgetKey,
+        dummy: dummy,
+        builder: widget.builder,
+        startCapturing: () => startCapturing(),
+      );
+    }
+    return PreviewDummyDevice(
+      capturing: capturing,
+      widgetKey: widget.widgetKey,
+      dummy: dummy,
+      builder: widget.builder,
+      deviceInfo: deviceInfo,
+      startCapturing: () => startCapturing(),
     );
   }
 
-  void startCapturing(BuildContext context) {
-    Catalog().startCapturing(
+  Future<void> startCapturing() async {
+    await Catalog().startCapturing(
       dummy: widget.dummyBuilder(),
-      callback: () async {
-        final screenShotData =
-            await captureScreenshot(context, widget.widgetKey);
-        return base64.encode(screenShotData?.toList() ?? []);
-      },
-      refreshContent: () {
-        setState(() {
-          // nothing to do here
-        });
-      },
-      onStartCapturing: () {
-        setState(() {
-          capturing = true;
-        });
-      },
-      onFinishCapturing: () {
-        setState(() {
-          capturing = false;
-        });
-      },
+      callback: () => captureScreenshot(widget.widgetKey),
+      refreshContent: () => setState(() {
+        // nothing to do here
+      }),
+      onStartCapturing: () => setState(() {
+        capturing = true;
+      }),
+      onFinishCapturing: () => setState(() {
+        capturing = false;
+      }),
     );
-  }
-
-  Future<Uint8List?> captureScreenshot(
-      BuildContext context, GlobalKey widgetKey) async {
-    final pixelRatio = MediaQuery.of(context).devicePixelRatio;
-    await Future.delayed(const Duration(seconds: 1));
-    final boundary =
-        widgetKey.currentContext?.findRenderObject() as RenderRepaintBoundary?;
-    final image = await boundary?.toImage(
-      pixelRatio: pixelRatio,
-    );
-    final byteData = await image?.toByteData(format: ui.ImageByteFormat.png);
-    return byteData?.buffer.asUint8List();
   }
 }

@@ -40,4 +40,6 @@ class Dummy {
         screenshot: screenshot ?? this.screenshot,
         listParameters: listParameters ?? this.listParameters,
       );
+
+  bool isDeviceDummy() => device.deviceInfo != null;
 }
