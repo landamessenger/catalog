@@ -1,3 +1,7 @@
+## 1.0.0
+
+* Added feature to generate screenshots with multi-language support and different device frames, ready for fastlane use. Multi-language support backed by [stringcare](https://pub.dev/packages/stringcare).
+
 ## 0.2.0
 
 * Added device frame with `device_frame`

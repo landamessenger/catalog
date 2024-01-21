@@ -45,10 +45,12 @@ Future<void> startCapturing({
 }) async {
   onStartCapturing();
   if (dummy.screenshot.locales.isNotEmpty) {
+    await Future.delayed(const Duration(seconds: 1));
     for (final locale in dummy.screenshot.locales) {
       final outputFolder =
           await dummy.screenshot.outputFolder?.call(locale) ?? '';
       await Catalog().beforeCapture(locale);
+      await Future.delayed(const Duration(seconds: 1));
       refreshContent();
       await Future.delayed(const Duration(seconds: 1));
 

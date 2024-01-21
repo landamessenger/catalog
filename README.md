@@ -1,6 +1,6 @@
-# Catalog
 
-This package allows you to create a widget catalog. Every widget page of your catalog can display one or more samples of your widget.
+
+This package allows you to create a widget catalog and all kinds of screenshots. Every widget page of your catalog can display one or more samples of your widget.
 
 *Where do I see this catalog?* After you prepare your widgets, you must run your app and go to `/catalog`.
 
@@ -9,7 +9,9 @@ This package allows you to create a widget catalog. Every widget page of your ca
 
 > This package doesn't render your widgets in IDEA, Android Studio, or Visual Studio Code.
 
-![catalog_sample](images/catalog_sample.png)
+<p align="center"><img width="30%" vspace="10" src="https://github.com/landamessenger/catalog/assets/1783618/406f6689-a388-46d3-9010-01edd18dfedf"></p>
+
+### [Home](https://github.com/landamessenger/catalog/wiki)
 
 ### [Installation](https://github.com/landamessenger/catalog/wiki/Installation)
 
@@ -37,6 +39,15 @@ This package allows you to create a widget catalog. Every widget page of your ca
 
 [- Run without go_router](https://github.com/landamessenger/catalog/wiki/Build-&-Run#run-without-go_router)
 
-### [Catalog Sample](https://landamessenger.com/catalog)
+### [Device Frames](https://github.com/landamessenger/catalog/wiki/Device-Frames)
 
+### [Screenshots](https://github.com/landamessenger/catalog/wiki/Screenshots)
+
+[- Fastlane screenshots](https://github.com/landamessenger/catalog/wiki/Screenshots#fastlane-screenshots)
+
+[- Multi-language support](https://github.com/landamessenger/catalog/wiki/Screenshots#multi-language-support)
+
+[- Samples](https://github.com/landamessenger/catalog/wiki/Screenshots#samples)
+
+### [Catalog Sample](https://landamessenger.com/catalog)
 
