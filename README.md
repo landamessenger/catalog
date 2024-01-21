@@ -1,4 +1,6 @@
+[![pub package](https://img.shields.io/pub/v/catalog.svg)](https://pub.dev/packages/catalog)
 
+# Catalog
 
 This package allows you to create a widget catalog and all kinds of screenshots. Every widget page of your catalog can display one or more samples of your widget.
 
