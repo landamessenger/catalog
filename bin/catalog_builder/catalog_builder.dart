@@ -9,7 +9,7 @@ Future<String?> findPreviewClassName(String path) async {
   try {
     File file = File(path);
     final content = await file.readAsString();
-    return '${content.split("class ")[1].split(" extends PreviewWidget").first.trim()}()';
+    return '${content.split("class ")[1].split(" extends ParentPreviewWidget").first.trim()}()';
   } catch (e) {
     print(e);
     return null;

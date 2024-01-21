@@ -43,7 +43,7 @@ import '$classImport';
 ${preview.usesDummies ? '''import 'dummy/$name.dummy.dart';''' : ''}
 
 $previewAnnotation
-class ${clazz}Preview extends PreviewWidget {
+class ${clazz}Preview extends ParentPreviewWidget {
   const ${clazz}Preview({super.key});
   
   ${!preview.usesDummies ? '''
