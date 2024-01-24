@@ -1,3 +1,7 @@
+## 1.0.1
+
+* Removed not needed fields from `@Preview`
+
 ## 1.0.0
 
 * Added feature to generate screenshots with multi-language support and different device frames, ready for fastlane use. Multi-language support backed by [stringcare](https://pub.dev/packages/stringcare).

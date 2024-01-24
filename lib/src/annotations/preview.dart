@@ -7,8 +7,6 @@ class Preview implements Serial<Preview> {
   final String path;
   final String description;
   final bool usesDummies;
-  final String deviceInfo;
-  final String orientation;
   final List<String> dummyParameters;
   final List<dynamic> listParameters;
   final Map<String, dynamic> parameters;
@@ -17,8 +15,6 @@ class Preview implements Serial<Preview> {
     required this.id,
     required this.path,
     this.description = '',
-    this.deviceInfo = '',
-    this.orientation = '',
     this.usesDummies = false,
     this.parameters = const {},
     this.listParameters = const [],
@@ -30,8 +26,6 @@ class Preview implements Serial<Preview> {
         id: json['id'] ?? '',
         path: json['path'] ?? '',
         description: json['description'] ?? '',
-        deviceInfo: json['deviceInfo'] ?? '',
-        orientation: json['orientation'] ?? '',
         usesDummies: json['usesDummies'] ?? false,
         dummyParameters: Serial.listObjectFromBasicType<String>(
           json['dummyParameters'] ?? [],
@@ -51,8 +45,6 @@ class Preview implements Serial<Preview> {
         'id': id,
         'path': path,
         'description': description,
-        'deviceInfo': deviceInfo,
-        'orientation': orientation,
         'usesDummies': usesDummies,
         'listParameters': listParameters,
         'dummyParameters': dummyParameters,
