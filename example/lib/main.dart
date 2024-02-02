@@ -57,20 +57,20 @@ class MyAppState extends ScState<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       navigatorKey: Stringcare().navigatorKey,
-      title: R.strings.title.string(),
+      title: 'Flutter Demo',
+      supportedLocales: Stringcare().locales,
+      localizationsDelegates: Stringcare().delegates,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: MyHomePage(title: R.strings.title_app.string()),
+      home: const MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
+  const MyHomePage({super.key});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -88,7 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return MainScreen(
-      title: widget.title,
+      title: R.strings.title_app.string(),
       counter: _counter,
       infoText: R.strings.info_text.string(),
       incrementCounter: _incrementCounter,

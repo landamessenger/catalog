@@ -23,8 +23,8 @@ class ServiceWorkerImpl extends ServiceWorker {
 
     final mode = (data['mode'] as String?) ?? 'blank';
 
-    final height = data['height'] as int;
-    final width = data['width'] as int;
+    final height = (data['height'] as num).toInt();
+    final width = (data['width'] as num).toInt();
 
     final outputFolder = data['outputFolder'] as String;
     final folder = Directory(outputFolder);

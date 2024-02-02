@@ -1,6 +1,10 @@
+## 1.0.2
+
+* Fixed `example` and bug in screenshot process.
+
 ## 1.0.1
 
-* Removed not needed fields from `@Preview`
+* Removed not needed fields from `@Preview`.
 
 ## 1.0.0
 
