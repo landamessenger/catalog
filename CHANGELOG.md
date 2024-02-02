@@ -1,3 +1,7 @@
+## 1.0.3
+
+* Fixed locale resolution bug in screenshot process.
+
 ## 1.0.2
 
 * Fixed `example` and bug in screenshot process.

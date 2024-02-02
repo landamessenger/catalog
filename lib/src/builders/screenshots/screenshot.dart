@@ -30,6 +30,6 @@ class Screenshot {
   }
 
   static Future<String> androidFastlaneDirectory(Locale? locale) async {
-    return 'android/fastlane/metadata/android/${locale?.appleStoreAdapter() ?? 'en-US'}/images/phoneScreenshots';
+    return 'android/fastlane/metadata/android/${locale?.playStoreAdapter() ?? 'en-US'}/images/phoneScreenshots';
   }
 }
