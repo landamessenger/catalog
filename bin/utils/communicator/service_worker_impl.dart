@@ -93,7 +93,27 @@ class ServiceWorkerImpl extends ServiceWorker {
 
     drawImage(baseImage, screenshotImage, x, y);
 
-    await File(path).writeAsBytes(encodePng(baseImage));
+    await File(path).writeAsBytes(
+      encodePng(
+        removeAlphaChannel(
+          baseImage,
+        ),
+      ),
+    );
+  }
+
+  Image removeAlphaChannel(Image image) {
+    Image newImage = Image(width: image.width, height: image.height);
+    for (int y = 0; y < image.height; y++) {
+      for (int x = 0; x < image.width; x++) {
+        Pixel pixel = image.getPixel(x, y);
+        if (pixel.a != 255) {
+          pixel.a = 255;
+        }
+        newImage.setPixel(x, y, pixel);
+      }
+    }
+    return newImage;
   }
 
   Image? createBlankImage(int width, int height) {

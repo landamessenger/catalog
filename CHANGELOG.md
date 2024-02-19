@@ -1,3 +1,7 @@
+## 1.0.4
+
+* Removed alpha channel on screenshots: AppStore don't support it.
+
 ## 1.0.3
 
 * Fixed locale resolution bug in screenshot process.
