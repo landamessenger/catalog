@@ -1,3 +1,7 @@
+## 1.0.5
+
+* Dependencies updated.
+
 ## 1.0.4
 
 * Removed alpha channel on screenshots: AppStore don't support it.
