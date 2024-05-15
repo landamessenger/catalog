@@ -1,11 +1,32 @@
 import 'package:catalog/catalog.dart';
-import 'package:example/widgets/body_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:stringcare/stringcare.dart';
 
 import 'catalog/catalog_component.dart';
-import 'widgets/fab_widget.dart';
+import 'r.dart';
+import 'widgets/main_screen.dart';
 
 void main() {
+  /**
+   * Available languages.
+   */
+  Stringcare().locales = [
+    const Locale('en'),
+    const Locale('es'),
+  ];
+
+  /**
+   * If you don't use [go_router] and launch [CatalogRunner] you need to provide
+   * any kind of context.
+   */
+  Catalog().runnerRouterSet = (router) => Stringcare().router = router;
+
+  /**
+   * In order to capture screenshots of your app in different languages you
+   * have to change the language programmatically.
+   */
+  Catalog().beforeCapture = Stringcare().refreshWithLocale;
+
   /**
    * CatalogRunner will run your app as normal
    * and will open the catalog if:
@@ -18,30 +39,38 @@ void main() {
       enabled: false,
       application: const MyApp(),
       route: CatalogComponent.route,
+      supportedLocales: Stringcare().locales,
+      localizationsDelegates: Stringcare().delegates,
     ),
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
+  State<StatefulWidget> createState() => MyAppState();
+}
+
+class MyAppState extends ScState<MyApp> {
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      navigatorKey: Stringcare().navigatorKey,
       title: 'Flutter Demo',
+      supportedLocales: Stringcare().locales,
+      localizationsDelegates: Stringcare().delegates,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
+  const MyHomePage({super.key});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -58,18 +87,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
-      body: BodyWidget(
-        infoText: 'You have pushed the button this many times:',
-        counter: _counter,
-      ),
-      floatingActionButton: FabWidget(
-        incrementCounter: _incrementCounter,
-      ),
+    return MainScreen(
+      title: R.strings.title_app.string(),
+      counter: _counter,
+      infoText: R.strings.info_text.string(),
+      incrementCounter: _incrementCounter,
     );
   }
 }

@@ -14,34 +14,105 @@ import 'dummy/counter_widget.dummy.dart';
     'counter',
   ],
 )
-class CounterWidgetPreview extends PreviewWidget {
+class CounterWidgetPreview extends ParentPreviewWidget {
   const CounterWidgetPreview({super.key});
 
   @override
-  Widget preview(BuildContext context) => CounterWidgetDummy().dummies.isEmpty
-      ? Container()
-      : ListView(
+  Widget preview(BuildContext context) {
+    Catalog().widgetBasicPreviewMap.clear();
+    Catalog().widgetDevicePreviewMap.clear();
+
+    if (CounterWidgetDummy().dummies.isEmpty) {
+      return Container();
+    }
+
+    final deviceScreenshotsAvailable =
+        CounterWidgetDummy().deviceScreenshotsAvailable;
+    final screenshotsAvailable = CounterWidgetDummy().screenshotsAvailable;
+
+    int basicScreenshots = screenshotsAvailable - deviceScreenshotsAvailable;
+
+    return ListView(
+      children: [
+        Column(
           children: [
-            for (int i = 0; i < CounterWidgetDummy().dummies.length; i++)
+            if (basicScreenshots > 0)
               Center(
                 child: Container(
                   constraints: const BoxConstraints(
-                    maxHeight: 700,
-                    maxWidth: 700,
+                    maxWidth: 400,
                   ),
-                  child: Builder(
-                    builder: (context) {
-                      var dummy = CounterWidgetDummy().dummies[i];
-                      return Padding(
-                        padding: const EdgeInsets.all(15),
-                        child: CounterWidget(
-                          counter: dummy.parameters['counter'],
-                        ),
-                      );
-                    },
+                  child: Card(
+                    clipBehavior: Clip.hardEdge,
+                    child: Container(
+                      padding: const EdgeInsets.all(15),
+                      color: Colors.white,
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Center(
+                              child: Text(
+                                '$basicScreenshots basic screenshots available',
+                              ),
+                            ),
+                          ),
+                          const IconButton(
+                            onPressed: processBasicScreenshots,
+                            icon: Icon(
+                              Icons.screenshot,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
                   ),
                 ),
               ),
+            if (deviceScreenshotsAvailable > 0)
+              Center(
+                child: Container(
+                  constraints: const BoxConstraints(
+                    maxWidth: 400,
+                  ),
+                  child: Card(
+                    clipBehavior: Clip.hardEdge,
+                    child: Container(
+                      padding: const EdgeInsets.all(15),
+                      color: Colors.white,
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Center(
+                              child: Text(
+                                '$deviceScreenshotsAvailable device screenshots available',
+                              ),
+                            ),
+                          ),
+                          const IconButton(
+                            onPressed: processDeviceScreenshots,
+                            icon: Icon(
+                              Icons.screenshot,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            for (int i = 0; i < CounterWidgetDummy().dummies.length; i++)
+              PreviewBoundary(
+                widgetKey: GlobalKey(),
+                dummyBuilder: () => CounterWidgetDummy().dummies[i],
+                builder: (BuildContext context, Dummy dummy) {
+                  return CounterWidget(
+                    counter: dummy.parameters['counter'],
+                  );
+                },
+              ),
           ],
-        );
+        )
+      ],
+    );
+  }
 }

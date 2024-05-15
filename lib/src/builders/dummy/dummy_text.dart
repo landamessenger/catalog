@@ -1,4 +1,4 @@
-import 'package:catalog/catalog.dart';
+import 'package:catalog/src/utils/constants.dart';
 import 'package:flutter/material.dart';
 
 class DummyText extends StatelessWidget {

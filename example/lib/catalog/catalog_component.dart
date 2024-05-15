@@ -2,10 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:catalog/catalog.dart';
-import 'package:go_router/go_router.dart';
 import 'package:example/catalog/widgets/widgets_preview_page_dummy.dart';
 import 'package:example/catalog/widgets/body_widget/body_widget.dart';
 import 'package:example/catalog/widgets/fab_widget/fab_widget.dart';
+import 'package:example/catalog/widgets/main_screen_widget/main_screen.dart';
 import 'package:example/catalog/widgets/counter_widget/counter_widget.dart';
 
 class CatalogComponent extends StatefulWidget {
@@ -37,6 +37,14 @@ class CatalogComponent extends StatefulWidget {
             pageBuilder: (context, state) => NoTransitionPage(
               key: state.pageKey,
               child: const FabWidgetPreviewPreviewPageDummy(),
+            ),
+            routes: const [],
+          ),
+          GoRoute(
+            path: MainScreenPreviewPreviewPageDummy.routeName,
+            pageBuilder: (context, state) => NoTransitionPage(
+              key: state.pageKey,
+              child: const MainScreenPreviewPreviewPageDummy(),
             ),
             routes: const [],
           ),

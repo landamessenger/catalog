@@ -1,15 +1,15 @@
 import 'dart:io';
 
 import 'package:catalog/src/annotations/preview.dart';
-import 'package:catalog/src/builders/built_component.dart';
-import 'package:catalog/src/component/component_node.dart';
+import 'package:catalog/src/builders/catalog/built_component.dart';
+import 'package:catalog/src/builders/catalog/component_node.dart';
 import 'package:catalog/src/extensions/string_ext.dart';
 
 Future<String?> findPreviewClassName(String path) async {
   try {
     File file = File(path);
     final content = await file.readAsString();
-    return '${content.split("class ")[1].split(" extends PreviewWidget").first.trim()}()';
+    return '${content.split("class ")[1].split(" extends ParentPreviewWidget").first.trim()}()';
   } catch (e) {
     print(e);
     return null;
@@ -105,8 +105,6 @@ Future<BuiltComponent?> buildMiddlePages(
 
 import 'package:catalog/catalog.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-
 
 class $clazzName extends StatefulWidget {
 

@@ -92,6 +92,7 @@ Future<Preview?> previewOnFile(
     File file = File('$output/$fileName');
     var content = '''
 import 'dart:convert';
+
 import 'package:catalog/src/base/serial.dart';
 
 class Preview implements Serial<Preview> {

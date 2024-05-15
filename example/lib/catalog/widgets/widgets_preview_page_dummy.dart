@@ -2,7 +2,6 @@
 
 import 'package:catalog/catalog.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class WidgetsPreviewPageDummy extends StatefulWidget {
   static String routeName = 'widgets';
@@ -43,6 +42,19 @@ class WidgetsPreviewPageDummyState extends State<WidgetsPreviewPageDummy> {
             ),
             onTap: () {
               context.go('/catalog/widgets/fab_widget');
+            },
+          ),
+          ListTile(
+            title: const Text(
+              'main_screen_widget',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 16,
+                letterSpacing: .3,
+              ),
+            ),
+            onTap: () {
+              context.go('/catalog/widgets/main_screen_widget');
             },
           ),
           ListTile(

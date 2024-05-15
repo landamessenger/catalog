@@ -8,42 +8,112 @@ import 'dummy/body_widget.dummy.dart';
 @Preview(
   id: 'BodyWidgetPreview',
   path: 'widgets/body_widget',
-  description: 'Basic body widget',
   usesDummies: true,
   dummyParameters: [
     'infoText',
     'counter',
   ],
 )
-class BodyWidgetPreview extends PreviewWidget {
+class BodyWidgetPreview extends ParentPreviewWidget {
   const BodyWidgetPreview({super.key});
 
   @override
-  Widget preview(BuildContext context) => BodyWidgetDummy().dummies.isEmpty
-      ? Container()
-      : ListView(
+  Widget preview(BuildContext context) {
+    Catalog().widgetBasicPreviewMap.clear();
+    Catalog().widgetDevicePreviewMap.clear();
+
+    if (BodyWidgetDummy().dummies.isEmpty) {
+      return Container();
+    }
+
+    final deviceScreenshotsAvailable =
+        BodyWidgetDummy().deviceScreenshotsAvailable;
+    final screenshotsAvailable = BodyWidgetDummy().screenshotsAvailable;
+
+    int basicScreenshots = screenshotsAvailable - deviceScreenshotsAvailable;
+
+    return ListView(
+      children: [
+        Column(
           children: [
-            for (int i = 0; i < BodyWidgetDummy().dummies.length; i++)
+            if (basicScreenshots > 0)
               Center(
                 child: Container(
                   constraints: const BoxConstraints(
-                    maxHeight: 700,
-                    maxWidth: 700,
+                    maxWidth: 400,
                   ),
-                  child: Builder(
-                    builder: (context) {
-                      var dummy = BodyWidgetDummy().dummies[i];
-                      return Padding(
-                        padding: const EdgeInsets.all(15),
-                        child: BodyWidget(
-                          infoText: dummy.parameters['infoText'],
-                          counter: dummy.parameters['counter'],
-                        ),
-                      );
-                    },
+                  child: Card(
+                    clipBehavior: Clip.hardEdge,
+                    child: Container(
+                      padding: const EdgeInsets.all(15),
+                      color: Colors.white,
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Center(
+                              child: Text(
+                                '$basicScreenshots basic screenshots available',
+                              ),
+                            ),
+                          ),
+                          const IconButton(
+                            onPressed: processBasicScreenshots,
+                            icon: Icon(
+                              Icons.screenshot,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
                   ),
                 ),
               ),
+            if (deviceScreenshotsAvailable > 0)
+              Center(
+                child: Container(
+                  constraints: const BoxConstraints(
+                    maxWidth: 400,
+                  ),
+                  child: Card(
+                    clipBehavior: Clip.hardEdge,
+                    child: Container(
+                      padding: const EdgeInsets.all(15),
+                      color: Colors.white,
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Center(
+                              child: Text(
+                                '$deviceScreenshotsAvailable device screenshots available',
+                              ),
+                            ),
+                          ),
+                          const IconButton(
+                            onPressed: processDeviceScreenshots,
+                            icon: Icon(
+                              Icons.screenshot,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            for (int i = 0; i < BodyWidgetDummy().dummies.length; i++)
+              PreviewBoundary(
+                widgetKey: GlobalKey(),
+                dummyBuilder: () => BodyWidgetDummy().dummies[i],
+                builder: (BuildContext context, Dummy dummy) {
+                  return BodyWidget(
+                    infoText: dummy.parameters['infoText'],
+                    counter: dummy.parameters['counter'],
+                  );
+                },
+              ),
           ],
-        );
+        )
+      ],
+    );
+  }
 }

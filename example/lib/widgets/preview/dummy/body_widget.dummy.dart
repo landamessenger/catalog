@@ -4,35 +4,81 @@
 ///
 
 import 'package:catalog/catalog.dart';
+import 'package:flutter/material.dart';
 
 class BodyWidgetDummy extends PreviewDummy {
   @override
   List<Dummy> get dummies => [
-        const Dummy(
+        Dummy(
+          device: Device(
+            deviceInfo: Devices.ios.iPhone13ProMax,
+          ),
           parameters: {
             'infoText': 'You have pushed the button this many times:',
             'counter': 0,
           },
+          description: 'iPhone 13 Max sample',
+          screenshot: Screenshot(
+            screenshots: [
+              IPhone55(
+                index: 1,
+              ),
+              IPhone65(
+                index: 1,
+              ),
+              IPadPro(
+                index: 1,
+              ),
+              IPadPro3Gen(
+                index: 1,
+              ),
+            ],
+          ),
         ),
-        const Dummy(
+        Dummy(
+          device: Device(
+            deviceInfo: Devices.android.samsungGalaxyS20,
+          ),
           parameters: {
             'infoText':
                 'Bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla',
             'counter': 10,
           },
+          description: 'Samsung Galaxy S20 sample',
         ),
-        const Dummy(
+        Dummy(
+          device: Device(
+            deviceInfo: Devices.ios.iPhone13ProMax,
+            orientation: Orientation.landscape,
+          ),
           parameters: {
             'infoText':
                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
             'counter': 9876,
           },
+          description: 'iPhone 13 Max landscape sample',
         ),
-        const Dummy(
+        Dummy(
+          device: Device(
+            deviceInfo: Devices.android.samsungGalaxyS20,
+            orientation: Orientation.landscape,
+          ),
           parameters: {
             'infoText': 'Other example:',
             'counter': 9999999999999,
           },
+          description: 'Samsung Galaxy S20 landscape sample',
+        ),
+        Dummy(
+          device: Device(
+            deviceInfo: Devices.macOS.macBookPro,
+            orientation: Orientation.landscape,
+          ),
+          parameters: {
+            'infoText': 'Other example:',
+            'counter': 9999999999999,
+          },
+          description: 'MacBookPro sample',
         ),
       ];
 }
