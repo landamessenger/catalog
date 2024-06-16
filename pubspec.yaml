@@ -1,23 +1,23 @@
 name: catalog
 description: A Flutter package to render widgets in real time and generate screenshots for fastlane.
-version: 1.0.5
+version: 1.0.6
 homepage: https://landamessenger.com/
 repository: https://github.com/landamessenger/catalog
 
 environment:
-  sdk: '>=2.19.6 <4.0.0'
+  sdk: '>=3.2.4 <4.0.0'
   flutter: ">=1.17.0"
 
 dependencies:
   flutter:
     sdk: flutter
   blurhash_dart: ^1.2.1                         # android   ios   linux   macos         windows
-  device_frame: ^1.1.0                          # android   ios   linux   macos   web   windows
+  device_frame: ^1.2.0                          # android   ios   linux   macos   web   windows
   flutter_svg: ^2.0.10+1                        # android   ios   linux   macos         windows
   global_refresh: ^1.0.0                        # android   ios   linux   macos   web   windows
-  go_router: ^14.1.1                            # android   ios   linux   macos   web   windows
+  go_router: ^14.2.0                            # android   ios   linux   macos   web   windows
   http: ^1.2.1                                  # android   ios   linux   macos   web   windows
-  image: ^4.1.7                                 # android   ios   linux   macos   web   windows
+  image: ^4.2.0                                 # android   ios   linux   macos   web   windows
   shelf: ^1.4.1                                 # android   ios   linux   macos   web   windows
   vector_graphics: ^1.1.11+1                    # android   ios   linux   macos   web   windows
   yaml: ^3.1.2                                  # android   ios   linux   macos   web   windows
