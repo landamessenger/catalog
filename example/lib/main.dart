@@ -36,7 +36,7 @@ void main() {
    */
   runApp(
     CatalogRunner(
-      enabled: false,
+      enabled: true,
       application: const MyApp(),
       route: CatalogComponent.route,
       supportedLocales: Stringcare().locales,

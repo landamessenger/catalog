@@ -1,11 +1,18 @@
+import 'dart:convert';
+
 import 'package:catalog/src/base/serial.dart';
 import 'package:catalog/src/builders/catalog/built_component.dart';
+import 'package:catalog/src/builders/catalog/tree_element.dart';
 
 class ComponentNode extends Serial<ComponentNode> {
   String id = '';
   String route = '';
   BuiltComponent? builtComponent;
+  Map<String, BuiltComponent> builtComponents = <String, BuiltComponent>{};
   Map<String, ComponentNode> children = <String, ComponentNode>{};
+
+  List<BuiltComponent> get builtComponentList =>
+      builtComponents.values.toList();
 
   List<ComponentNode> get childrenList => children.values.toList();
 
@@ -22,6 +29,8 @@ class ComponentNode extends Serial<ComponentNode> {
     if (json['builtComponent'] != null) {
       builtComponent = BuiltComponent().fromJson(json['builtComponent'] ?? {});
     }
+    builtComponents =
+        Serial.fromComplexMap<BuiltComponent>(json['builtComponents'] ?? {});
     children = Serial.fromComplexMap<ComponentNode>(json['children'] ?? {});
     return this;
   }
@@ -37,19 +46,42 @@ class ComponentNode extends Serial<ComponentNode> {
         'id': id,
         'route': route,
         'builtComponent': builtComponent?.toJson(),
+        'builtComponents':
+            builtComponents.isEmpty ? {} : Serial.toMap(builtComponents),
         'children': children.isEmpty ? {} : Serial.toMap(children),
       };
 
-  String get routerBuilder => '''
+  String get routerBuilder {
+    for (var o in childrenList) {
+      print('routes builder: ${jsonEncode(o.toJson())}');
+    }
+    return '''
   GoRoute(
       path: ${builtComponent?.clazzName}.routeName,
       pageBuilder: (context, state) => NoTransitionPage(
         key: state.pageKey,
         child: const ${builtComponent?.clazzName}(),
       ),
-      routes: [${childrenList.map((e) => e.routerBuilder).toList().join(',')}],
+      routes: [
+      ${builtComponentList.map((e) {
+              return '''
+        
+        GoRoute(
+          path: ${e.clazzName}.routeName,
+          pageBuilder: (context, state) => NoTransitionPage(
+            key: state.pageKey,
+            child: const ${e.clazzName}(),
+          ),
+        ),
+        
+         ''';
+            }).toList().join(',')}
+      ${childrenList.map((e) => e.routerBuilder).toList().join(',')}
+      
+      ],
     )
   ''';
+  }
 
   String get imports {
     String value = '';
@@ -57,16 +89,22 @@ class ComponentNode extends Serial<ComponentNode> {
       return value;
     }
     if (route == "/") {
-      value += '''${childrenList.map((e) => e.imports).toList().join('')}
-''';
+      value += '''${childrenList.map((e) => e.imports).toList().join('')}\n''';
     } else {
       if (childrenList.isEmpty) {
-        value += '''import '${builtComponent!.package}';
-''';
+        print('adding import (single): ${builtComponent!.package}');
+        value += '''import '${builtComponent!.package}';\n''';
       } else {
         value += '''import '${builtComponent!.package}';
-${childrenList.map((e) => e.imports).toList().join('')}
-''';
+${childrenList.map((e) {
+                  print('adding import: ${e.imports}');
+                  return e.imports;
+                }).toList().join('')}\n
+                
+${builtComponentList.map((e) {
+                  print('adding import: ${e.package}');
+                  return 'import \'${e.package}\';';
+                }).toList().join('')}\n''';
       }
     }
     return value;

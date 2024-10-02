@@ -15,8 +15,8 @@ dependencies:
   device_frame: ^1.2.0                          # android   ios   linux   macos   web   windows
   flutter_svg: ^2.0.10+1                        # android   ios   linux   macos         windows
   global_refresh: ^1.0.0                        # android   ios   linux   macos   web   windows
-  go_router: ^14.2.0                            # android   ios   linux   macos   web   windows
-  http: ^1.2.1                                  # android   ios   linux   macos   web   windows
+  go_router: ^14.2.8                            # android   ios   linux   macos   web   windows
+  http: ^1.2.2                                  # android   ios   linux   macos   web   windows
   image: ^4.2.0                                 # android   ios   linux   macos   web   windows
   shelf: ^1.4.1                                 # android   ios   linux   macos   web   windows
   vector_graphics: ^1.1.11+1                    # android   ios   linux   macos   web   windows
@@ -26,6 +26,4 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^4.0.0
-
-flutter:
+  flutter_lints: ^5.0.0
