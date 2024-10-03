@@ -4,19 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:example/widgets/screen/catalog/preview/body_widget.preview.dart';
 
 class BodyWidgetPreviewPreviewPageDummy extends StatefulWidget {
-
   static String routeName = 'body_widget';
-  
+
   const BodyWidgetPreviewPreviewPageDummy({super.key});
 
   @override
-  BodyWidgetPreviewPreviewPageDummyState createState() => BodyWidgetPreviewPreviewPageDummyState();
+  BodyWidgetPreviewPreviewPageDummyState createState() =>
+      BodyWidgetPreviewPreviewPageDummyState();
 }
 
-class BodyWidgetPreviewPreviewPageDummyState extends State<BodyWidgetPreviewPreviewPageDummy> {
+class BodyWidgetPreviewPreviewPageDummyState
+    extends State<BodyWidgetPreviewPreviewPageDummy> {
   @override
   Widget build(BuildContext context) {
     return const BodyWidgetPreview();
   }
 }
-    

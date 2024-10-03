@@ -7,84 +7,57 @@ import 'package:example/catalog/widgets/body_widget/body_widget.dart';
 import 'package:example/catalog/widgets/screen/fab_widget.dart';
 import 'package:example/catalog/widgets/counter_widget/counter_widget.dart';
 
-
-                
-import 'package:example/catalog/widgets/main_screen.dart';
-
-
-
 class CatalogComponent extends StatefulWidget {
   static String routeName = '/catalog';
-  static GoRoute route =   GoRoute(
-      path: CatalogComponent.routeName,
-      pageBuilder: (context, state) => NoTransitionPage(
-        key: state.pageKey,
-        child: const CatalogComponent(),
-      ),
-      routes: [
-      
-        GoRoute(
-      path: MainScreenPreviewPreviewPageDummy.routeName,
-      pageBuilder: (context, state) => NoTransitionPage(
-        key: state.pageKey,
-        child: const MainScreenPreviewPreviewPageDummy(),
-      ),
-      routes: [
-              
-        GoRoute(
-          path: MainScreenPreviewPreviewPageDummy.routeName,
-          pageBuilder: (context, state) => NoTransitionPage(
-            key: state.pageKey,
-            child: const MainScreenPreviewPreviewPageDummy(),
-          ),
+  static GoRoute route = GoRoute(
+    path: CatalogComponent.routeName,
+    pageBuilder: (context, state) => NoTransitionPage(
+      key: state.pageKey,
+      child: const CatalogComponent(),
+    ),
+    routes: [
+      GoRoute(
+        path: MainScreenPreviewPreviewPageDummy.routeName,
+        pageBuilder: (context, state) => NoTransitionPage(
+          key: state.pageKey,
+          child: const MainScreenPreviewPreviewPageDummy(),
         ),
-        
-         
-        GoRoute(
-      path: BodyWidgetPreviewPreviewPageDummy.routeName,
-      pageBuilder: (context, state) => NoTransitionPage(
-        key: state.pageKey,
-        child: const BodyWidgetPreviewPreviewPageDummy(),
-      ),
-      routes: [
-      
-      
-      
-      ],
-    )
-  ,  GoRoute(
-      path: FabWidgetPreviewPreviewPageDummy.routeName,
-      pageBuilder: (context, state) => NoTransitionPage(
-        key: state.pageKey,
-        child: const FabWidgetPreviewPreviewPageDummy(),
-      ),
-      routes: [
-      
-      
-      
-      ],
-    )
-  ,  GoRoute(
-      path: CounterWidgetPreviewPreviewPageDummy.routeName,
-      pageBuilder: (context, state) => NoTransitionPage(
-        key: state.pageKey,
-        child: const CounterWidgetPreviewPreviewPageDummy(),
-      ),
-      routes: [
-      
-      
-      
-      ],
-    )
-  
-      
-      ],
-    )
-  
-      
-      ],
-    )
-  ;
+        routes: [
+          GoRoute(
+            path: MainScreenPreviewPreviewPageDummy.routeName,
+            pageBuilder: (context, state) => NoTransitionPage(
+              key: state.pageKey,
+              child: const MainScreenPreviewPreviewPageDummy(),
+            ),
+          ),
+          GoRoute(
+            path: BodyWidgetPreviewPreviewPageDummy.routeName,
+            pageBuilder: (context, state) => NoTransitionPage(
+              key: state.pageKey,
+              child: const BodyWidgetPreviewPreviewPageDummy(),
+            ),
+            routes: const [],
+          ),
+          GoRoute(
+            path: FabWidgetPreviewPreviewPageDummy.routeName,
+            pageBuilder: (context, state) => NoTransitionPage(
+              key: state.pageKey,
+              child: const FabWidgetPreviewPreviewPageDummy(),
+            ),
+            routes: const [],
+          ),
+          GoRoute(
+            path: CounterWidgetPreviewPreviewPageDummy.routeName,
+            pageBuilder: (context, state) => NoTransitionPage(
+              key: state.pageKey,
+              child: const CounterWidgetPreviewPreviewPageDummy(),
+            ),
+            routes: const [],
+          )
+        ],
+      )
+    ],
+  );
   const CatalogComponent({super.key});
 
   @override
@@ -92,9 +65,7 @@ class CatalogComponent extends StatefulWidget {
 }
 
 class CatalogComponentState extends State<CatalogComponent> {
-
   TreeController<ComponentNode>? treeController;
-  
 
   @override
   Widget build(BuildContext context) {
@@ -167,5 +138,3 @@ class CatalogComponentState extends State<CatalogComponent> {
     }
   }
 }
-
-  

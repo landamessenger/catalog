@@ -3,4 +3,6 @@ widget_preview.iml
 *.lock
 .dart_tool
 .DS_Store
+lib/.DS_Store
+lib/src/.DS_Store
 .idea/

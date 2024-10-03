@@ -14,7 +14,7 @@
                "id": "widgets",
                "route": "/widgets",
                "builtComponent": {
-                    "path": "./example/lib/catalog/widgets/main_screen.dart",
+                    "path": "./lib/catalog/widgets/main_screen.dart",
                     "route": "widgets",
                     "package": "package:example/catalog/widgets/main_screen.dart",
                     "clazzName": "MainScreenPreviewPreviewPageDummy",
@@ -32,7 +32,7 @@
                },
                "builtComponents": {
                     "/main_screen.dart": {
-                         "path": "./example/lib/catalog/widgets/main_screen.dart",
+                         "path": "./lib/catalog/widgets/main_screen.dart",
                          "route": "widgets",
                          "package": "package:example/catalog/widgets/main_screen.dart",
                          "clazzName": "MainScreenPreviewPreviewPageDummy",
@@ -54,7 +54,7 @@
                          "id": "body_widget",
                          "route": "/body_widget",
                          "builtComponent": {
-                              "path": "./example/lib/catalog/widgets/body_widget/body_widget.dart",
+                              "path": "./lib/catalog/widgets/body_widget/body_widget.dart",
                               "route": "widgets/body_widget",
                               "package": "package:example/catalog/widgets/body_widget/body_widget.dart",
                               "clazzName": "BodyWidgetPreviewPreviewPageDummy",
@@ -75,7 +75,7 @@
                          "id": "screen",
                          "route": "/screen",
                          "builtComponent": {
-                              "path": "./example/lib/catalog/widgets/screen/fab_widget.dart",
+                              "path": "./lib/catalog/widgets/screen/fab_widget.dart",
                               "route": "widgets/screen",
                               "package": "package:example/catalog/widgets/screen/fab_widget.dart",
                               "clazzName": "FabWidgetPreviewPreviewPageDummy",
@@ -95,7 +95,7 @@
                          "id": "counter_widget",
                          "route": "/counter_widget",
                          "builtComponent": {
-                              "path": "./example/lib/catalog/widgets/counter_widget/counter_widget.dart",
+                              "path": "./lib/catalog/widgets/counter_widget/counter_widget.dart",
                               "route": "widgets/counter_widget",
                               "package": "package:example/catalog/widgets/counter_widget/counter_widget.dart",
                               "clazzName": "CounterWidgetPreviewPreviewPageDummy",

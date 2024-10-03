@@ -11,10 +11,11 @@ import '../dummy/body_widget.dummy.dart';
   parameters: [
     'infoText',
     'counter',
-  ],)
+  ],
+)
 class BodyWidgetPreview extends ParentPreviewWidget {
   const BodyWidgetPreview({super.key});
-    
+
   @override
   Widget preview(BuildContext context) {
     Catalog().widgetBasicPreviewMap.clear();
@@ -99,20 +100,19 @@ class BodyWidgetPreview extends ParentPreviewWidget {
                 ),
               ),
             for (int i = 0; i < BodyWidgetDummy().dummies.length; i++)
-                PreviewBoundary(
-    widgetKey: GlobalKey(),
-    dummyBuilder: () => BodyWidgetDummy().dummies[i],
-    builder: (BuildContext context, Dummy dummy) {
-      return BodyWidget(infoText: dummy.parameters['infoText'],counter: dummy.parameters['counter'],);
-    },
-  ),
-  
+              PreviewBoundary(
+                widgetKey: GlobalKey(),
+                dummyBuilder: () => BodyWidgetDummy().dummies[i],
+                builder: (BuildContext context, Dummy dummy) {
+                  return BodyWidget(
+                    infoText: dummy.parameters['infoText'],
+                    counter: dummy.parameters['counter'],
+                  );
+                },
+              ),
           ],
         )
       ],
     );
   }
-  
-  
 }
-    
