@@ -12,5 +12,13 @@ class FormatTask extends BaseTask {
     );
     stdout.write(result.stdout);
     stderr.write(result.stderr);
+
+    var resultFix = await Process.run(
+      'dart',
+      ['fix', '--apply'],
+      workingDirectory: Directory.current.path,
+    );
+    stdout.write(resultFix.stdout);
+    stderr.write(resultFix.stderr);
   }
 }

@@ -87,8 +87,8 @@ class CatalogTask extends BaseTask {
       }
       // print('Built: ${jsonEncode(build!.toJson())}');
 
-      print('${build!.preview!.path} with classname ${className}');
-      map[build!.preview!.path] = build;
+      print('${build!.preview!.path} with classname $className');
+      map[build.preview!.path] = build;
     }
 
     ComponentNode? node = getNodesFrom(pageRoute, map);

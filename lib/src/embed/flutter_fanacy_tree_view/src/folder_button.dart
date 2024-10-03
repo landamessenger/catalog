@@ -287,10 +287,6 @@ class FolderButton extends StatelessWidget {
   ///
   /// Non-null properties of this style override the corresponding
   /// properties in [_IconButtonM3.themeStyleOf] and [_IconButtonM3.defaultStyleOf].
-  /// [MaterialStateProperty]s that resolve to non-null values will similarly
-  /// override the corresponding [MaterialStateProperty]s in [_IconButtonM3.themeStyleOf]
-  /// and [_IconButtonM3.defaultStyleOf].
-  ///
   /// The [style] is only used for Material 3 [IconButton]. If [ThemeData.useMaterial3]
   /// is set to true, [style] is preferred for icon button customization, and any
   /// parameters defined in [style] will override the same parameters in [IconButton].

@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:catalog/src/base/serial.dart';
 import 'package:catalog/src/builders/catalog/built_component.dart';
-import 'package:catalog/src/builders/catalog/tree_element.dart';
 
 class ComponentNode extends Serial<ComponentNode> {
   String id = '';

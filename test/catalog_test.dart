@@ -11,6 +11,7 @@ void main() {
       application: Container(),
       route: GoRoute(
         path: '/catalog',
+        builder: (context, state) => Container()
       ),
     );
     expect(runner.enabled, false);
