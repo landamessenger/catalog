@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:catalog/src/base/serial.dart';
@@ -28,8 +27,11 @@ class CatalogTask extends BaseTask {
     final dirOutPut = Directory('./$base${config['base']}/${config['output']}');
     await dirOutPut.create(recursive: true);
 
-    final List<FileSystemEntity> entities =
-        await dir.list(recursive: true).toList();
+    final List<FileSystemEntity> entities = await dir
+        .list(
+          recursive: true,
+        )
+        .toList();
 
     final files = <FileSystemEntity>[];
 
@@ -66,8 +68,6 @@ class CatalogTask extends BaseTask {
       var outputFolder =
           './$base${config['base']}/${config['output']}/${preview.path}/';
 
-      print('Catalog page destination: $outputFolder');
-
       var build = await createPage(
         appId,
         config['base'],
@@ -84,9 +84,6 @@ class CatalogTask extends BaseTask {
         continue;
       }
 
-      print('Built: ${jsonEncode(build.toJson())}');
-
-      print('${build.route} with classname $className');
       if (map[build.route] == null) {
         map[build.route] = <BuiltComponent>[];
       }
@@ -98,8 +95,9 @@ class CatalogTask extends BaseTask {
     final File assetsConfig = File('./$base${config['runtimeConfigHolder']}');
     assetsConfig.writeAsStringSync(node.toJson().toPrettyString());
 
-    final File catalogFile =
-        File('./$base${config['base']}/${config['output']}/$page');
+    final File catalogFile = File(
+      './$base${config['base']}/${config['output']}/$page',
+    );
 
     // print(node.routerBuilder);
 

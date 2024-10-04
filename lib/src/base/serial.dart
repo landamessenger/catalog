@@ -79,7 +79,7 @@ abstract class Serial<T> {
   static List<dynamic> instances = <dynamic>[
     ComponentNode(),
     BuiltComponent(),
-    const Preview(id: '', path: ''),
+    const Preview(),
     const InternalPreview(id: '', path: ''),
   ];
 

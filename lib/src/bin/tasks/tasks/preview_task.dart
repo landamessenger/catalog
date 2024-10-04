@@ -45,7 +45,6 @@ class PreviewTask extends BaseTask {
       final File file = File(fileSystemEntity.path);
       var p = file.path.split(config['base'])[1];
       var classImport = 'package:$appId$p';
-      print('preview on file: ${file.path}');
       var preview = await previewOnFile(base, config, file.path);
       var previewAnnotation = await findPreviewAnnotation(file.path);
       if (previewAnnotation == null) continue;

@@ -3,22 +3,16 @@ import 'dart:convert';
 import 'package:catalog/src/base/serial.dart';
 
 class Preview implements Serial<Preview> {
-  final String id;
-  final String path;
   final String description;
   final List<String> parameters;
 
   const Preview({
-    this.id = '',
-    this.path = '',
     this.description = '',
     this.parameters = const [],
   });
 
   @override
   Preview fromJson(Map<String, dynamic> json) => Preview(
-        id: json['id'] ?? '',
-        path: json['path'] ?? '',
         description: json['description'] ?? '',
         parameters: Serial.listObjectFromBasicType<String>(
           json['parameters'] ?? [],
@@ -26,15 +20,13 @@ class Preview implements Serial<Preview> {
       );
 
   @override
-  String getId() => id;
+  String getId() => '';
 
   @override
-  Preview instance() => const Preview(id: '', path: '');
+  Preview instance() => const Preview();
 
   @override
   Map<String, dynamic> toJson() => {
-        'id': id,
-        'path': path,
         'description': description,
         'parameters': parameters,
       };
@@ -52,14 +44,10 @@ class Preview implements Serial<Preview> {
   }
 
   Preview copyWith({
-    String? id,
-    String? path,
     String? description,
     List<String>? parameters,
   }) =>
       Preview(
-        id: id ?? this.id,
-        path: path ?? this.path,
         description: description ?? this.description,
         parameters: parameters ?? this.parameters,
       );

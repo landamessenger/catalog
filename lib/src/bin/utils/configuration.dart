@@ -83,14 +83,11 @@ Future<InternalPreview?> previewOnFile(
     var output = './$basePath${config['base']}/${config['output']}/';
     var fileName = 'process.dart';
 
-    print('\n==========================================================\n');
-    print('Original file: $originalFilePath');
-
     File originalFile = File(originalFilePath);
     var originalContent = originalFile.readAsStringSync();
 
     var original =
-        'Preview${originalContent.split('@Preview')[1].split(')').first});';
+        'InternalPreview${originalContent.split('@Preview')[1].split(')').first});';
     var dir = Directory(output);
     await dir.create(recursive: true);
 
@@ -100,13 +97,13 @@ import 'dart:convert';
 
 import 'package:catalog/src/base/serial.dart';
 
-class Preview implements Serial<Preview> {
+class InternalPreview implements Serial<InternalPreview> {
   final String id;
   final String path;
   final String description;
   final List<String> parameters;
 
-  const Preview({
+  const InternalPreview({
     this.id = '',
     this.path = '',
     this.description = '',
@@ -114,7 +111,7 @@ class Preview implements Serial<Preview> {
   });
 
   @override
-  Preview fromJson(Map<String, dynamic> json) => Preview(
+  InternalPreview fromJson(Map<String, dynamic> json) => InternalPreview(
         id: json['id'] ?? '',
         path: json['path'] ?? '',
         description: json['description'] ?? '',
@@ -127,7 +124,7 @@ class Preview implements Serial<Preview> {
   String getId() => id;
 
   @override
-  Preview instance() => const Preview(id: '', path: '');
+  InternalPreview instance() => const InternalPreview(id: '', path: '');
 
   @override
   Map<String, dynamic> toJson() => {
@@ -138,7 +135,7 @@ class Preview implements Serial<Preview> {
       };
 
   @override
-  Preview fromString(String value) {
+  InternalPreview fromString(String value) {
     Map<String, dynamic> map = jsonDecode(value);
     return fromJson(map);
   }
@@ -149,13 +146,13 @@ class Preview implements Serial<Preview> {
     return jsonEncode(map);
   }
   
-  Preview copyWith({
+  InternalPreview copyWith({
     String? id,
     String? path,
     String? description,
     List<String>? parameters,
   }) =>
-      Preview(
+      InternalPreview(
         id: id ?? this.id,
         path: path ?? this.path,
         description: description ?? this.description,
@@ -172,7 +169,7 @@ void main(List<String> arguments) async {
 
     var path = file.absolute.path;
     var result = await Process.run('dart', ['run', path]);
-    var preview = const InternalPreview(
+    var preview = InternalPreview(
       id: '',
       path: '',
     ).fromJson(
@@ -198,7 +195,6 @@ void main(List<String> arguments) async {
       }
     }
 
-    print('########### GENERATED PREVIEW: ${preview.id} ${preview.path}');
     return preview;
   } catch (e) {
     print(e);
