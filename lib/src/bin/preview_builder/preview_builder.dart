@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:catalog/src/annotations/preview.dart';
+import 'package:catalog/src/annotations/internal_preview.dart';
 
 Future<String?> findClassName(String path) async {
   try {
@@ -20,7 +20,7 @@ Future<void> generatePreview(
   String previewAnnotation,
   String className,
   String prefix,
-  Preview preview,
+  InternalPreview preview,
 ) async {
   var clazz = className.replaceAll('()', '');
 
@@ -168,7 +168,7 @@ String dummyWidgetBuilder(String clazz, String widgetCompose) {
   ''';
 }
 
-String dummyWidgetContent(String className, Preview preview) {
+String dummyWidgetContent(String className, InternalPreview preview) {
   var clazz = className.replaceAll('()', '');
 
   var widgetCompose = '$clazz(';

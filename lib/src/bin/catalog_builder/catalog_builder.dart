@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:catalog/src/annotations/preview.dart';
+import 'package:catalog/src/annotations/internal_preview.dart';
 import 'package:catalog/src/builders/catalog/built_component.dart';
 import 'package:catalog/src/builders/catalog/component_node.dart';
 import 'package:catalog/src/extensions/string_ext.dart';
@@ -22,7 +22,7 @@ Future<BuiltComponent?> createPage(
   String outputPath,
   String outputFile,
   String prefix,
-  Preview preview,
+  InternalPreview preview,
   String import,
   String name,
 ) async {

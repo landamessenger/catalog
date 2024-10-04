@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:catalog/src/annotations/preview.dart';
+import 'package:catalog/src/annotations/internal_preview.dart';
 import 'package:yaml/yaml.dart';
 
 import 'exceptions.dart';
@@ -74,7 +74,7 @@ String loadId(String basePath) {
   return yamlMap[nammeId];
 }
 
-Future<Preview?> previewOnFile(
+Future<InternalPreview?> previewOnFile(
   String basePath,
   dynamic config,
   String originalFilePath,
@@ -172,8 +172,12 @@ void main(List<String> arguments) async {
 
     var path = file.absolute.path;
     var result = await Process.run('dart', ['run', path]);
-    var preview =
-        const Preview(id: '', path: '').fromJson(jsonDecode(result.stdout));
+    var preview = const InternalPreview(
+      id: '',
+      path: '',
+    ).fromJson(
+      jsonDecode(result.stdout),
+    );
 
     if (preview.id.isEmpty) {
       preview = preview.copyWith(

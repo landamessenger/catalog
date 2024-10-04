@@ -26,6 +26,34 @@
                     }
                },
                "children": {
+                    "utils": {
+                         "id": "utils",
+                         "route": "widgets/utils",
+                         "builtComponents": {},
+                         "children": {
+                              "bottom": {
+                                   "id": "bottom",
+                                   "route": "widgets/utils/bottom",
+                                   "builtComponents": {
+                                        "./example/lib/catalog/widgets/utils/bottom/fab_widget.dart": {
+                                             "path": "./example/lib/catalog/widgets/utils/bottom/fab_widget.dart",
+                                             "route": "widgets/utils/bottom",
+                                             "package": "package:example/catalog/widgets/utils/bottom/fab_widget.dart",
+                                             "clazzName": "FabWidgetPreviewPreviewPageDummy",
+                                             "preview": {
+                                                  "id": "fab_widget",
+                                                  "path": "widgets/utils/bottom",
+                                                  "description": "Basic fab widget",
+                                                  "parameters": [
+                                                       "incrementCounter"
+                                                  ]
+                                             }
+                                        }
+                                   },
+                                   "children": {}
+                              }
+                         }
+                    },
                     "screen": {
                          "id": "screen",
                          "route": "widgets/screen",
@@ -42,20 +70,6 @@
                                         "parameters": [
                                              "infoText",
                                              "counter"
-                                        ]
-                                   }
-                              },
-                              "./example/lib/catalog/widgets/screen/fab_widget.dart": {
-                                   "path": "./example/lib/catalog/widgets/screen/fab_widget.dart",
-                                   "route": "widgets/screen",
-                                   "package": "package:example/catalog/widgets/screen/fab_widget.dart",
-                                   "clazzName": "FabWidgetPreviewPreviewPageDummy",
-                                   "preview": {
-                                        "id": "fab_widget",
-                                        "path": "widgets/screen",
-                                        "description": "Basic fab widget",
-                                        "parameters": [
-                                             "incrementCounter"
                                         ]
                                    }
                               },

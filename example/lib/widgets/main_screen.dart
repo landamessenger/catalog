@@ -2,7 +2,7 @@ import 'package:catalog/catalog.dart';
 import 'package:flutter/material.dart';
 
 import 'screen/body_widget.dart';
-import 'screen/fab_widget.dart';
+import 'utils/bottom/fab_widget.dart';
 
 @Preview(
   parameters: [

@@ -4,7 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:catalog/catalog.dart';
 
 
-import 'package:example/catalog/widgets/screen/body_widget.dart';import 'package:example/catalog/widgets/screen/fab_widget.dart';import 'package:example/catalog/widgets/screen/counter_widget.dart';
+import 'package:example/catalog/widgets/utils/bottom/fab_widget.dart';
+
+    
+
+
+
+    
+
+import 'package:example/catalog/widgets/screen/body_widget.dart';import 'package:example/catalog/widgets/screen/counter_widget.dart';
 
     
 
@@ -45,6 +53,39 @@ class CatalogComponent extends StatefulWidget {
          
             ,
                     GoRoute(
+          path: 'utils',
+          redirect: (context, state) {
+            if (state.fullPath != state.matchedLocation) return null;
+            return CatalogComponent.routeName;
+          },
+          routes: [
+             
+            
+                    GoRoute(
+          path: 'bottom',
+          redirect: (context, state) {
+            if (state.fullPath != state.matchedLocation) return null;
+            return CatalogComponent.routeName;
+          },
+          routes: [
+                     
+        GoRoute(
+          path: FabWidgetPreviewPreviewPageDummy.routeName,
+          pageBuilder: (context, state) => NoTransitionPage(
+            key: state.pageKey,
+            child: const FabWidgetPreviewPreviewPageDummy(),
+          ),
+        )
+        
+         
+            ,
+            
+          ],
+        )
+  
+          ],
+        )
+  ,        GoRoute(
           path: 'screen',
           redirect: (context, state) {
             if (state.fullPath != state.matchedLocation) return null;
@@ -57,15 +98,6 @@ class CatalogComponent extends StatefulWidget {
           pageBuilder: (context, state) => NoTransitionPage(
             key: state.pageKey,
             child: const BodyWidgetPreviewPreviewPageDummy(),
-          ),
-        )
-        
-         ,        
-        GoRoute(
-          path: FabWidgetPreviewPreviewPageDummy.routeName,
-          pageBuilder: (context, state) => NoTransitionPage(
-            key: state.pageKey,
-            child: const FabWidgetPreviewPreviewPageDummy(),
           ),
         )
         

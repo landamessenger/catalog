@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:catalog/src/annotations/internal_preview.dart';
 import 'package:catalog/src/annotations/preview.dart';
 import 'package:catalog/src/builders/catalog/built_component.dart';
 import 'package:catalog/src/builders/catalog/component_node.dart';
@@ -79,6 +80,7 @@ abstract class Serial<T> {
     ComponentNode(),
     BuiltComponent(),
     const Preview(id: '', path: ''),
+    const InternalPreview(id: '', path: ''),
   ];
 
   static Map<String, dynamic> internalLinkerToMap(map) {
