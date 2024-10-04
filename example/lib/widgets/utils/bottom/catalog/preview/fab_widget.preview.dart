@@ -106,9 +106,7 @@ class FabWidgetPreview extends ParentPreviewWidget {
                 widgetKey: GlobalKey(),
                 dummyBuilder: () => FabWidgetDummy().dummies[i],
                 builder: (BuildContext context, Dummy dummy) {
-                  return FabWidget(
-                    incrementCounter: dummy.parameters['incrementCounter'],
-                  );
+                  return buildFabWidget(dummy);
                 },
               ),
           ],
@@ -116,4 +114,10 @@ class FabWidgetPreview extends ParentPreviewWidget {
       ],
     );
   }
+}
+
+FabWidget buildFabWidget(Dummy dummy) {
+  return FabWidget(
+    incrementCounter: dummy.parameters['incrementCounter'],
+  );
 }

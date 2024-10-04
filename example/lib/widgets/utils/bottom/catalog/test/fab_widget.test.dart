@@ -5,8 +5,8 @@
 
 import 'package:catalog/catalog.dart';
 
-import '../../fab_widget.dart';
 import '../dummy/fab_widget.dummy.dart';
+import '../preview/fab_widget.preview.dart';
 
 class FabWidgetTest {
   void main() {
@@ -15,13 +15,9 @@ class FabWidgetTest {
       () {
         testWidgets(
           'Lorem text not found',
-              (tester) async {
+          (tester) async {
             final dummy = FabWidgetDummy().dummies.first;
-
-            final widget = FabWidget(
-              incrementCounter: dummy.parameters['incrementCounter'],
-            );
-
+            final widget = buildFabWidget(dummy);
             await tester.test(widget);
 
             expect(find.text('lorem ipsu'), findsNothing);
@@ -30,16 +26,12 @@ class FabWidgetTest {
 
         testWidgets(
           'Other lorem text not found',
-              (tester) async {
+          (tester) async {
             final dummy = FabWidgetDummy().dummies.first;
-
-            final widget = FabWidget(
-              incrementCounter: dummy.parameters['incrementCounter'],
-            );
-
+            final widget = buildFabWidget(dummy);
             await tester.test(widget);
 
-            expect(find.text('lorem ipsu'), findsNothing);
+            expect(find.text('ipsu lorem'), findsNothing);
           },
         );
       },

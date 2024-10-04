@@ -110,12 +110,7 @@ class MainScreenPreview extends ParentPreviewWidget {
                 widgetKey: GlobalKey(),
                 dummyBuilder: () => MainScreenDummy().dummies[i],
                 builder: (BuildContext context, Dummy dummy) {
-                  return MainScreen(
-                    title: dummy.parameters['title'],
-                    infoText: dummy.parameters['infoText'],
-                    counter: dummy.parameters['counter'],
-                    incrementCounter: dummy.parameters['incrementCounter'],
-                  );
+                  return buildMainScreen(dummy);
                 },
               ),
           ],
@@ -123,4 +118,13 @@ class MainScreenPreview extends ParentPreviewWidget {
       ],
     );
   }
+}
+
+MainScreen buildMainScreen(Dummy dummy) {
+  return MainScreen(
+    title: dummy.parameters['title'],
+    infoText: dummy.parameters['infoText'],
+    counter: dummy.parameters['counter'],
+    incrementCounter: dummy.parameters['incrementCounter'],
+  );
 }

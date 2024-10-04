@@ -108,9 +108,7 @@ class CounterWidgetPreview extends ParentPreviewWidget {
                 widgetKey: GlobalKey(),
                 dummyBuilder: () => CounterWidgetDummy().dummies[i],
                 builder: (BuildContext context, Dummy dummy) {
-                  return CounterWidget(
-                    counter: dummy.parameters['counter'],
-                  );
+                  return buildCounterWidget(dummy);
                 },
               ),
           ],
@@ -118,4 +116,10 @@ class CounterWidgetPreview extends ParentPreviewWidget {
       ],
     );
   }
+}
+
+CounterWidget buildCounterWidget(Dummy dummy) {
+  return CounterWidget(
+    counter: dummy.parameters['counter'],
+  );
 }

@@ -108,10 +108,7 @@ class BodyWidgetPreview extends ParentPreviewWidget {
                 widgetKey: GlobalKey(),
                 dummyBuilder: () => BodyWidgetDummy().dummies[i],
                 builder: (BuildContext context, Dummy dummy) {
-                  return BodyWidget(
-                    infoText: dummy.parameters['infoText'],
-                    counter: dummy.parameters['counter'],
-                  );
+                  return buildBodyWidget(dummy);
                 },
               ),
           ],
@@ -119,4 +116,11 @@ class BodyWidgetPreview extends ParentPreviewWidget {
       ],
     );
   }
+}
+
+BodyWidget buildBodyWidget(Dummy dummy) {
+  return BodyWidget(
+    infoText: dummy.parameters['infoText'],
+    counter: dummy.parameters['counter'],
+  );
 }

@@ -132,7 +132,7 @@ class ${clazz}Preview extends ParentPreviewWidget {
                 ),
               ),
             for (int i = 0; i < ${clazz}Dummy().dummies.length; i++)
-              ${dummyWidgetBuilder(clazz, widgetCompose)}
+              ${dummyWidgetBuilder(clazz)}
           ],
         )
       ],
@@ -140,6 +140,10 @@ class ${clazz}Preview extends ParentPreviewWidget {
   }
   
   
+}
+
+$clazz build$clazz(Dummy dummy) {
+  return $widgetCompose;
 }
     ''';
 
@@ -156,13 +160,13 @@ class ${clazz}Preview extends ParentPreviewWidget {
   await file.writeAsString(content);
 }
 
-String dummyWidgetBuilder(String clazz, String widgetCompose) {
+String dummyWidgetBuilder(String clazz) {
   return '''
   PreviewBoundary(
     widgetKey: GlobalKey(),
     dummyBuilder: () => ${clazz}Dummy().dummies[i],
     builder: (BuildContext context, Dummy dummy) {
-      return $widgetCompose;
+      return build$clazz(dummy);
     },
   ),
   ''';
