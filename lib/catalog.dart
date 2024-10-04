@@ -28,6 +28,7 @@ export 'package:catalog/src/builders/screenshots/types/apple/i_pad_pro_3gen.dart
 export 'package:catalog/src/builders/screenshots/types/apple/i_phone_55.dart';
 export 'package:catalog/src/builders/screenshots/types/apple/i_phone_65.dart';
 export 'package:catalog/src/builders/screenshots/types/apple/macos.dart';
+export 'package:catalog/src/extensions/widget_test_ext.dart';
 export 'package:catalog/src/catalog_runner.dart';
 export 'package:catalog/src/builders/catalog/component_node.dart';
 export 'package:catalog/src/utils/constants.dart';
@@ -35,6 +36,7 @@ export 'package:catalog/src/embed/flutter_fanacy_tree_view/flutter_fancy_tree_vi
 export 'package:catalog/src/extensions/locale_ext.dart';
 export 'package:device_frame/device_frame.dart';
 export 'package:go_router/go_router.dart';
+export 'package:flutter_test/flutter_test.dart';
 
 class Catalog {
   static Catalog? _instance;
