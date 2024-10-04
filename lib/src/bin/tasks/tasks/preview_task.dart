@@ -54,6 +54,7 @@ class PreviewTask extends BaseTask {
       if (preview == null) continue;
 
       await generatePreview(
+        config,
         file.path,
         classImport,
         previewAnnotation,

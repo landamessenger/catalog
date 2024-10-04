@@ -2,8 +2,6 @@ import 'package:catalog/catalog.dart';
 import 'package:flutter/material.dart';
 
 @Preview(
-  id: 'CounterWidgetPreview',
-  path: 'widgets/counter_widget',
   description: 'Basic counter widget',
   parameters: [
     'counter',

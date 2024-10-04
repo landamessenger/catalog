@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'counter_widget.dart';
 
 @Preview(
-  id: 'BodyWidgetPreview',
-  path: 'widgets/body_widget',
   parameters: [
     'infoText',
     'counter',

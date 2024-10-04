@@ -20,5 +20,5 @@ class FormatTask extends BaseTask {
     );
     stdout.write(result.stdout);
     stderr.write(result.stderr);
-   }
+  }
 }

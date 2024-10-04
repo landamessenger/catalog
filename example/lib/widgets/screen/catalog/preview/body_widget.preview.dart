@@ -6,16 +6,20 @@ import 'package:example/widgets/screen/body_widget.dart';
 import '../dummy/body_widget.dummy.dart';
 
 @Preview(
-  id: 'BodyWidgetPreview',
-  path: 'widgets/body_widget',
   parameters: [
     'infoText',
     'counter',
-  ],
-)
+  ],)
 class BodyWidgetPreview extends ParentPreviewWidget {
+  
+  @override
+  String get title => 'body_widget';
+  
+  @override
+  String get basePath => '/catalog';
+  
   const BodyWidgetPreview({super.key});
-
+    
   @override
   Widget preview(BuildContext context) {
     Catalog().widgetBasicPreviewMap.clear();
@@ -100,19 +104,20 @@ class BodyWidgetPreview extends ParentPreviewWidget {
                 ),
               ),
             for (int i = 0; i < BodyWidgetDummy().dummies.length; i++)
-              PreviewBoundary(
-                widgetKey: GlobalKey(),
-                dummyBuilder: () => BodyWidgetDummy().dummies[i],
-                builder: (BuildContext context, Dummy dummy) {
-                  return BodyWidget(
-                    infoText: dummy.parameters['infoText'],
-                    counter: dummy.parameters['counter'],
-                  );
-                },
-              ),
+                PreviewBoundary(
+    widgetKey: GlobalKey(),
+    dummyBuilder: () => BodyWidgetDummy().dummies[i],
+    builder: (BuildContext context, Dummy dummy) {
+      return BodyWidget(infoText: dummy.parameters['infoText'],counter: dummy.parameters['counter'],);
+    },
+  ),
+  
           ],
         )
       ],
     );
   }
+  
+  
 }
+    

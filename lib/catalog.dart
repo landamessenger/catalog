@@ -18,6 +18,7 @@ export 'package:catalog/src/builders/preview/parent_preview_widget.dart';
 export 'package:catalog/src/builders/preview/preview_boundary.dart';
 export 'package:catalog/src/builders/dummy/preview_dummy.dart';
 export 'package:catalog/src/builders/catalog/preview_scaffold.dart';
+export 'package:catalog/src/builders/catalog/tree_elements_builder.dart';
 export 'package:catalog/src/builders/screenshots/background.dart';
 export 'package:catalog/src/builders/screenshots/op/screenshot_process.dart';
 export 'package:catalog/src/builders/screenshots/screenshot.dart';

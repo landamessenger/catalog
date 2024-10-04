@@ -14,6 +14,7 @@ Future<String?> findClassName(String path) async {
 }
 
 Future<void> generatePreview(
+  dynamic config,
   String srcPath,
   String classImport,
   String previewAnnotation,
@@ -38,6 +39,13 @@ import '../dummy/$name.dummy.dart';
 
 $previewAnnotation
 class ${clazz}Preview extends ParentPreviewWidget {
+  
+  @override
+  String get title => '$name';
+  
+  @override
+  String get basePath => '/${config['pageRoute']}';
+  
   const ${clazz}Preview({super.key});
     
   @override

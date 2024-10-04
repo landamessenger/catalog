@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:catalog/src/base/serial.dart';
@@ -38,7 +39,7 @@ class CatalogTask extends BaseTask {
       }
     }
 
-    var map = <String, BuiltComponent>{};
+    var map = <String, List<BuiltComponent>>{};
 
     for (FileSystemEntity fileSystemEntity in files) {
       final File file = File(fileSystemEntity.path);
@@ -50,7 +51,6 @@ class CatalogTask extends BaseTask {
         print('No class name found ${file.path}');
         continue;
       }
-      //print('- Building preview of $className in $package');
 
       var preview = await previewOnFile(
         base,
@@ -62,8 +62,6 @@ class CatalogTask extends BaseTask {
         print('No preview data found ${file.path}');
         continue;
       }
-
-      // print('Preview: ${jsonEncode(preview.toJson())}');
 
       var outputFolder =
           './$base${config['base']}/${config['output']}/${preview.path}/';
@@ -81,37 +79,21 @@ class CatalogTask extends BaseTask {
         className,
       );
 
-      if (build?.preview == null) {
+      if (build == null) {
         print('No build for $className');
         continue;
       }
-      // print('Built: ${jsonEncode(build!.toJson())}');
 
-      print('${build!.preview!.path} with classname $className');
-      map[build.preview!.path] = build;
+      print('Built: ${jsonEncode(build.toJson())}');
+
+      print('${build.route} with classname $className');
+      if (map[build.route] == null) {
+        map[build.route] = <BuiltComponent>[];
+      }
+      (map[build.route] as List<BuiltComponent>).add(build);
     }
 
-    ComponentNode? node = getNodesFrom(pageRoute, map);
-
-    print('node: ${node.childrenList.map((e) => e.id).join(', ')}');
-
-    node = await buildChildrenPages(
-      base,
-      config,
-      appId,
-      node,
-      '',
-      pageRoute,
-      0,
-    );
-
-    if (node == null) {
-      return;
-    }
-
-    print('node 2: ${node.childrenList.map((e) => e.id).join(', ')}');
-
-    // print(node.toJson().toPrettyString());
+    ComponentNode node = buildTreeFromMap(pageRoute, map);
 
     final File assetsConfig = File('./$base${config['runtimeConfigHolder']}');
     assetsConfig.writeAsStringSync(node.toJson().toPrettyString());
@@ -130,7 +112,9 @@ ${node.imports}
 
 class $pageName extends StatefulWidget {
   static String routeName = '/$pageRoute';
+  
   static GoRoute route = ${node.routerBuilder};
+  
   const $pageName({super.key});
 
   @override
@@ -139,78 +123,32 @@ class $pageName extends StatefulWidget {
 
 class ${pageName}State extends State<$pageName> {
 
-  TreeController<ComponentNode>? treeController;
-  
-
   @override
   Widget build(BuildContext context) {
-    return PreviewScaffold(
-      onBackPressed: Catalog().onBackPressed,
-      child: FutureBuilder<ComponentNode?>(
-          initialData: null,
-          future: Catalog().get(context),
-          builder: (context, data) {
-            if (!data.hasData || data.data == null) {
-              return Container();
-            }
-            final node = data.data as ComponentNode;
-            if (treeController == null) {
-              treeController = TreeController<ComponentNode>(
-                roots: [node],
-                childrenProvider: (ComponentNode node) => node.children.values,
-              );
-              if (treeController!.isTreeCollapsed) {
-                treeController!.expandAll();
-              }
-            }
-            return AnimatedTreeView<ComponentNode>(
-              treeController: treeController!,
-              nodeBuilder:
-                  (BuildContext context, TreeEntry<ComponentNode> entry) {
-                return InkWell(
-                  onTap: () {
-                    // _nodePressed(node);
-                  },
-                  child: TreeIndentation(
-                    entry: entry,
-                    child: Row(
-                      children: [
-                        FolderButton(
-                          color: Colors.black,
-                          isOpen: entry.hasChildren ? entry.isExpanded : null,
-                          onPressed: () => _nodePressed(entry),
-                        ),
-                        Text(
-                          entry.node.id,
-                          style: const TextStyle(
-                            color: Colors.black,
-                            fontSize: 16,
-                            letterSpacing: .3,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              },
-            );
-          }),
+    return FutureBuilder<ComponentNode?>(
+      initialData: null,
+      future: Catalog().get(context),
+      builder: (context, data) {
+        if (!data.hasData || data.data == null) {
+          return Container();
+        }
+        final node = data.data as ComponentNode;
+        return PreviewScaffold(
+          basePath: CatalogComponent.routeName,
+          onBackPressed: Catalog().onBackPressed,
+          child: ListView(
+            children: [
+              buildTreeWidget(
+                context,
+                CatalogComponent.routeName,
+                node,
+                0,
+              )
+            ],
+          ),
+        );
+      },
     );
-  }
-
-  void _nodePressed(TreeEntry<ComponentNode> entry) {
-    if (entry.node.children.isEmpty) {
-      if (entry.node.builtComponent?.preview?.path != null) {
-        context.go(
-            '\${$pageName.routeName}/\${entry.node.builtComponent!.preview!.path}');
-      }
-    } else {
-      if (!entry.isExpanded) {
-        treeController?.toggleExpansion(entry.node);
-      } else {
-        treeController?.collapse(entry.node);
-      }
-    }
   }
 }
 

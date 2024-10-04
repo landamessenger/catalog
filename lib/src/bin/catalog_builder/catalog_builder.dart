@@ -29,8 +29,7 @@ Future<BuiltComponent?> createPage(
   try {
     var directory = Directory(outputPath);
     await directory.create(recursive: true);
-    var id =
-        preview.path.contains('/') ? preview.path.split('/').last : preview.id;
+    var id = preview.id;
     File file = File(outputPath + outputFile.replaceAll('.$prefix.', '.'));
 
     final clazzName = name.replaceAll('()', '');
@@ -169,6 +168,7 @@ class ${clazzName}State extends State<$clazzName> {
   }
 }
 
+/*
 Future<ComponentNode?> buildChildrenPages(
   String basePath,
   dynamic config,
@@ -255,21 +255,77 @@ Future<ComponentNode?> buildChildrenPages(
     return null;
   }
 }
+*/
+ComponentNode buildTreeFromMap(
+  String pageRoute,
+  Map<String, List<BuiltComponent>> componentsMap,
+) {
+  // Nodo raíz del árbol
+  ComponentNode root = ComponentNode(id: pageRoute, route: '/');
 
+  // Función auxiliar para crear o encontrar un nodo dentro del árbol
+  ComponentNode findOrCreateNode(
+    ComponentNode current,
+    List<String> pathParts,
+    String fullPath,
+  ) {
+    if (pathParts.isEmpty) {
+      return current;
+    }
+
+    // Obtener el primer segmento del path y crear el nodo hijo si no existe
+    String part = pathParts.removeAt(0);
+    if (!current.children.containsKey(part)) {
+      current.children[part] = ComponentNode(
+        id: part,
+        route: fullPath.substring(0, fullPath.indexOf(part) + part.length),
+      );
+    }
+
+    // Recursivamente buscar o crear el siguiente nodo hijo
+    return findOrCreateNode(current.children[part]!, pathParts, fullPath);
+  }
+
+  // Recorrer cada entrada del mapa y asignarla a su nodo correspondiente
+  componentsMap.forEach((path, builtComponents) {
+    // Dividir el path en sus partes, excluyendo la raíz '/'
+    List<String> pathParts =
+        path.split('/').where((part) => part.isNotEmpty).toList();
+
+    // Encontrar o crear el nodo adecuado para este path
+    ComponentNode currentNode = findOrCreateNode(root, pathParts, path);
+
+    // Agregar los componentes del directorio actual al nodo correspondiente
+    for (var component in builtComponents) {
+      currentNode.builtComponents[component.path] = component;
+    }
+  });
+
+  return root;
+}
+
+/*
 ComponentNode getNodesFrom(
   String pageRoute,
-  Map<String, BuiltComponent> components,
+  Map<String, List<BuiltComponent>> components,
 ) {
   var firstNode = ComponentNode(id: pageRoute, route: '/');
 
-  for (var entity in components.values.toList()) {
-    print('=======================================================');
-    print('route: ${entity.route}');
-    var parts = entity.route.split('/');
-    if (parts.first == '.') {
-      parts.removeAt(0);
+  final pathLevels = components.entries.toList();
+
+  for (var entity in pathLevels) {
+    final pathLevel = entity.key;
+    final pagesInThatLevel = entity.value.toList();
+
+    for (var page in pagesInThatLevel) {
+      print('=======================================================');
+      print('route: ${page.route}');
+      var parts = page.route.split('/');
+      if (parts.first == '.') {
+        parts.removeAt(0);
+      }
+      addNode(firstNode, parts, 0, page);
     }
-    addNode(firstNode, parts, 0, entity);
   }
 
   return firstNode;
@@ -311,3 +367,5 @@ void addNode(
     addNode(no, parts, index + 1, component);
   }
 }
+
+ */

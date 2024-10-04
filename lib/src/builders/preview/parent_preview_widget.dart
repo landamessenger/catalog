@@ -6,6 +6,10 @@ abstract class ParentPreviewWidget extends StatelessWidget {
 
   bool get center => true;
 
+  String get title => 'preview_page';
+
+  String get basePath => '/catalog';
+
   const ParentPreviewWidget({super.key});
 
   Widget preview(BuildContext context);
@@ -13,7 +17,8 @@ abstract class ParentPreviewWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PreviewScaffold(
-      title: runtimeType.toString(),
+      basePath: basePath,
+      title: title,
       child: Center(
         child: preview(context),
       ),

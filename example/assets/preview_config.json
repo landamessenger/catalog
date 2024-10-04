@@ -1,38 +1,14 @@
 {
      "id": "catalog",
      "route": "/",
-     "builtComponent": {
-          "path": "./lib/catalog/catalog_component.dart",
-          "route": "",
-          "package": "package:example/catalog/catalog_component.dart",
-          "clazzName": "CatalogComponent",
-          "preview": null
-     },
      "builtComponents": {},
      "children": {
           "widgets": {
                "id": "widgets",
-               "route": "/widgets",
-               "builtComponent": {
-                    "path": "./lib/catalog/widgets/main_screen.dart",
-                    "route": "widgets",
-                    "package": "package:example/catalog/widgets/main_screen.dart",
-                    "clazzName": "MainScreenPreviewPreviewPageDummy",
-                    "preview": {
-                         "id": "main_screen",
-                         "path": "widgets",
-                         "description": "",
-                         "parameters": [
-                              "title",
-                              "infoText",
-                              "counter",
-                              "incrementCounter"
-                         ]
-                    }
-               },
+               "route": "widgets",
                "builtComponents": {
-                    "/main_screen.dart": {
-                         "path": "./lib/catalog/widgets/main_screen.dart",
+                    "./example/lib/catalog/widgets/main_screen.dart": {
+                         "path": "./example/lib/catalog/widgets/main_screen.dart",
                          "route": "widgets",
                          "package": "package:example/catalog/widgets/main_screen.dart",
                          "clazzName": "MainScreenPreviewPreviewPageDummy",
@@ -50,65 +26,54 @@
                     }
                },
                "children": {
-                    "body_widget": {
-                         "id": "body_widget",
-                         "route": "/body_widget",
-                         "builtComponent": {
-                              "path": "./lib/catalog/widgets/body_widget/body_widget.dart",
-                              "route": "widgets/body_widget",
-                              "package": "package:example/catalog/widgets/body_widget/body_widget.dart",
-                              "clazzName": "BodyWidgetPreviewPreviewPageDummy",
-                              "preview": {
-                                   "id": "BodyWidgetPreview",
-                                   "path": "widgets/body_widget",
-                                   "description": "",
-                                   "parameters": [
-                                        "infoText",
-                                        "counter"
-                                   ]
-                              }
-                         },
-                         "builtComponents": {},
-                         "children": {}
-                    },
                     "screen": {
                          "id": "screen",
-                         "route": "/screen",
-                         "builtComponent": {
-                              "path": "./lib/catalog/widgets/screen/fab_widget.dart",
-                              "route": "widgets/screen",
-                              "package": "package:example/catalog/widgets/screen/fab_widget.dart",
-                              "clazzName": "FabWidgetPreviewPreviewPageDummy",
-                              "preview": {
-                                   "id": "fab_widget",
-                                   "path": "widgets/screen",
-                                   "description": "Basic fab widget",
-                                   "parameters": [
-                                        "incrementCounter"
-                                   ]
+                         "route": "widgets/screen",
+                         "builtComponents": {
+                              "./example/lib/catalog/widgets/screen/body_widget.dart": {
+                                   "path": "./example/lib/catalog/widgets/screen/body_widget.dart",
+                                   "route": "widgets/screen",
+                                   "package": "package:example/catalog/widgets/screen/body_widget.dart",
+                                   "clazzName": "BodyWidgetPreviewPreviewPageDummy",
+                                   "preview": {
+                                        "id": "body_widget",
+                                        "path": "widgets/screen",
+                                        "description": "",
+                                        "parameters": [
+                                             "infoText",
+                                             "counter"
+                                        ]
+                                   }
+                              },
+                              "./example/lib/catalog/widgets/screen/fab_widget.dart": {
+                                   "path": "./example/lib/catalog/widgets/screen/fab_widget.dart",
+                                   "route": "widgets/screen",
+                                   "package": "package:example/catalog/widgets/screen/fab_widget.dart",
+                                   "clazzName": "FabWidgetPreviewPreviewPageDummy",
+                                   "preview": {
+                                        "id": "fab_widget",
+                                        "path": "widgets/screen",
+                                        "description": "Basic fab widget",
+                                        "parameters": [
+                                             "incrementCounter"
+                                        ]
+                                   }
+                              },
+                              "./example/lib/catalog/widgets/screen/counter_widget.dart": {
+                                   "path": "./example/lib/catalog/widgets/screen/counter_widget.dart",
+                                   "route": "widgets/screen",
+                                   "package": "package:example/catalog/widgets/screen/counter_widget.dart",
+                                   "clazzName": "CounterWidgetPreviewPreviewPageDummy",
+                                   "preview": {
+                                        "id": "counter_widget",
+                                        "path": "widgets/screen",
+                                        "description": "Basic counter widget",
+                                        "parameters": [
+                                             "counter"
+                                        ]
+                                   }
                               }
                          },
-                         "builtComponents": {},
-                         "children": {}
-                    },
-                    "counter_widget": {
-                         "id": "counter_widget",
-                         "route": "/counter_widget",
-                         "builtComponent": {
-                              "path": "./lib/catalog/widgets/counter_widget/counter_widget.dart",
-                              "route": "widgets/counter_widget",
-                              "package": "package:example/catalog/widgets/counter_widget/counter_widget.dart",
-                              "clazzName": "CounterWidgetPreviewPreviewPageDummy",
-                              "preview": {
-                                   "id": "CounterWidgetPreview",
-                                   "path": "widgets/counter_widget",
-                                   "description": "Basic counter widget",
-                                   "parameters": [
-                                        "counter"
-                                   ]
-                              }
-                         },
-                         "builtComponents": {},
                          "children": {}
                     }
                }

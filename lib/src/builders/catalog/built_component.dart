@@ -8,6 +8,12 @@ class BuiltComponent extends Serial<BuiltComponent> {
   String clazzName = '';
   Preview? preview;
 
+  String get name {
+    if (!path.contains('/')) return path;
+    var parts = path.split('/');
+    return parts.last;
+  }
+
   BuiltComponent({
     this.path = '',
     this.route = '',

@@ -2,62 +2,95 @@
 
 import 'package:flutter/material.dart';
 import 'package:catalog/catalog.dart';
+
+
+import 'package:example/catalog/widgets/screen/body_widget.dart';import 'package:example/catalog/widgets/screen/fab_widget.dart';import 'package:example/catalog/widgets/screen/counter_widget.dart';
+
+    
+
 import 'package:example/catalog/widgets/main_screen.dart';
-import 'package:example/catalog/widgets/body_widget/body_widget.dart';
-import 'package:example/catalog/widgets/screen/fab_widget.dart';
-import 'package:example/catalog/widgets/counter_widget/counter_widget.dart';
+
+    
+
+
+
+    
 
 class CatalogComponent extends StatefulWidget {
   static String routeName = '/catalog';
-  static GoRoute route = GoRoute(
-    path: CatalogComponent.routeName,
-    pageBuilder: (context, state) => NoTransitionPage(
-      key: state.pageKey,
-      child: const CatalogComponent(),
-    ),
-    routes: [
-      GoRoute(
-        path: MainScreenPreviewPreviewPageDummy.routeName,
-        pageBuilder: (context, state) => NoTransitionPage(
-          key: state.pageKey,
-          child: const MainScreenPreviewPreviewPageDummy(),
-        ),
-        routes: [
-          GoRoute(
-            path: MainScreenPreviewPreviewPageDummy.routeName,
-            pageBuilder: (context, state) => NoTransitionPage(
-              key: state.pageKey,
-              child: const MainScreenPreviewPreviewPageDummy(),
-            ),
+  
+  static GoRoute route =        GoRoute(
+          path: CatalogComponent.routeName,
+          pageBuilder: (context, state) => NoTransitionPage(
+            key: state.pageKey,
+            child: const CatalogComponent(),
           ),
-          GoRoute(
-            path: BodyWidgetPreviewPreviewPageDummy.routeName,
-            pageBuilder: (context, state) => NoTransitionPage(
-              key: state.pageKey,
-              child: const BodyWidgetPreviewPreviewPageDummy(),
-            ),
-            routes: const [],
+          routes: [
+                    GoRoute(
+          path: 'widgets',
+          redirect: (context, state) {
+            if (state.fullPath != state.matchedLocation) return null;
+            return CatalogComponent.routeName;
+          },
+          routes: [
+                     
+        GoRoute(
+          path: MainScreenPreviewPreviewPageDummy.routeName,
+          pageBuilder: (context, state) => NoTransitionPage(
+            key: state.pageKey,
+            child: const MainScreenPreviewPreviewPageDummy(),
           ),
-          GoRoute(
-            path: FabWidgetPreviewPreviewPageDummy.routeName,
-            pageBuilder: (context, state) => NoTransitionPage(
-              key: state.pageKey,
-              child: const FabWidgetPreviewPreviewPageDummy(),
-            ),
-            routes: const [],
+        )
+        
+         
+            ,
+                    GoRoute(
+          path: 'screen',
+          redirect: (context, state) {
+            if (state.fullPath != state.matchedLocation) return null;
+            return CatalogComponent.routeName;
+          },
+          routes: [
+                     
+        GoRoute(
+          path: BodyWidgetPreviewPreviewPageDummy.routeName,
+          pageBuilder: (context, state) => NoTransitionPage(
+            key: state.pageKey,
+            child: const BodyWidgetPreviewPreviewPageDummy(),
           ),
-          GoRoute(
-            path: CounterWidgetPreviewPreviewPageDummy.routeName,
-            pageBuilder: (context, state) => NoTransitionPage(
-              key: state.pageKey,
-              child: const CounterWidgetPreviewPreviewPageDummy(),
-            ),
-            routes: const [],
-          )
-        ],
+        )
+        
+         ,        
+        GoRoute(
+          path: FabWidgetPreviewPreviewPageDummy.routeName,
+          pageBuilder: (context, state) => NoTransitionPage(
+            key: state.pageKey,
+            child: const FabWidgetPreviewPreviewPageDummy(),
+          ),
+        )
+        
+         ,        
+        GoRoute(
+          path: CounterWidgetPreviewPreviewPageDummy.routeName,
+          pageBuilder: (context, state) => NoTransitionPage(
+            key: state.pageKey,
+            child: const CounterWidgetPreviewPreviewPageDummy(),
+          ),
+        )
+        
+         
+            ,
+            
+          ],
+        )
+  
+          ],
+        )
+  
+          ],
       )
-    ],
-  );
+;
+  
   const CatalogComponent({super.key});
 
   @override
@@ -65,76 +98,34 @@ class CatalogComponent extends StatefulWidget {
 }
 
 class CatalogComponentState extends State<CatalogComponent> {
-  TreeController<ComponentNode>? treeController;
 
   @override
   Widget build(BuildContext context) {
-    return PreviewScaffold(
-      onBackPressed: Catalog().onBackPressed,
-      child: FutureBuilder<ComponentNode?>(
-          initialData: null,
-          future: Catalog().get(context),
-          builder: (context, data) {
-            if (!data.hasData || data.data == null) {
-              return Container();
-            }
-            final node = data.data as ComponentNode;
-            if (treeController == null) {
-              treeController = TreeController<ComponentNode>(
-                roots: [node],
-                childrenProvider: (ComponentNode node) => node.children.values,
-              );
-              if (treeController!.isTreeCollapsed) {
-                treeController!.expandAll();
-              }
-            }
-            return AnimatedTreeView<ComponentNode>(
-              treeController: treeController!,
-              nodeBuilder:
-                  (BuildContext context, TreeEntry<ComponentNode> entry) {
-                return InkWell(
-                  onTap: () {
-                    // _nodePressed(node);
-                  },
-                  child: TreeIndentation(
-                    entry: entry,
-                    child: Row(
-                      children: [
-                        FolderButton(
-                          color: Colors.black,
-                          isOpen: entry.hasChildren ? entry.isExpanded : null,
-                          onPressed: () => _nodePressed(entry),
-                        ),
-                        Text(
-                          entry.node.id,
-                          style: const TextStyle(
-                            color: Colors.black,
-                            fontSize: 16,
-                            letterSpacing: .3,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              },
-            );
-          }),
+    return FutureBuilder<ComponentNode?>(
+      initialData: null,
+      future: Catalog().get(context),
+      builder: (context, data) {
+        if (!data.hasData || data.data == null) {
+          return Container();
+        }
+        final node = data.data as ComponentNode;
+        return PreviewScaffold(
+          basePath: CatalogComponent.routeName,
+          onBackPressed: Catalog().onBackPressed,
+          child: ListView(
+            children: [
+              buildTreeWidget(
+                context,
+                CatalogComponent.routeName,
+                node,
+                0,
+              )
+            ],
+          ),
+        );
+      },
     );
   }
-
-  void _nodePressed(TreeEntry<ComponentNode> entry) {
-    if (entry.node.children.isEmpty) {
-      if (entry.node.builtComponent?.preview?.path != null) {
-        context.go(
-            '${CatalogComponent.routeName}/${entry.node.builtComponent!.preview!.path}');
-      }
-    } else {
-      if (!entry.isExpanded) {
-        treeController?.toggleExpansion(entry.node);
-      } else {
-        treeController?.collapse(entry.node);
-      }
-    }
-  }
 }
+
+  
