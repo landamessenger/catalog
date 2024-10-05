@@ -1,10 +1,12 @@
 import 'base/base_task.dart';
 import 'tasks/format_task.dart';
 import 'tasks/preview_task.dart' as preview;
+import 'tasks/test_task.dart';
 
 class PreviewTask extends BaseTask {
   final tasks = [
     preview.PreviewTask(),
+    TestTask(),
     FormatTask(),
   ];
 
@@ -18,6 +20,6 @@ class PreviewTask extends BaseTask {
         print(e);
       }
     }
-    print('\n Previews generated \n');
+    print('\n Previews and tests generated \n');
   }
 }
