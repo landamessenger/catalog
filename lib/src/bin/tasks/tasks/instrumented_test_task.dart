@@ -6,7 +6,7 @@ import '../../preview_builder/preview_builder.dart';
 import '../../utils/configuration.dart';
 import '../base/base_task.dart';
 
-class TestTask extends BaseTask {
+class InstrumentedTestTask extends BaseTask {
   @override
   Future<void> work(List<String> args) async {
     final base = args.isEmpty ? '' : '${args.first}/';
@@ -55,7 +55,7 @@ class TestTask extends BaseTask {
       if (className == null) continue;
       if (preview == null) continue;
 
-      final testFile = await generateTest(
+      final testFile = await generateInstrumentedTest(
         config,
         file.path,
         className,
@@ -66,6 +66,6 @@ class TestTask extends BaseTask {
       test.add(testFile);
     }
 
-    await generateMainTest(base, test);
+    await generateMainInstrumentedTest(base, test);
   }
 }

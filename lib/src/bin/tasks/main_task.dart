@@ -1,6 +1,7 @@
 import 'base/base_task.dart';
 import 'tasks/catalog_task.dart';
 import 'tasks/format_task.dart';
+import 'tasks/instrumented_test_task.dart';
 import 'tasks/preview_task.dart';
 import 'tasks/test_task.dart';
 
@@ -8,6 +9,7 @@ class MainTask extends BaseTask {
   final tasks = [
     PreviewTask(),
     TestTask(),
+    InstrumentedTestTask(),
     CatalogTask(),
     FormatTask(),
   ];

@@ -13,12 +13,28 @@ class FormatTask extends BaseTask {
     stdout.write(resultFix.stdout);
     stderr.write(resultFix.stderr);
 
-    var result = await Process.run(
+    var resultFormatLib = await Process.run(
       'dart',
       ['format', 'lib/'],
       workingDirectory: Directory.current.path,
     );
-    stdout.write(result.stdout);
-    stderr.write(result.stderr);
+    stdout.write(resultFormatLib.stdout);
+    stderr.write(resultFormatLib.stderr);
+
+    var resultFormatTest = await Process.run(
+      'dart',
+      ['format', 'test/'],
+      workingDirectory: Directory.current.path,
+    );
+    stdout.write(resultFormatTest.stdout);
+    stderr.write(resultFormatTest.stderr);
+
+    var resultFormatInstrumentedTest = await Process.run(
+      'dart',
+      ['format', 'instrumented_test/'],
+      workingDirectory: Directory.current.path,
+    );
+    stdout.write(resultFormatInstrumentedTest.stdout);
+    stderr.write(resultFormatInstrumentedTest.stderr);
   }
 }
