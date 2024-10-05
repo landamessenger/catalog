@@ -8,18 +8,23 @@
 
 import 'package:integration_test/integration_test.dart';
 
-import 'package:example/widgets/utils/bottom/catalog/integration_test/fab_widget_integration_test.dart' as mzpp;
-import 'package:example/widgets/screen/catalog/integration_test/body_widget_integration_test.dart' as satm;
-import 'package:example/widgets/screen/catalog/integration_test/counter_widget_integration_test.dart' as azmi;
-import 'package:example/widgets/catalog/integration_test/main_screen_integration_test.dart' as kbve;
+import 'package:example/widgets/utils/bottom/catalog/integration_test/fab_widget_integration_test.dart'
+    as lcqt;
+import 'package:example/widgets/other_utils/bottom/catalog/integration_test/warning_info_widget_integration_test.dart'
+    as babq;
+import 'package:example/widgets/screen/catalog/integration_test/body_widget_integration_test.dart'
+    as izvv;
+import 'package:example/widgets/screen/catalog/integration_test/counter_widget_integration_test.dart'
+    as dmnb;
+import 'package:example/widgets/catalog/integration_test/main_screen_integration_test.dart'
+    as eyhi;
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
-  mzpp.FabWidgetIntegrationTest().main();
-satm.BodyWidgetIntegrationTest().main();
-azmi.CounterWidgetIntegrationTest().main();
-kbve.MainScreenIntegrationTest().main();
+  lcqt.FabWidgetIntegrationTest().main();
+  babq.WarningInfoWidgetIntegrationTest().main();
+  izvv.BodyWidgetIntegrationTest().main();
+  dmnb.CounterWidgetIntegrationTest().main();
+  eyhi.MainScreenIntegrationTest().main();
 }
-
-    

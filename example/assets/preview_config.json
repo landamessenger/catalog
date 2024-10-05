@@ -7,8 +7,8 @@
                "id": "widgets",
                "route": "widgets",
                "builtComponents": {
-                    "./example/lib/catalog/widgets/main_screen.dart": {
-                         "path": "./example/lib/catalog/widgets/main_screen.dart",
+                    "./lib/catalog/widgets/main_screen.dart": {
+                         "path": "./lib/catalog/widgets/main_screen.dart",
                          "route": "widgets",
                          "package": "package:example/catalog/widgets/main_screen.dart",
                          "clazzName": "MainScreenPreviewPreviewPageDummy",
@@ -35,8 +35,8 @@
                                    "id": "bottom",
                                    "route": "widgets/utils/bottom",
                                    "builtComponents": {
-                                        "./example/lib/catalog/widgets/utils/bottom/fab_widget.dart": {
-                                             "path": "./example/lib/catalog/widgets/utils/bottom/fab_widget.dart",
+                                        "./lib/catalog/widgets/utils/bottom/fab_widget.dart": {
+                                             "path": "./lib/catalog/widgets/utils/bottom/fab_widget.dart",
                                              "route": "widgets/utils/bottom",
                                              "package": "package:example/catalog/widgets/utils/bottom/fab_widget.dart",
                                              "clazzName": "FabWidgetPreviewPreviewPageDummy",
@@ -54,12 +54,40 @@
                               }
                          }
                     },
+                    "other_utils": {
+                         "id": "other_utils",
+                         "route": "widgets/other_utils",
+                         "builtComponents": {},
+                         "children": {
+                              "bottom": {
+                                   "id": "bottom",
+                                   "route": "widgets/other_utils/bottom",
+                                   "builtComponents": {
+                                        "./lib/catalog/widgets/other_utils/bottom/warning_info_widget.dart": {
+                                             "path": "./lib/catalog/widgets/other_utils/bottom/warning_info_widget.dart",
+                                             "route": "widgets/other_utils/bottom",
+                                             "package": "package:example/catalog/widgets/other_utils/bottom/warning_info_widget.dart",
+                                             "clazzName": "WarningInfoWidgetPreviewPreviewPageDummy",
+                                             "preview": {
+                                                  "id": "warning_info_widget",
+                                                  "path": "widgets/other_utils/bottom",
+                                                  "description": "Basic warning info text for alert",
+                                                  "parameters": [
+                                                       "infoText"
+                                                  ]
+                                             }
+                                        }
+                                   },
+                                   "children": {}
+                              }
+                         }
+                    },
                     "screen": {
                          "id": "screen",
                          "route": "widgets/screen",
                          "builtComponents": {
-                              "./example/lib/catalog/widgets/screen/body_widget.dart": {
-                                   "path": "./example/lib/catalog/widgets/screen/body_widget.dart",
+                              "./lib/catalog/widgets/screen/body_widget.dart": {
+                                   "path": "./lib/catalog/widgets/screen/body_widget.dart",
                                    "route": "widgets/screen",
                                    "package": "package:example/catalog/widgets/screen/body_widget.dart",
                                    "clazzName": "BodyWidgetPreviewPreviewPageDummy",
@@ -73,8 +101,8 @@
                                         ]
                                    }
                               },
-                              "./example/lib/catalog/widgets/screen/counter_widget.dart": {
-                                   "path": "./example/lib/catalog/widgets/screen/counter_widget.dart",
+                              "./lib/catalog/widgets/screen/counter_widget.dart": {
+                                   "path": "./lib/catalog/widgets/screen/counter_widget.dart",
                                    "route": "widgets/screen",
                                    "package": "package:example/catalog/widgets/screen/counter_widget.dart",
                                    "clazzName": "CounterWidgetPreviewPreviewPageDummy",

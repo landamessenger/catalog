@@ -9,17 +9,17 @@ import '../dummy/counter_widget.dummy.dart';
   description: 'Basic counter widget',
   parameters: [
     'counter',
-  ],)
+  ],
+)
 class CounterWidgetPreview extends ParentPreviewWidget {
-  
   @override
   String get title => 'counter_widget';
-  
+
   @override
   String get basePath => '/catalog';
-  
+
   const CounterWidgetPreview({super.key});
-    
+
   @override
   Widget preview(BuildContext context) {
     Catalog().widgetBasicPreviewMap.clear();
@@ -104,24 +104,22 @@ class CounterWidgetPreview extends ParentPreviewWidget {
                 ),
               ),
             for (int i = 0; i < CounterWidgetDummy().dummies.length; i++)
-                PreviewBoundary(
-    widgetKey: GlobalKey(),
-    dummyBuilder: () => CounterWidgetDummy().dummies[i],
-    builder: (BuildContext context, Dummy dummy) {
-      return buildCounterWidget(dummy);
-    },
-  ),
-  
+              PreviewBoundary(
+                widgetKey: GlobalKey(),
+                dummyBuilder: () => CounterWidgetDummy().dummies[i],
+                builder: (BuildContext context, Dummy dummy) {
+                  return buildCounterWidget(dummy);
+                },
+              ),
           ],
         )
       ],
     );
   }
-  
-  
 }
 
 CounterWidget buildCounterWidget(Dummy dummy) {
-  return CounterWidget(counter: dummy.parameters['counter'],);
+  return CounterWidget(
+    counter: dummy.parameters['counter'],
+  );
 }
-    

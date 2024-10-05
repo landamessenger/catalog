@@ -17,7 +17,7 @@ class MainScreenTest {
       () {
         testWidgets(
           'Finds title and info text',
-              (tester) async {
+          (tester) async {
             await tester.setupContext();
             final dummy = MainScreenDummy().dummies.first;
             final widget = buildMainScreen(dummy);
@@ -30,7 +30,7 @@ class MainScreenTest {
 
         testWidgets(
           'Web title not displayed on widget',
-              (tester) async {
+          (tester) async {
             await tester.setupContext();
 
             final dummy = MainScreenDummy().dummies.first;

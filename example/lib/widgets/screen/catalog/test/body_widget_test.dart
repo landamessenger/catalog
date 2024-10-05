@@ -37,7 +37,8 @@ class BodyWidgetTest {
             final widget = buildBodyWidget(dummy);
             await tester.test(widget);
 
-            expect(find.text('You have pushed the button this many times:'), findsAny);
+            expect(find.text('You have pushed the button this many times:'),
+                findsAny);
           },
         );
       },
