@@ -300,7 +300,7 @@ import 'package:catalog/catalog.dart';
 import '../dummy/$name.dummy.dart';
 import '../preview/$name.$prefix.dart';
 
-class ${clazz}IntegrationTestTest {
+class ${clazz}IntegrationTest {
   void main() {
     group(
       '$clazz - IntegrationTest Tests',

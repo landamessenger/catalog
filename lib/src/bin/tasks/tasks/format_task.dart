@@ -31,7 +31,7 @@ class FormatTask extends BaseTask {
 
     var resultFormatInstrumentedTest = await Process.run(
       'dart',
-      ['format', 'instrumented_test/'],
+      ['format', 'integration_test/'],
       workingDirectory: Directory.current.path,
     );
     stdout.write(resultFormatInstrumentedTest.stdout);
