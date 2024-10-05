@@ -55,7 +55,7 @@ class InstrumentedTestTask extends BaseTask {
       if (className == null) continue;
       if (preview == null) continue;
 
-      final testFile = await generateInstrumentedTest(
+      final testFile = await generateIntegrationTest(
         config,
         file.path,
         className,
@@ -66,6 +66,6 @@ class InstrumentedTestTask extends BaseTask {
       test.add(testFile);
     }
 
-    await generateMainInstrumentedTest(base, test);
+    await generateMainIntegrationTest(base, test);
   }
 }
