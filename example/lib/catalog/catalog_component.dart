@@ -3,90 +3,126 @@
 import 'package:flutter/material.dart';
 import 'package:catalog/catalog.dart';
 
+
 import 'package:example/catalog/widgets/utils/bottom/fab_widget.dart';
 
-import 'package:example/catalog/widgets/screen/body_widget.dart';
-import 'package:example/catalog/widgets/screen/counter_widget.dart';
+    
+
+
+
+    
+
+import 'package:example/catalog/widgets/screen/body_widget.dart';import 'package:example/catalog/widgets/screen/counter_widget.dart';
+
+    
 
 import 'package:example/catalog/widgets/main_screen.dart';
 
+    
+
+
+
+    
+
 class CatalogComponent extends StatefulWidget {
   static String routeName = '/catalog';
-
-  static GoRoute route = GoRoute(
-    path: CatalogComponent.routeName,
-    pageBuilder: (context, state) => NoTransitionPage(
-      key: state.pageKey,
-      child: const CatalogComponent(),
-    ),
-    routes: [
-      GoRoute(
-        path: 'widgets',
-        redirect: (context, state) {
-          if (state.fullPath != state.matchedLocation) return null;
-          return CatalogComponent.routeName;
-        },
-        routes: [
-          GoRoute(
-            path: MainScreenPreviewPreviewPageDummy.routeName,
-            pageBuilder: (context, state) => NoTransitionPage(
-              key: state.pageKey,
-              child: const MainScreenPreviewPreviewPageDummy(),
-            ),
+  
+  static GoRoute route =        GoRoute(
+          path: CatalogComponent.routeName,
+          pageBuilder: (context, state) => NoTransitionPage(
+            key: state.pageKey,
+            child: const CatalogComponent(),
           ),
-          GoRoute(
-            path: 'utils',
-            redirect: (context, state) {
-              if (state.fullPath != state.matchedLocation) return null;
-              return CatalogComponent.routeName;
-            },
-            routes: [
-              GoRoute(
-                path: 'bottom',
-                redirect: (context, state) {
-                  if (state.fullPath != state.matchedLocation) return null;
-                  return CatalogComponent.routeName;
-                },
-                routes: [
-                  GoRoute(
-                    path: FabWidgetPreviewPreviewPageDummy.routeName,
-                    pageBuilder: (context, state) => NoTransitionPage(
-                      key: state.pageKey,
-                      child: const FabWidgetPreviewPreviewPageDummy(),
-                    ),
-                  ),
-                ],
-              )
-            ],
+          routes: [
+                    GoRoute(
+          path: 'widgets',
+          redirect: (context, state) {
+            if (state.fullPath != state.matchedLocation) return null;
+            return CatalogComponent.routeName;
+          },
+          routes: [
+                     
+        GoRoute(
+          path: MainScreenPreviewPreviewPageDummy.routeName,
+          pageBuilder: (context, state) => NoTransitionPage(
+            key: state.pageKey,
+            child: const MainScreenPreviewPreviewPageDummy(),
           ),
-          GoRoute(
-            path: 'screen',
-            redirect: (context, state) {
-              if (state.fullPath != state.matchedLocation) return null;
-              return CatalogComponent.routeName;
-            },
-            routes: [
-              GoRoute(
-                path: BodyWidgetPreviewPreviewPageDummy.routeName,
-                pageBuilder: (context, state) => NoTransitionPage(
-                  key: state.pageKey,
-                  child: const BodyWidgetPreviewPreviewPageDummy(),
-                ),
-              ),
-              GoRoute(
-                path: CounterWidgetPreviewPreviewPageDummy.routeName,
-                pageBuilder: (context, state) => NoTransitionPage(
-                  key: state.pageKey,
-                  child: const CounterWidgetPreviewPreviewPageDummy(),
-                ),
-              ),
-            ],
-          )
-        ],
+        )
+        
+         
+            ,
+                    GoRoute(
+          path: 'utils',
+          redirect: (context, state) {
+            if (state.fullPath != state.matchedLocation) return null;
+            return CatalogComponent.routeName;
+          },
+          routes: [
+             
+            
+                    GoRoute(
+          path: 'bottom',
+          redirect: (context, state) {
+            if (state.fullPath != state.matchedLocation) return null;
+            return CatalogComponent.routeName;
+          },
+          routes: [
+                     
+        GoRoute(
+          path: FabWidgetPreviewPreviewPageDummy.routeName,
+          pageBuilder: (context, state) => NoTransitionPage(
+            key: state.pageKey,
+            child: const FabWidgetPreviewPreviewPageDummy(),
+          ),
+        )
+        
+         
+            ,
+            
+          ],
+        )
+  
+          ],
+        )
+  ,        GoRoute(
+          path: 'screen',
+          redirect: (context, state) {
+            if (state.fullPath != state.matchedLocation) return null;
+            return CatalogComponent.routeName;
+          },
+          routes: [
+                     
+        GoRoute(
+          path: BodyWidgetPreviewPreviewPageDummy.routeName,
+          pageBuilder: (context, state) => NoTransitionPage(
+            key: state.pageKey,
+            child: const BodyWidgetPreviewPreviewPageDummy(),
+          ),
+        )
+        
+         ,        
+        GoRoute(
+          path: CounterWidgetPreviewPreviewPageDummy.routeName,
+          pageBuilder: (context, state) => NoTransitionPage(
+            key: state.pageKey,
+            child: const CounterWidgetPreviewPreviewPageDummy(),
+          ),
+        )
+        
+         
+            ,
+            
+          ],
+        )
+  
+          ],
+        )
+  
+          ],
       )
-    ],
-  );
-
+;
+  
   const CatalogComponent({super.key});
 
   @override
@@ -94,6 +130,7 @@ class CatalogComponent extends StatefulWidget {
 }
 
 class CatalogComponentState extends State<CatalogComponent> {
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<ComponentNode?>(
@@ -122,3 +159,5 @@ class CatalogComponentState extends State<CatalogComponent> {
     );
   }
 }
+
+  

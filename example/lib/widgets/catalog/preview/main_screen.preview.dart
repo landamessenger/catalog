@@ -11,17 +11,17 @@ import '../dummy/main_screen.dummy.dart';
     'infoText',
     'counter',
     'incrementCounter',
-  ],
-)
+  ],)
 class MainScreenPreview extends ParentPreviewWidget {
+  
   @override
   String get title => 'main_screen';
-
+  
   @override
   String get basePath => '/catalog';
-
+  
   const MainScreenPreview({super.key});
-
+    
   @override
   Widget preview(BuildContext context) {
     Catalog().widgetBasicPreviewMap.clear();
@@ -106,25 +106,24 @@ class MainScreenPreview extends ParentPreviewWidget {
                 ),
               ),
             for (int i = 0; i < MainScreenDummy().dummies.length; i++)
-              PreviewBoundary(
-                widgetKey: GlobalKey(),
-                dummyBuilder: () => MainScreenDummy().dummies[i],
-                builder: (BuildContext context, Dummy dummy) {
-                  return buildMainScreen(dummy);
-                },
-              ),
+                PreviewBoundary(
+    widgetKey: GlobalKey(),
+    dummyBuilder: () => MainScreenDummy().dummies[i],
+    builder: (BuildContext context, Dummy dummy) {
+      return buildMainScreen(dummy);
+    },
+  ),
+  
           ],
         )
       ],
     );
   }
+  
+  
 }
 
 MainScreen buildMainScreen(Dummy dummy) {
-  return MainScreen(
-    title: dummy.parameters['title'],
-    infoText: dummy.parameters['infoText'],
-    counter: dummy.parameters['counter'],
-    incrementCounter: dummy.parameters['incrementCounter'],
-  );
+  return MainScreen(title: dummy.parameters['title'],infoText: dummy.parameters['infoText'],counter: dummy.parameters['counter'],incrementCounter: dummy.parameters['incrementCounter'],);
 }
+    

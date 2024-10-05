@@ -7,8 +7,8 @@
                "id": "widgets",
                "route": "widgets",
                "builtComponents": {
-                    "./lib/catalog/widgets/main_screen.dart": {
-                         "path": "./lib/catalog/widgets/main_screen.dart",
+                    "./example/lib/catalog/widgets/main_screen.dart": {
+                         "path": "./example/lib/catalog/widgets/main_screen.dart",
                          "route": "widgets",
                          "package": "package:example/catalog/widgets/main_screen.dart",
                          "clazzName": "MainScreenPreviewPreviewPageDummy",
@@ -35,8 +35,8 @@
                                    "id": "bottom",
                                    "route": "widgets/utils/bottom",
                                    "builtComponents": {
-                                        "./lib/catalog/widgets/utils/bottom/fab_widget.dart": {
-                                             "path": "./lib/catalog/widgets/utils/bottom/fab_widget.dart",
+                                        "./example/lib/catalog/widgets/utils/bottom/fab_widget.dart": {
+                                             "path": "./example/lib/catalog/widgets/utils/bottom/fab_widget.dart",
                                              "route": "widgets/utils/bottom",
                                              "package": "package:example/catalog/widgets/utils/bottom/fab_widget.dart",
                                              "clazzName": "FabWidgetPreviewPreviewPageDummy",
@@ -58,8 +58,8 @@
                          "id": "screen",
                          "route": "widgets/screen",
                          "builtComponents": {
-                              "./lib/catalog/widgets/screen/body_widget.dart": {
-                                   "path": "./lib/catalog/widgets/screen/body_widget.dart",
+                              "./example/lib/catalog/widgets/screen/body_widget.dart": {
+                                   "path": "./example/lib/catalog/widgets/screen/body_widget.dart",
                                    "route": "widgets/screen",
                                    "package": "package:example/catalog/widgets/screen/body_widget.dart",
                                    "clazzName": "BodyWidgetPreviewPreviewPageDummy",
@@ -73,8 +73,8 @@
                                         ]
                                    }
                               },
-                              "./lib/catalog/widgets/screen/counter_widget.dart": {
-                                   "path": "./lib/catalog/widgets/screen/counter_widget.dart",
+                              "./example/lib/catalog/widgets/screen/counter_widget.dart": {
+                                   "path": "./example/lib/catalog/widgets/screen/counter_widget.dart",
                                    "route": "widgets/screen",
                                    "package": "package:example/catalog/widgets/screen/counter_widget.dart",
                                    "clazzName": "CounterWidgetPreviewPreviewPageDummy",

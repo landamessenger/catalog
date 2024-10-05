@@ -17,6 +17,7 @@ extension WidgetTestExt on WidgetTester {
   }
 
   Future<void> setupContext() async {
+    Stringcare().langPath = 'lang_base';
     await pumpWidget(
       MaterialApp(
         navigatorKey: Stringcare().navigatorKey,
@@ -26,5 +27,6 @@ extension WidgetTestExt on WidgetTester {
       ),
     );
     await pumpAndSettle();
+    await Stringcare().load();
   }
 }

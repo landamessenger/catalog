@@ -4,6 +4,8 @@
 ///
 
 import 'package:catalog/catalog.dart';
+import 'package:example/r.dart';
+import 'package:stringcare/stringcare.dart';
 
 import '../dummy/body_widget.dummy.dart';
 import '../preview/body_widget.preview.dart';
@@ -14,24 +16,28 @@ class BodyWidgetTest {
       'BodyWidget - Tests',
       () {
         testWidgets(
-          'Lorem text not found',
+          'No title is found',
           (tester) async {
+            await tester.setupContext();
+
             final dummy = BodyWidgetDummy().dummies.first;
             final widget = buildBodyWidget(dummy);
             await tester.test(widget);
 
-            expect(find.text('lorem ipsu'), findsNothing);
+            expect(find.text(R.strings.title_app.string()), findsNothing);
           },
         );
 
         testWidgets(
-          'Other lorem text not found',
+          'Info text is displayed',
           (tester) async {
+            await tester.setupContext();
+
             final dummy = BodyWidgetDummy().dummies.first;
             final widget = buildBodyWidget(dummy);
             await tester.test(widget);
 
-            expect(find.text('ipsu lorem'), findsNothing);
+            expect(find.text('You have pushed the button this many times:'), findsAny);
           },
         );
       },

@@ -4,6 +4,8 @@
 ///
 
 import 'package:catalog/catalog.dart';
+import 'package:example/r.dart';
+import 'package:stringcare/stringcare.dart';
 
 import '../dummy/main_screen.dummy.dart';
 import '../preview/main_screen.preview.dart';
@@ -14,24 +16,28 @@ class MainScreenIntegrationTest {
       'MainScreen - IntegrationTest Tests',
       () {
         testWidgets(
-          'Lorem text not found',
+          'Finds title and info text',
           (tester) async {
+            await tester.setupContext();
             final dummy = MainScreenDummy().dummies.first;
             final widget = buildMainScreen(dummy);
             await tester.test(widget);
 
-            expect(find.text('lorem ipsu'), findsNothing);
+            expect(find.text(R.strings.title_app.string()), findsAny);
+            expect(find.text(R.strings.info_text.string()), findsAny);
           },
         );
 
         testWidgets(
-          'Other lorem text not found',
+          'Web title not displayed on widget',
           (tester) async {
+            await tester.setupContext();
+
             final dummy = MainScreenDummy().dummies.first;
             final widget = buildMainScreen(dummy);
             await tester.test(widget);
 
-            expect(find.text('ipsu lorem'), findsNothing);
+            expect(find.text(R.strings.title.string()), findsNothing);
           },
         );
       },

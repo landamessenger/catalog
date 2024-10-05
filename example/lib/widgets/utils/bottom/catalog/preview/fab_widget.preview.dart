@@ -7,17 +7,17 @@ import '../dummy/fab_widget.dummy.dart';
 
 @Preview(
   description: 'Basic fab widget',
-  parameters: ['incrementCounter'],
-)
+  parameters: ['incrementCounter'],)
 class FabWidgetPreview extends ParentPreviewWidget {
+  
   @override
   String get title => 'fab_widget';
-
+  
   @override
   String get basePath => '/catalog';
-
+  
   const FabWidgetPreview({super.key});
-
+    
   @override
   Widget preview(BuildContext context) {
     Catalog().widgetBasicPreviewMap.clear();
@@ -102,22 +102,24 @@ class FabWidgetPreview extends ParentPreviewWidget {
                 ),
               ),
             for (int i = 0; i < FabWidgetDummy().dummies.length; i++)
-              PreviewBoundary(
-                widgetKey: GlobalKey(),
-                dummyBuilder: () => FabWidgetDummy().dummies[i],
-                builder: (BuildContext context, Dummy dummy) {
-                  return buildFabWidget(dummy);
-                },
-              ),
+                PreviewBoundary(
+    widgetKey: GlobalKey(),
+    dummyBuilder: () => FabWidgetDummy().dummies[i],
+    builder: (BuildContext context, Dummy dummy) {
+      return buildFabWidget(dummy);
+    },
+  ),
+  
           ],
         )
       ],
     );
   }
+  
+  
 }
 
 FabWidget buildFabWidget(Dummy dummy) {
-  return FabWidget(
-    incrementCounter: dummy.parameters['incrementCounter'],
-  );
+  return FabWidget(incrementCounter: dummy.parameters['incrementCounter'],);
 }
+    
