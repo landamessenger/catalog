@@ -1,4 +1,4 @@
-library catalog;
+library;
 
 import 'dart:convert';
 import 'dart:typed_data';
@@ -11,13 +11,15 @@ import 'src/builders/preview/preview_boundary.dart';
 import 'src/builders/preview/preview_render_widget.dart';
 
 export 'package:catalog/src/annotations/preview.dart';
+export 'package:catalog/src/builders/catalog/component_node.dart';
+export 'package:catalog/src/builders/catalog/preview_scaffold.dart';
+export 'package:catalog/src/builders/catalog/tree_elements_builder.dart';
 export 'package:catalog/src/builders/device/device.dart';
 export 'package:catalog/src/builders/dummy/dummy.dart';
 export 'package:catalog/src/builders/dummy/dummy_text.dart';
+export 'package:catalog/src/builders/dummy/preview_dummy.dart';
 export 'package:catalog/src/builders/preview/parent_preview_widget.dart';
 export 'package:catalog/src/builders/preview/preview_boundary.dart';
-export 'package:catalog/src/builders/dummy/preview_dummy.dart';
-export 'package:catalog/src/builders/catalog/preview_scaffold.dart';
 export 'package:catalog/src/builders/screenshots/background.dart';
 export 'package:catalog/src/builders/screenshots/op/screenshot_process.dart';
 export 'package:catalog/src/builders/screenshots/screenshot.dart';
@@ -28,11 +30,12 @@ export 'package:catalog/src/builders/screenshots/types/apple/i_phone_55.dart';
 export 'package:catalog/src/builders/screenshots/types/apple/i_phone_65.dart';
 export 'package:catalog/src/builders/screenshots/types/apple/macos.dart';
 export 'package:catalog/src/catalog_runner.dart';
-export 'package:catalog/src/builders/catalog/component_node.dart';
-export 'package:catalog/src/utils/constants.dart';
-export 'package:catalog/src/embed/flutter_fanacy_tree_view/flutter_fancy_tree_view.dart';
 export 'package:catalog/src/extensions/locale_ext.dart';
+export 'package:catalog/src/extensions/widget_test_ext.dart';
+export 'package:catalog/src/utils/constants.dart';
 export 'package:device_frame/device_frame.dart';
+export 'package:flutter_test/flutter_test.dart';
+export 'package:integration_test/integration_test.dart';
 export 'package:go_router/go_router.dart';
 
 class Catalog {

@@ -14,8 +14,6 @@ class Dummy {
 
   final Screenshot screenshot;
 
-  final List<dynamic> listParameters;
-
   final Map<String, dynamic> parameters;
 
   const Dummy({
@@ -23,7 +21,6 @@ class Dummy {
     this.parameters = const {},
     this.device = const Device(),
     this.screenshot = const Screenshot(),
-    this.listParameters = const [],
   });
 
   Dummy copyWith({
@@ -31,14 +28,12 @@ class Dummy {
     Map<String, dynamic>? parameters,
     Device? device,
     Screenshot? screenshot,
-    List<dynamic>? listParameters,
   }) =>
       Dummy(
         description: description ?? this.description,
         parameters: parameters ?? this.parameters,
         device: device ?? this.device,
         screenshot: screenshot ?? this.screenshot,
-        listParameters: listParameters ?? this.listParameters,
       );
 
   bool isDeviceDummy() => device.deviceInfo != null;

@@ -3,51 +3,31 @@ import 'dart:convert';
 import 'package:catalog/src/base/serial.dart';
 
 class Preview implements Serial<Preview> {
-  final String id;
-  final String path;
   final String description;
-  final bool usesDummies;
-  final List<String> dummyParameters;
-  final List<dynamic> listParameters;
-  final Map<String, dynamic> parameters;
+  final List<String> parameters;
 
   const Preview({
-    required this.id,
-    required this.path,
     this.description = '',
-    this.usesDummies = false,
-    this.parameters = const {},
-    this.listParameters = const [],
-    this.dummyParameters = const [],
+    this.parameters = const [],
   });
 
   @override
   Preview fromJson(Map<String, dynamic> json) => Preview(
-        id: json['id'] ?? '',
-        path: json['path'] ?? '',
         description: json['description'] ?? '',
-        usesDummies: json['usesDummies'] ?? false,
-        dummyParameters: Serial.listObjectFromBasicType<String>(
-          json['dummyParameters'] ?? [],
+        parameters: Serial.listObjectFromBasicType<String>(
+          json['parameters'] ?? [],
         ),
-        listParameters: json['listParameters'] ?? [],
-        parameters: json['parameters'] ?? {},
       );
 
   @override
-  String getId() => id;
+  String getId() => '';
 
   @override
-  Preview instance() => const Preview(id: '', path: '');
+  Preview instance() => const Preview();
 
   @override
   Map<String, dynamic> toJson() => {
-        'id': id,
-        'path': path,
         'description': description,
-        'usesDummies': usesDummies,
-        'listParameters': listParameters,
-        'dummyParameters': dummyParameters,
         'parameters': parameters,
       };
 
@@ -62,4 +42,13 @@ class Preview implements Serial<Preview> {
     var map = toJson();
     return jsonEncode(map);
   }
+
+  Preview copyWith({
+    String? description,
+    List<String>? parameters,
+  }) =>
+      Preview(
+        description: description ?? this.description,
+        parameters: parameters ?? this.parameters,
+      );
 }

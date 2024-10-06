@@ -1,4 +1,4 @@
-import 'package:catalog/src/annotations/preview.dart';
+import 'package:catalog/src/annotations/internal_preview.dart';
 import 'package:catalog/src/base/serial.dart';
 
 class BuiltComponent extends Serial<BuiltComponent> {
@@ -6,7 +6,13 @@ class BuiltComponent extends Serial<BuiltComponent> {
   String route = '';
   String package = '';
   String clazzName = '';
-  Preview? preview;
+  InternalPreview? preview;
+
+  String get name {
+    if (!path.contains('/')) return path;
+    var parts = path.split('/');
+    return parts.last;
+  }
 
   BuiltComponent({
     this.path = '',
@@ -29,7 +35,8 @@ class BuiltComponent extends Serial<BuiltComponent> {
     package = json['package'] ?? '';
     clazzName = json['clazzName'] ?? '';
     if (json['preview'] != null) {
-      preview = const Preview(id: '', path: '').fromJson(json['preview'] ?? {});
+      preview = const InternalPreview(id: '', path: '')
+          .fromJson(json['preview'] ?? {});
     }
     return this;
   }

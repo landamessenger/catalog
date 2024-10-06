@@ -14,4 +14,10 @@ abstract class PreviewDummy {
     }
     return index;
   }
+
+  Dummy get(int index) {
+    if (dummies.isEmpty) throw Exception('Empty dummies list');
+    if (index >= dummies.length) return dummies.first;
+    return dummies[index];
+  }
 }

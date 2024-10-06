@@ -1,14 +1,11 @@
 import 'package:catalog/catalog.dart';
 import 'package:flutter/material.dart';
 
-import 'body_widget.dart';
-import 'fab_widget.dart';
+import 'screen/body_widget.dart';
+import 'utils/bottom/fab_widget.dart';
 
 @Preview(
-  id: 'MainScreenPreview',
-  path: 'widgets/main_screen_widget',
-  usesDummies: true,
-  dummyParameters: [
+  parameters: [
     'title',
     'infoText',
     'counter',

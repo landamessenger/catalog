@@ -4,3 +4,8 @@ widget_preview.iml
 .dart_tool
 .DS_Store
 .idea/
+
+/lib/.DS_Store
+/lib/src/.DS_Store
+/example/lib/.DS_Store
+/example/lib/src/.DS_Store

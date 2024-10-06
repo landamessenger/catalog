@@ -1,4 +1,4 @@
-library flutter_svg_provider;
+library;
 
 import 'dart:async';
 import 'dart:io';

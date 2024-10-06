@@ -9,6 +9,7 @@ class PreviewScaffold extends StatelessWidget {
   final Widget child;
   final String? title;
   final void Function()? onBackPressed;
+  final String basePath;
 
   const PreviewScaffold({
     super.key,
@@ -16,14 +17,19 @@ class PreviewScaffold extends StatelessWidget {
     this.title,
     this.drawer,
     this.onBackPressed,
+    required this.basePath,
   });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(
-        child: DrawerPreview(
-          onBackPressed: onBackPressed ?? Catalog().onBackPressed,
+      drawer: SizedBox(
+        width: 600.0,
+        child: Drawer(
+          child: DrawerPreview(
+            basePath: basePath,
+            onBackPressed: onBackPressed ?? Catalog().onBackPressed,
+          ),
         ),
       ),
       appBar: AppBar(
