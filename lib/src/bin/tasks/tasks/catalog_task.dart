@@ -155,10 +155,6 @@ class ${pageName}State extends State<$pageName> {
 
     catalogFile.writeAsStringSync(catalogContent);
 
-    final File file =
-        File('./$base${config['base']}/${config['output']}/process.dart');
-    if (file.existsSync()) await file.delete();
-
     await generateCatalogReadme(base, config);
   }
 }

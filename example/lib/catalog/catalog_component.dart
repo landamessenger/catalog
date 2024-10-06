@@ -8,6 +8,7 @@ import 'package:example/catalog/widgets/utils/bottom/fab_widget.dart';
 import 'package:example/catalog/widgets/other_utils/bottom/warning_info_widget.dart';
 
 import 'package:example/catalog/widgets/screen/body_widget.dart';
+import 'package:example/catalog/widgets/screen/sized_container.dart';
 import 'package:example/catalog/widgets/screen/counter_widget.dart';
 
 import 'package:example/catalog/widgets/main_screen.dart';
@@ -98,6 +99,13 @@ class CatalogComponent extends StatefulWidget {
                 pageBuilder: (context, state) => NoTransitionPage(
                   key: state.pageKey,
                   child: const BodyWidgetPreviewPreviewPageDummy(),
+                ),
+              ),
+              GoRoute(
+                path: SizedContainerPreviewPreviewPageDummy.routeName,
+                pageBuilder: (context, state) => NoTransitionPage(
+                  key: state.pageKey,
+                  child: const SizedContainerPreviewPreviewPageDummy(),
                 ),
               ),
               GoRoute(

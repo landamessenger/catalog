@@ -9,25 +9,25 @@
 import 'package:integration_test/integration_test.dart';
 
 import 'package:example/widgets/utils/bottom/catalog/integration_test/fab_widget_integration_test.dart'
-    as nsyv;
+    as krix;
 import 'package:example/widgets/other_utils/bottom/catalog/integration_test/warning_info_widget_integration_test.dart'
-    as fhuz;
+    as lqzu;
 import 'package:example/widgets/screen/catalog/integration_test/sized_container_integration_test.dart'
-    as qaip;
+    as olvc;
 import 'package:example/widgets/screen/catalog/integration_test/body_widget_integration_test.dart'
-    as afnp;
+    as rxco;
 import 'package:example/widgets/screen/catalog/integration_test/counter_widget_integration_test.dart'
-    as mvnf;
+    as zesi;
 import 'package:example/widgets/catalog/integration_test/main_screen_integration_test.dart'
-    as gnzn;
+    as nlyv;
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
-  nsyv.FabWidgetIntegrationTest().main();
-  fhuz.WarningInfoWidgetIntegrationTest().main();
-  qaip.SizedContainerIntegrationTest().main();
-  afnp.BodyWidgetIntegrationTest().main();
-  mvnf.CounterWidgetIntegrationTest().main();
-  gnzn.MainScreenIntegrationTest().main();
+  krix.FabWidgetIntegrationTest().main();
+  lqzu.WarningInfoWidgetIntegrationTest().main();
+  olvc.SizedContainerIntegrationTest().main();
+  rxco.BodyWidgetIntegrationTest().main();
+  zesi.CounterWidgetIntegrationTest().main();
+  nlyv.MainScreenIntegrationTest().main();
 }

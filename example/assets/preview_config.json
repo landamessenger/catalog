@@ -101,6 +101,21 @@
                                         ]
                                    }
                               },
+                              "./lib/catalog/widgets/screen/sized_container.dart": {
+                                   "path": "./lib/catalog/widgets/screen/sized_container.dart",
+                                   "route": "widgets/screen",
+                                   "package": "package:example/catalog/widgets/screen/sized_container.dart",
+                                   "clazzName": "SizedContainerPreviewPreviewPageDummy",
+                                   "preview": {
+                                        "id": "sized_container",
+                                        "path": "widgets/screen",
+                                        "description": "Container with a max width",
+                                        "parameters": [
+                                             "width",
+                                             "child"
+                                        ]
+                                   }
+                              },
                               "./lib/catalog/widgets/screen/counter_widget.dart": {
                                    "path": "./lib/catalog/widgets/screen/counter_widget.dart",
                                    "route": "widgets/screen",

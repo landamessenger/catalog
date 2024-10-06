@@ -1,10 +1,20 @@
 import 'dart:io';
 
+import 'package:catalog/src/bin/utils/configuration.dart';
+
 import '../base/base_task.dart';
 
 class FormatTask extends BaseTask {
   @override
   Future<void> work(List<String> args) async {
+    final base = args.isEmpty ? '' : '${args.first}/';
+
+    var config = loadConfigFile(base);
+
+    final File file =
+        File('./$base${config['base']}/${config['output']}/process.dart');
+    if (file.existsSync()) await file.delete();
+
     var resultFix = await Process.run(
       'dart',
       ['fix', '--apply'],
