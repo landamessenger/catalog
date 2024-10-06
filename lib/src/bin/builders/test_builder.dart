@@ -60,7 +60,7 @@ class ${clazz}Test {
           'Lorem text not found',
           (tester) async {
             // prepare the context
-            await setupTestContext();
+            await tester.setupTestContext();
             
             // prepare the widget
             final dummy = ${clazz}Dummy().dummies.first;
@@ -76,7 +76,7 @@ class ${clazz}Test {
           'Other lorem text not found',
           (tester) async {
             // prepare the context
-            await setupTestContext();
+            await tester.setupTestContext();
             
             // prepare the widget
             final dummy = ${clazz}Dummy().dummies.first;
@@ -160,7 +160,7 @@ class ${clazz}IntegrationTest {
           'Lorem text not found',
           (tester) async {
             // prepare the context
-            await setupIntegrationTestContext();
+            await tester.setupIntegrationTestContext();
             
             // prepare the widget
             final dummy = ${clazz}Dummy().dummies.first;
@@ -176,7 +176,7 @@ class ${clazz}IntegrationTest {
           'Other lorem text not found',
           (tester) async {
             // prepare the context
-            await setupIntegrationTestContext();
+            await tester.setupIntegrationTestContext();
             
             // prepare the widget
             final dummy = ${clazz}Dummy().dummies.first;

@@ -29,9 +29,15 @@ This package allows you to create a widget catalog and all kinds of screenshots.
 
 [- What are dummies?](https://github.com/landamessenger/catalog/wiki/Dummies#what-are-dummies)
 
-[- Complex page catalog](https://github.com/landamessenger/catalog/wiki/Dummies#complex-page-catalog)
-
 [- Prepare dummies](https://github.com/landamessenger/catalog/wiki/Dummies#prepare-dummies)
+
+### [Test](https://github.com/landamessenger/catalog/wiki/Test)
+
+[- Tests](https://github.com/landamessenger/catalog/wiki/Test#tests)
+
+[- Integration Tests](https://github.com/landamessenger/catalog/wiki/Test#integration-tests)
+
+[- Sample](https://github.com/landamessenger/catalog/wiki/Test#sample)
 
 ### [Build & Run](https://github.com/landamessenger/catalog/wiki/Build-&-Run)
 
@@ -52,4 +58,3 @@ This package allows you to create a widget catalog and all kinds of screenshots.
 [- Samples](https://github.com/landamessenger/catalog/wiki/Screenshots#samples)
 
 ### [Catalog Sample](https://landamessenger.com/catalog)
-

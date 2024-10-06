@@ -9,22 +9,25 @@
 import 'package:integration_test/integration_test.dart';
 
 import 'package:example/widgets/utils/bottom/catalog/integration_test/fab_widget_integration_test.dart'
-    as fwie;
+    as nsyv;
 import 'package:example/widgets/other_utils/bottom/catalog/integration_test/warning_info_widget_integration_test.dart'
-    as aznv;
+    as fhuz;
+import 'package:example/widgets/screen/catalog/integration_test/sized_container_integration_test.dart'
+    as qaip;
 import 'package:example/widgets/screen/catalog/integration_test/body_widget_integration_test.dart'
-    as yzoq;
+    as afnp;
 import 'package:example/widgets/screen/catalog/integration_test/counter_widget_integration_test.dart'
-    as zciv;
+    as mvnf;
 import 'package:example/widgets/catalog/integration_test/main_screen_integration_test.dart'
-    as lwvd;
+    as gnzn;
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
-  fwie.FabWidgetIntegrationTest().main();
-  aznv.WarningInfoWidgetIntegrationTest().main();
-  yzoq.BodyWidgetIntegrationTest().main();
-  zciv.CounterWidgetIntegrationTest().main();
-  lwvd.MainScreenIntegrationTest().main();
+  nsyv.FabWidgetIntegrationTest().main();
+  fhuz.WarningInfoWidgetIntegrationTest().main();
+  qaip.SizedContainerIntegrationTest().main();
+  afnp.BodyWidgetIntegrationTest().main();
+  mvnf.CounterWidgetIntegrationTest().main();
+  gnzn.MainScreenIntegrationTest().main();
 }

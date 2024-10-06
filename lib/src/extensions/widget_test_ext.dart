@@ -10,7 +10,7 @@ extension WidgetTestExt on WidgetTester {
         navigatorKey: Stringcare().navigatorKey,
         supportedLocales: Stringcare().locales,
         localizationsDelegates: Stringcare().delegates,
-        home: widget,
+        home: Center(child: widget),
       ),
     );
     await pumpAndSettle();
