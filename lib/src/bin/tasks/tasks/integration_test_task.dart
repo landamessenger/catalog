@@ -1,12 +1,12 @@
 import 'dart:io';
 
+import 'package:catalog/src/bin/builders/common_builder.dart';
+import 'package:catalog/src/bin/builders/test_builder.dart';
+import 'package:catalog/src/bin/tasks/base/base_task.dart';
+import 'package:catalog/src/bin/utils/configuration.dart';
 import 'package:catalog/src/bin/utils/test_builder_info.dart';
 
-import '../../preview_builder/preview_builder.dart';
-import '../../utils/configuration.dart';
-import '../base/base_task.dart';
-
-class InstrumentedTestTask extends BaseTask {
+class IntegrationTestTask extends BaseTask {
   @override
   Future<void> work(List<String> args) async {
     final base = args.isEmpty ? '' : '${args.first}/';

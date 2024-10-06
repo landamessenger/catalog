@@ -1,6 +1,6 @@
 import 'base/base_task.dart';
 import 'tasks/format_task.dart';
-import 'tasks/instrumented_test_task.dart';
+import 'tasks/integration_test_task.dart';
 import 'tasks/preview_task.dart' as preview;
 import 'tasks/test_task.dart';
 
@@ -8,7 +8,7 @@ class PreviewTask extends BaseTask {
   final tasks = [
     preview.PreviewTask(),
     TestTask(),
-    InstrumentedTestTask(),
+    IntegrationTestTask(),
     FormatTask(),
   ];
 

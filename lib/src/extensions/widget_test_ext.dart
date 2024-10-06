@@ -16,8 +16,24 @@ extension WidgetTestExt on WidgetTester {
     await pumpAndSettle();
   }
 
-  Future<void> setupContext() async {
-    Stringcare().langPath = 'lang_base';
+  /// The original unencrypted resources are used on test.
+  /// Uses `dart:io` under the hood.
+  Future<void> setupTestContext() => _setupContext(
+        useEncrypted: false,
+      );
+
+  /// The encrypted resources are consumed.
+  Future<void> setupIntegrationTestContext() => _setupContext(
+        useEncrypted: true,
+      );
+
+  /// Disables the Stringcare native libs (.so and .dylib) and uses the Dart
+  /// implementation. Also configures the encryption status.
+  Future<void> _setupContext({
+    required bool useEncrypted,
+  }) async {
+    Stringcare().disableNative = true;
+    Stringcare().useEncrypted = useEncrypted;
     await pumpWidget(
       MaterialApp(
         navigatorKey: Stringcare().navigatorKey,

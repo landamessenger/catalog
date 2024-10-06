@@ -1,18 +1,12 @@
 import 'package:catalog/src/bin/utils/messages.dart';
 
 import 'base/base_task.dart';
-import 'tasks/catalog_task.dart';
 import 'tasks/format_task.dart';
-import 'tasks/integration_test_task.dart';
-import 'tasks/preview_task.dart';
-import 'tasks/test_task.dart';
+import 'tasks/integration_test_task.dart' as test;
 
-class MainTask extends BaseTask {
+class IntegrationTestTask extends BaseTask {
   final tasks = [
-    PreviewTask(),
-    TestTask(),
-    IntegrationTestTask(),
-    CatalogTask(),
+    test.IntegrationTestTask(),
     FormatTask(),
   ];
 
@@ -26,6 +20,6 @@ class MainTask extends BaseTask {
         print(e);
       }
     }
-    print(commonMessage('Previews, tests, integration tests and catalog generated'));
+    print(commonMessage('🧪📱 Integration tests generated'));
   }
 }

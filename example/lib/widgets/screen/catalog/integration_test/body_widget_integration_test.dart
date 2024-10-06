@@ -18,7 +18,7 @@ class BodyWidgetIntegrationTest {
         testWidgets(
           'No title is found',
           (tester) async {
-            await tester.setupContext();
+            await tester.setupIntegrationTestContext();
 
             final dummy = BodyWidgetDummy().dummies.first;
             final widget = buildBodyWidget(dummy);
@@ -31,7 +31,7 @@ class BodyWidgetIntegrationTest {
         testWidgets(
           'Info text is displayed',
           (tester) async {
-            await tester.setupContext();
+            await tester.setupIntegrationTestContext();
 
             final dummy = BodyWidgetDummy().dummies.first;
             final widget = buildBodyWidget(dummy);

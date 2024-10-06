@@ -1,12 +1,11 @@
 import 'dart:io';
 
 import 'package:catalog/src/base/serial.dart';
+import 'package:catalog/src/bin/builders/catalog_builder.dart';
+import 'package:catalog/src/bin/tasks/base/base_task.dart';
+import 'package:catalog/src/bin/utils/configuration.dart';
 import 'package:catalog/src/builders/catalog/built_component.dart';
 import 'package:catalog/src/builders/catalog/component_node.dart';
-
-import '../../catalog_builder/catalog_builder.dart';
-import '../../utils/configuration.dart';
-import '../base/base_task.dart';
 
 class CatalogTask extends BaseTask {
   @override
@@ -159,5 +158,7 @@ class ${pageName}State extends State<$pageName> {
     final File file =
         File('./$base${config['base']}/${config['output']}/process.dart');
     if (file.existsSync()) await file.delete();
+
+    await generateCatalogReadme(base, config);
   }
 }

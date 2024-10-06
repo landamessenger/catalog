@@ -15,7 +15,7 @@ class WarningInfoWidgetIntegrationTest {
       () {
         testWidgets(
           'Finds text sample',
-              (tester) async {
+          (tester) async {
             final dummy = WarningInfoWidgetDummy().dummies.first;
             final widget = buildWarningInfoWidget(dummy);
             await tester.test(widget);
@@ -26,7 +26,7 @@ class WarningInfoWidgetIntegrationTest {
 
         testWidgets(
           'Other lorem text not found',
-              (tester) async {
+          (tester) async {
             final dummy = WarningInfoWidgetDummy().dummies.first;
             final widget = buildWarningInfoWidget(dummy);
             await tester.test(widget);

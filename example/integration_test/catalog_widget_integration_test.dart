@@ -9,22 +9,22 @@
 import 'package:integration_test/integration_test.dart';
 
 import 'package:example/widgets/utils/bottom/catalog/integration_test/fab_widget_integration_test.dart'
-    as lcqt;
+    as fwie;
 import 'package:example/widgets/other_utils/bottom/catalog/integration_test/warning_info_widget_integration_test.dart'
-    as babq;
+    as aznv;
 import 'package:example/widgets/screen/catalog/integration_test/body_widget_integration_test.dart'
-    as izvv;
+    as yzoq;
 import 'package:example/widgets/screen/catalog/integration_test/counter_widget_integration_test.dart'
-    as dmnb;
+    as zciv;
 import 'package:example/widgets/catalog/integration_test/main_screen_integration_test.dart'
-    as eyhi;
+    as lwvd;
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
-  lcqt.FabWidgetIntegrationTest().main();
-  babq.WarningInfoWidgetIntegrationTest().main();
-  izvv.BodyWidgetIntegrationTest().main();
-  dmnb.CounterWidgetIntegrationTest().main();
-  eyhi.MainScreenIntegrationTest().main();
+  fwie.FabWidgetIntegrationTest().main();
+  aznv.WarningInfoWidgetIntegrationTest().main();
+  yzoq.BodyWidgetIntegrationTest().main();
+  zciv.CounterWidgetIntegrationTest().main();
+  lwvd.MainScreenIntegrationTest().main();
 }

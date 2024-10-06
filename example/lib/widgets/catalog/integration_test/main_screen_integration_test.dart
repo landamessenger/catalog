@@ -18,7 +18,7 @@ class MainScreenIntegrationTest {
         testWidgets(
           'Finds title and info text',
           (tester) async {
-            await tester.setupContext();
+            await tester.setupIntegrationTestContext();
             final dummy = MainScreenDummy().dummies.first;
             final widget = buildMainScreen(dummy);
             await tester.test(widget);
@@ -31,7 +31,7 @@ class MainScreenIntegrationTest {
         testWidgets(
           'Web title not displayed on widget',
           (tester) async {
-            await tester.setupContext();
+            await tester.setupIntegrationTestContext();
 
             final dummy = MainScreenDummy().dummies.first;
             final widget = buildMainScreen(dummy);

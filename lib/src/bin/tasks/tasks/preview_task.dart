@@ -1,7 +1,9 @@
 import 'dart:io';
 
-import '../../preview_builder/dummy_builder.dart';
-import '../../preview_builder/preview_builder.dart';
+import 'package:catalog/src/bin/builders/common_builder.dart';
+
+import '../../builders/dummy_builder.dart';
+import '../../builders/preview_builder.dart';
 import '../../utils/configuration.dart';
 import '../base/base_task.dart';
 

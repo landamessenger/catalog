@@ -18,20 +18,20 @@ class MainScreenTest {
         testWidgets(
           'Finds title and info text',
           (tester) async {
-            await tester.setupContext();
+            await tester.setupTestContext();
             final dummy = MainScreenDummy().dummies.first;
             final widget = buildMainScreen(dummy);
             await tester.test(widget);
 
-            expect(find.text(R.strings.title_app.string()), findsAny);
-            expect(find.text(R.strings.info_text.string()), findsAny);
+            expect(find.text(R.strings.title_app.string()), findsOneWidget);
+            expect(find.text(R.strings.info_text.string()), findsOneWidget);
           },
         );
 
         testWidgets(
           'Web title not displayed on widget',
           (tester) async {
-            await tester.setupContext();
+            await tester.setupTestContext();
 
             final dummy = MainScreenDummy().dummies.first;
             final widget = buildMainScreen(dummy);
