@@ -1,6 +1,6 @@
 String commonMessage(String message) => '''
 
-✅ $message.
+✅  $message.
 
 🐛 Report any issue on https://github.com/landamessenger/catalog/issues
 

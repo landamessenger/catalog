@@ -1,4 +1,7 @@
+import 'package:catalog/src/bin/tasks/integration_test_task.dart';
 import 'package:catalog/src/bin/tasks/main_task.dart';
+import 'package:catalog/src/bin/tasks/preview_task.dart';
+import 'package:catalog/src/bin/tasks/test_task.dart';
 import 'package:catalog/src/bin/utils/configuration.dart';
 import 'package:catalog/src/catalog_runner.dart';
 import 'package:flutter/material.dart';
@@ -26,12 +29,30 @@ void main() {
     () async {
       var dependencies = loadDependenciesFile('$exampleFolder/');
       print(introMessage(dependencies[dependency].toString()));
-      await MainTask().work([exampleFolder]);
+      await PreviewTask().work([exampleFolder]);
     },
   );
 
   test(
-    'Test Main task (preview + catalog + format)',
+    'Test Test task (test + format)',
+    () async {
+      var dependencies = loadDependenciesFile('$exampleFolder/');
+      print(introMessage(dependencies[dependency].toString()));
+      await TestTask().work([exampleFolder]);
+    },
+  );
+
+  test(
+    'Test Integration Test task (integration_test + format)',
+    () async {
+      var dependencies = loadDependenciesFile('$exampleFolder/');
+      print(introMessage(dependencies[dependency].toString()));
+      await IntegrationTestTask().work([exampleFolder]);
+    },
+  );
+
+  test(
+    'Test Main task (preview + test + integration_test + catalog + format)',
     () async {
       var dependencies = loadDependenciesFile('$exampleFolder/');
       print(introMessage(dependencies[dependency].toString()));

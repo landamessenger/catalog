@@ -26,6 +26,10 @@ class MainTask extends BaseTask {
         print(e);
       }
     }
-    print(commonMessage('Previews, tests, integration tests and catalog generated'));
+    print(
+      commonMessage(
+        'Previews, tests, integration tests and catalog generated',
+      ),
+    );
   }
 }
