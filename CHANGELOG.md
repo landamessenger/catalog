@@ -1,6 +1,6 @@
-## 1.0.6
+## 2.0.0
 
-* Dependencies updated.
+* Added `test` and `integration_test` generation.
 
 ## 1.0.5
 
