@@ -33,8 +33,6 @@ class PreviewScaffold extends StatelessWidget {
         ),
       ),
       appBar: AppBar(
-        foregroundColor: Colors.white,
-        backgroundColor: Colors.teal,
         title: Text(title ?? ''),
       ),
       body: Stack(

@@ -39,7 +39,6 @@ class PreviewDummyDevice extends StatelessWidget {
               clipBehavior: Clip.hardEdge,
               child: Container(
                 padding: const EdgeInsets.all(15),
-                color: Colors.white,
                 constraints: const BoxConstraints(
                   maxWidth: 400,
                 ),
@@ -72,7 +71,7 @@ class PreviewDummyDevice extends StatelessWidget {
                 device: deviceInfo,
                 orientation: dummy.device.orientation,
                 screen: Container(
-                  color: dummy.device.backgroundColor,
+                  color: Theme.of(context).colorScheme.surface,
                   child: Builder(
                     builder: (context) {
                       return Padding(

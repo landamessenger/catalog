@@ -30,7 +30,6 @@ class PreviewDummyBasic extends StatelessWidget {
             clipBehavior: Clip.hardEdge,
             child: Container(
               padding: const EdgeInsets.all(15),
-              color: Colors.white,
               constraints: const BoxConstraints(
                 maxWidth: 400,
               ),
