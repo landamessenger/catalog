@@ -7,6 +7,7 @@ import 'package:catalog/src/builders/catalog/component_node.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import 'src/builders/preview/grid_color.dart';
 import 'src/builders/preview/preview_boundary.dart';
 import 'src/builders/preview/preview_render_widget.dart';
 
@@ -18,6 +19,7 @@ export 'package:catalog/src/builders/device/device.dart';
 export 'package:catalog/src/builders/dummy/dummy.dart';
 export 'package:catalog/src/builders/dummy/dummy_text.dart';
 export 'package:catalog/src/builders/dummy/preview_dummy.dart';
+export 'package:catalog/src/builders/preview/grid_color.dart';
 export 'package:catalog/src/builders/preview/parent_preview_widget.dart';
 export 'package:catalog/src/builders/preview/preview_boundary.dart';
 export 'package:catalog/src/builders/screenshots/background.dart';
@@ -35,8 +37,8 @@ export 'package:catalog/src/extensions/widget_test_ext.dart';
 export 'package:catalog/src/utils/constants.dart';
 export 'package:device_frame/device_frame.dart';
 export 'package:flutter_test/flutter_test.dart';
-export 'package:integration_test/integration_test.dart';
 export 'package:go_router/go_router.dart';
+export 'package:integration_test/integration_test.dart';
 
 class Catalog {
   static Catalog? _instance;
@@ -51,6 +53,11 @@ class Catalog {
   Function(GoRouter router)? runnerRouterSet;
 
   GoRouter? router;
+
+  GridColor gridColor = GridColor(
+    light: Colors.grey[300] ?? Colors.grey,
+    dark: Colors.grey[300] ?? Colors.grey,
+  );
 
   bool get active => router != null;
 

@@ -9,25 +9,25 @@
 import 'package:integration_test/integration_test.dart';
 
 import 'package:example/widgets/utils/bottom/catalog/integration_test/fab_widget_integration_test.dart'
-    as akcl;
+    as fflh;
 import 'package:example/widgets/other_utils/bottom/catalog/integration_test/warning_info_widget_integration_test.dart'
-    as gjrq;
+    as iuso;
 import 'package:example/widgets/screen/catalog/integration_test/sized_container_integration_test.dart'
-    as pvar;
+    as bpok;
 import 'package:example/widgets/screen/catalog/integration_test/body_widget_integration_test.dart'
-    as utcx;
+    as dshj;
 import 'package:example/widgets/screen/catalog/integration_test/counter_widget_integration_test.dart'
-    as ujyk;
+    as ageq;
 import 'package:example/widgets/catalog/integration_test/main_screen_integration_test.dart'
-    as sqbo;
+    as bbvw;
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
-  akcl.FabWidgetIntegrationTest().main();
-  gjrq.WarningInfoWidgetIntegrationTest().main();
-  pvar.SizedContainerIntegrationTest().main();
-  utcx.BodyWidgetIntegrationTest().main();
-  ujyk.CounterWidgetIntegrationTest().main();
-  sqbo.MainScreenIntegrationTest().main();
+  fflh.FabWidgetIntegrationTest().main();
+  iuso.WarningInfoWidgetIntegrationTest().main();
+  bpok.SizedContainerIntegrationTest().main();
+  dshj.BodyWidgetIntegrationTest().main();
+  ageq.CounterWidgetIntegrationTest().main();
+  bbvw.MainScreenIntegrationTest().main();
 }

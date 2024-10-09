@@ -13,7 +13,7 @@ class CatalogTask extends BaseTask {
     final base = args.isEmpty ? '' : '${args.first}/';
 
     var appId = loadId(base);
-    var config = loadConfigFile(base);
+    var config = loadCatalogConfigFile(base);
 
     final page = config['pageFile'] ?? 'catalog_component.dart';
     final pageName = config['pageName'] ?? 'CatalogComponent';

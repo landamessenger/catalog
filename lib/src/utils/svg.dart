@@ -211,6 +211,8 @@ class SvgImageKey {
         other.pixelHeight == pixelHeight &&
         other.scale == scale &&
         other.source == source &&
+        other.foregroundColor == foregroundColor &&
+        other.backgroundColor == backgroundColor &&
         other.svgGetter == svgGetter;
   }
 

@@ -13,7 +13,7 @@ class PreviewTask extends BaseTask {
     final base = args.isEmpty ? '' : '${args.first}/';
 
     var appId = loadId(base);
-    var config = loadConfigFile(base);
+    var config = loadCatalogConfigFile(base);
 
     final prefixValue = config['prefix'] ?? 'preview';
 
