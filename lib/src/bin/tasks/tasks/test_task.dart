@@ -12,14 +12,19 @@ class TestTask extends BaseTask {
     final base = args.isEmpty ? '' : '${args.first}/';
 
     var appId = loadId(base);
-    var config = loadConfigFile(base);
+    var configCatalog = loadCatalogConfigFile(base);
+    var configObject = loadObjectConfigFile(base);
 
-    final prefixValue = config['prefix'] ?? 'preview';
+    String objectImport = getObjectImport(appId, configObject);
+    String objectImplementation = getObjectImplementation(configObject);
 
-    final dir = Directory('./$base${config['base']}');
+    final prefixValue = configCatalog['prefix'] ?? 'preview';
+
+    final dir = Directory('./$base${configCatalog['base']}');
     await dir.create(recursive: true);
 
-    final dirOutPut = Directory('./$base${config['base']}/${config['output']}');
+    final dirOutPut =
+        Directory('./$base${configCatalog['base']}/${configCatalog['output']}');
     await dirOutPut.create(recursive: true);
 
     final List<FileSystemEntity> entities =
@@ -46,9 +51,9 @@ class TestTask extends BaseTask {
 
     for (FileSystemEntity fileSystemEntity in files) {
       final File file = File(fileSystemEntity.path);
-      var p = file.path.split(config['base'])[1];
+      var p = file.path.split(configCatalog['base'])[1];
       var classImport = 'package:$appId$p';
-      var preview = await previewOnFile(base, config, file.path);
+      var preview = await previewOnFile(base, configCatalog, file.path);
       var previewAnnotation = await findPreviewAnnotation(file.path);
       if (previewAnnotation == null) continue;
       var className = await findClassName(file.path);
@@ -56,7 +61,7 @@ class TestTask extends BaseTask {
       if (preview == null) continue;
 
       final testFile = await generateTest(
-        config,
+        configCatalog,
         file.path,
         className,
         classImport,
@@ -66,6 +71,11 @@ class TestTask extends BaseTask {
       test.add(testFile);
     }
 
-    await generateMainTest(base, test);
+    await generateMainTest(
+      base,
+      test,
+      objectImport,
+      objectImplementation,
+    );
   }
 }

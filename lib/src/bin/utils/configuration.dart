@@ -6,8 +6,9 @@ import 'package:yaml/yaml.dart';
 
 import 'exceptions.dart';
 
-const configId = 'catalog';
-const nammeId = 'name';
+const catalogConfigId = 'catalog';
+const objectConfigId = 'object';
+const nameId = 'name';
 const dependenciesId = 'dependencies';
 const pageNameId = 'pageFile';
 const assetsId = 'assets';
@@ -19,23 +20,48 @@ String introMessage(String version) => '''
   ════════════════════════════════════════════
   ''';
 
-Map<String, dynamic> loadConfigFile(String basePath) {
+Map<String, dynamic> loadCatalogConfigFile(String basePath) {
   final File file = File("${basePath}pubspec.yaml");
   final String yamlString = file.readAsStringSync();
   // ignore: always_specify_types
   final Map yamlMap = loadYaml(yamlString);
 
-  if (yamlMap[configId] is! Map) {
+  if (yamlMap[catalogConfigId] is! Map) {
     stderr.writeln(
       const NoConfigFoundException(
-        'Check your config file pubspec.yaml has a `$configId` section',
+        'Check your config file pubspec.yaml has a `$catalogConfigId` section',
       ),
     );
     exit(1);
   }
 
   final Map<String, dynamic> config = <String, dynamic>{};
-  for (MapEntry<dynamic, dynamic> entry in yamlMap[configId].entries) {
+  for (MapEntry<dynamic, dynamic> entry in yamlMap[catalogConfigId].entries) {
+    config[entry.key] = entry.value;
+  }
+
+  return config;
+}
+
+Map<String, dynamic> loadObjectConfigFile(String basePath) {
+  final File file = File("${basePath}pubspec.yaml");
+  final String yamlString = file.readAsStringSync();
+  // ignore: always_specify_types
+  final Map yamlMap = loadYaml(yamlString);
+
+  if (yamlMap[objectConfigId] == null) return {};
+
+  if (yamlMap[objectConfigId] is! Map) {
+    stderr.writeln(
+      const NoConfigFoundException(
+        'Check your config file pubspec.yaml has a `$objectConfigId` section',
+      ),
+    );
+    exit(1);
+  }
+
+  final Map<String, dynamic> config = <String, dynamic>{};
+  for (MapEntry<dynamic, dynamic> entry in yamlMap[objectConfigId].entries) {
     config[entry.key] = entry.value;
   }
 
@@ -71,7 +97,7 @@ String loadId(String basePath) {
   // ignore: always_specify_types
   final Map yamlMap = loadYaml(yamlString);
 
-  return yamlMap[nammeId];
+  return yamlMap[nameId];
 }
 
 Future<InternalPreview?> previewOnFile(

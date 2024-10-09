@@ -1,3 +1,10 @@
+## 2.1.0
+
+* Initialize `object` if detected as dependency.
+* Fixed imports on test.
+* Fixed catalog colors in dark mode.
+* Fixed SVG light/dark mode switch.
+
 ## 2.0.0
 
 * Added `test` and `integration_test` generation.

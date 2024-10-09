@@ -9,7 +9,7 @@ class FormatTask extends BaseTask {
   Future<void> work(List<String> args) async {
     final base = args.isEmpty ? '' : '${args.first}/';
 
-    var config = loadConfigFile(base);
+    var config = loadCatalogConfigFile(base);
 
     final File file =
         File('./$base${config['base']}/${config['output']}/process.dart');

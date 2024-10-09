@@ -10,7 +10,7 @@ import 'package:go_router/go_router.dart';
 
 void main() {
   final dependency = 'catalog';
-  final exampleFolder = 'example';
+  final exampleFolder = '../landa';
 
   test(
     'Basic dummy test',

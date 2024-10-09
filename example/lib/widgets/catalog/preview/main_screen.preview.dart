@@ -51,7 +51,6 @@ class MainScreenPreview extends ParentPreviewWidget {
                     clipBehavior: Clip.hardEdge,
                     child: Container(
                       padding: const EdgeInsets.all(15),
-                      color: Colors.white,
                       child: Row(
                         children: [
                           Expanded(
@@ -83,7 +82,6 @@ class MainScreenPreview extends ParentPreviewWidget {
                     clipBehavior: Clip.hardEdge,
                     child: Container(
                       padding: const EdgeInsets.all(15),
-                      color: Colors.white,
                       child: Row(
                         children: [
                           Expanded(

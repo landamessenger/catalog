@@ -1,5 +1,6 @@
 import 'package:catalog/catalog.dart';
 import 'package:catalog/src/utils/svg.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'drawer_preview.dart';
@@ -38,15 +39,19 @@ class PreviewScaffold extends StatelessWidget {
       body: Stack(
         children: [
           Container(
-            color: const Color(0xFFECE5DD),
+            color: Theme.of(context).colorScheme.surface,
           ),
-          const Positioned.fill(
+          Positioned.fill(
             child: Image(
               repeat: ImageRepeat.repeat,
               image: Svg(
                 'ff',
                 scale: 2,
-                foregroundColor: Colors.white,
+                foregroundColor:
+                    PlatformDispatcher.instance.platformBrightness ==
+                            Brightness.light
+                        ? Catalog().gridColor.light
+                        : Catalog().gridColor.dark,
                 size: Size(50, 50),
               ),
             ),
